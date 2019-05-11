@@ -1,0 +1,15 @@
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\bin\Debug\TeacherDatabase.exe.config
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\bin\Debug\TeacherDatabase.exe
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\bin\Debug\TeacherDatabase.pdb
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.csprojAssemblyReference.cache
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\MainWindow.g.cs
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\App.g.cs
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase_MarkupCompile.cache
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase_MarkupCompile.lref
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\MainWindow.baml
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.g.resources
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.Properties.Resources.resources
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.csproj.GenerateResource.cache
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.csproj.CoreCompileInputs.cache
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.exe
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.pdb
