@@ -13,3 +13,8 @@ C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.c
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.csproj.CoreCompileInputs.cache
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.exe
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.pdb
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\bin\Debug\MySql.Data.dll
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\Login.g.cs
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\Login.baml
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.csproj.CopyComplete

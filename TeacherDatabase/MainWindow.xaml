@@ -5,9 +5,291 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeacherDatabase"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+         WindowStyle="None" 
+        Background="#FFABE0F3"
+        Title="教师题库管理系统" Height="700" Width="1200"
+         WindowStartupLocation="CenterScreen"
+        WindowChrome.WindowChrome="{DynamicResource WindowChromeKey}" 
+        AllowsTransparency="True" ResizeMode="CanResizeWithGrip">
+    <!--ResizeMode="NoResize"-->
+    <Window.Resources>
+        <WindowChrome x:Key="WindowChromeKey">
+            <WindowChrome.ResizeBorderThickness>
+                <Thickness>5</Thickness>
+            </WindowChrome.ResizeBorderThickness>
+        </WindowChrome>
+        <Geometry x:Key="DownArrowGeometry">M 0 0 L 3.5 4 L 7 0 Z</Geometry>
+        <Style x:Key="ComboBoxReadonlyToggleButton" TargetType="{x:Type ToggleButton}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="ClickMode" Value="Press"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}" x:Name="Chrome"  BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}"  SnapsToDevicePixels="true">
+                            <Grid HorizontalAlignment="Right" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                                <Path x:Name="Arrow" Data="{StaticResource DownArrowGeometry}" Fill="#808080" HorizontalAlignment="Center" Margin="1,1,0,0" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Fill" TargetName="Arrow" Value="#AFAFAF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CboCommomStyle" TargetType="{x:Type ComboBox}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBox}">
+                        <Grid x:Name="MainGrid" SnapsToDevicePixels="true" Margin="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
+                            </Grid.ColumnDefinitions>
+                            <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
+                                <Border x:Name="Shdw" MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=MainGrid}">
+                                    <Border x:Name="DropDownBorder" BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" BorderThickness="1" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+                                        <ScrollViewer x:Name="DropDownScrollViewer">
+                                            <Grid RenderOptions.ClearTypeHint="Enabled">
+                                                <Canvas HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
+                                                    <Rectangle x:Name="OpaqueRect" Fill="{Binding Background, ElementName=DropDownBorder}" Height="{Binding ActualHeight, ElementName=DropDownBorder}" Width="{Binding ActualWidth, ElementName=DropDownBorder}"/>
+                                                </Canvas>
+                                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                            </Grid>
+                                        </ScrollViewer>
+                                    </Border>
+                                </Border>
+                            </Popup>
+                            <ToggleButton BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" Grid.ColumnSpan="2"
+                                      Grid.Column="0"
+                                      IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxReadonlyToggleButton}" BorderThickness="{TemplateBinding BorderThickness}"/>
+                            <ContentPresenter Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="341,163,0,0"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="45"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+        </Grid.RowDefinitions>
 
+
+
+        <Grid Height="26" MouseMove="Window_MouseMove" Grid.Row="0" Background="#FFABE0F3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Width="200" HorizontalAlignment="Left" Foreground="#FFA27D0D" Margin="5 5 0 0" FontWeight="Bold" FontSize="14">教师题库管理系统</TextBlock>
+
+
+            </Grid>
+
+        </Grid>
+
+        <Grid MouseMove="Window_MouseMove" Grid.Row="1" Background="#FFABE0F3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal">
+                <Label HorizontalAlignment="Center" Height="25">试题类型</Label>
+                <ComboBox Background="White" Style="{StaticResource CboCommomStyle}" HorizontalAlignment="Center" Width="200" Height="25">
+                    <ComboBoxItem IsSelected="True">全部类型</ComboBoxItem>
+                    <ComboBoxItem>c#</ComboBoxItem>
+                    <ComboBoxItem>Python</ComboBoxItem>
+                    <ComboBoxItem>Java</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Label HorizontalAlignment="Right" VerticalAlignment="Center" >当前登录用户:</Label>
+                <Label VerticalAlignment="Center">XXXX</Label>
+                <Button Margin="0 0 5  0" Height="25" Click="Btn_break">退出登录</Button>
+            </StackPanel>
+
+
+
+        </Grid>
+
+
+
+        <TabControl x:Name="tabControl" TabStripPlacement="Left" Grid.Row="2" Background="#FFF3FFF3" SelectionChanged="TabControl_SelectionChanged">
+
+            <TabItem Header="试题管理" Height="40" Background="#FF78F47A">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Grid.RowSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <DataGrid FontSize="15" Grid.Column="0" x:Name="questions" AutoGenerateColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                  SizeChanged="datagrid_SizeChanged" RowHeaderWidth="0" IsReadOnly="True" BorderBrush="Transparent"
+                  BorderThickness="1" IsSynchronizedWithCurrentItem="True">
+                                <DataGrid.ColumnHeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                                        <Setter Property="FontSize" Value="18"></Setter>
+                                        <Setter Property="FontWeight" Value="ExtraBold"></Setter>
+                                        <Setter Property="Height" Value="30"></Setter>
+                                    </Style>
+                                </DataGrid.ColumnHeaderStyle>
+
+                                <DataGrid.Columns >
+                                    <DataGridTextColumn x:Name="UserId" Binding="{Binding Id}" Header="试题编号" />
+                                    <DataGridTextColumn x:Name="UserSubject" Binding="{Binding Subject}" Header="科目" />
+                                    <DataGridTextColumn x:Name="UserType" Binding="{Binding Type}" Header="题型"/>
+                                    <DataGridTextColumn x:Name="UserChapter" Binding="{Binding Chapter}" Header="章节"/>
+                                    <DataGridTextColumn x:Name="UserName" Binding="{Binding Name}" Header="题目" />
+                                    <DataGridTextColumn x:Name="UserAnswer" Binding="{Binding Answer}" Header="答案" />
+                                    <DataGridTextColumn x:Name="UserDiffculty" Binding="{Binding Diffculty}" Header="难度"/>
+                                    <DataGridTextColumn x:Name="UserAnthor" Binding="{Binding Anthor}" Header="出题人"/>
+                                    <DataGridTextColumn x:Name="UserDatatime" Binding="{Binding Datatime}" Header="添加日期" />
+                                    <DataGridTemplateColumn x:Name="UserAction">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Button x:Name="BtnAction" Content="{Binding BtnActionStr}" Click="BtnAction_Click" IsEnabled="{Binding Enabled}"
+                                      HorizontalAlignment="Center" VerticalAlignment="Top">
+                                                    </Button>
+
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+
+
+
+
+                            <StackPanel Grid.Column="1">
+                                <Button Click="Button_Click">ok</Button>
+                                <Button Click="Button_Click_1">11</Button>
+                                <Button>11</Button>
+                                <Button>11</Button>
+                                <TextBox Name="tbk" TextWrapping="Wrap" Text="TextBlock"/>
+                            </StackPanel>
+                        </Grid>
+                        <StackPanel Grid.Row="1">
+
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+
+
+
+            <TabItem Header="试题录入" Height="40" Background="#FF78F47A" >
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition ></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="100"></RowDefinition>
+                            <RowDefinition Height="80"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0"  Orientation="Horizontal" HorizontalAlignment="Left" Width="792" Height="50" VerticalAlignment="Top" >
+                            <TextBlock Text="科目" Width="Auto" Margin="40 0 0 0" VerticalAlignment="Center"/>
+                            <ComboBox  Style="{StaticResource CboCommomStyle}" Background="White" Margin="40,0" Width="150" Height="25">
+                                <ComboBoxItem IsSelected="True">java</ComboBoxItem>
+                                <ComboBoxItem>Python</ComboBoxItem>
+                                <ComboBoxItem>c#</ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Width="792" Height="50" VerticalAlignment="Top">
+                            <TextBlock Text="题型" Width="Auto" Margin="40 0 0 0" VerticalAlignment="Center"/>
+                            <RadioButton Name="choice" Margin="40 0 0 0" VerticalAlignment="Center" Content="选择题" GroupName="type"/>
+                            <RadioButton Name="judge" Margin="20 0 0 0" VerticalAlignment="Center" Content="判断题" GroupName="type"/>
+                            <RadioButton Name="design" Margin="20 0 0 0" VerticalAlignment="Center" Content="设计题" GroupName="type"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Orientation="Horizontal">
+                            <TextBlock Text="题目" Width="Auto"  Margin="40 0 0 0" VerticalAlignment="Top"/>
+                            <TextBox Width="800" TextWrapping="Wrap"  Margin="40,0,0,5"></TextBox>
+                        </StackPanel>
+                        <StackPanel  Grid.Row="3" Orientation="Horizontal">
+                            <TextBlock Text="答案" Width="Auto" Margin="40 0 0 0" VerticalAlignment="Top"/>
+                            <TextBox Margin="40,0,0,0" TextWrapping="Wrap" Name="tbxAnswer"  Width="800"></TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="4" Orientation="Horizontal">
+                            <TextBlock Text="难度" Margin="40 0 0 0" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <RadioButton Margin="40 0 0 0" VerticalAlignment="Center" Content="简单" GroupName="difficulty"/>
+                            <RadioButton Margin="20 0 0 0" VerticalAlignment="Center" Content="一般" GroupName="difficulty"/>
+                            <RadioButton Margin="20 0 0 0" VerticalAlignment="Center" Content="较难" GroupName="difficulty"/>
+                        </StackPanel>
+                        <Grid Grid.Row="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Margin="0 -40 0 0" Grid.Column="0" Orientation="Horizontal">
+                                <TextBlock Text="出题人" Width="Auto" Margin="40 0 0 0" VerticalAlignment="Center" />
+                                <TextBox Height="23" Width="200" HorizontalContentAlignment="Center" Text="" Margin="30,0,0,0"></TextBox>
+                            </StackPanel>
+                            <Button Click="Button_Click_2" HorizontalAlignment="Right" Margin="0 0 20 0" Width="100" Grid.Column="1" Height="25">开始执行</Button>
+                        </Grid>
+
+
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="试卷管理" Height="40" Background="#FF78F47A">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="课件管理" Height="40" Background="#FF78F47A">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="生成试卷" Height="40" Background="#FF78F47A">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="控制中心" Height="40" Width="100" Background="#FF78F47A">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <StackPanel>
+                            <Button>dfs</Button>
+                            <Button>sdf</Button>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+
+
+        <!--<StackPanel Grid.RowSpan="2" Margin="0 10 0 0" VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Click="Btn_Max" Width="20" Height="20">口</Button>
+            <Button Click="Btn_Close" Width="20" Height="20">X</Button>
+        </StackPanel>-->
     </Grid>
 </Window>
