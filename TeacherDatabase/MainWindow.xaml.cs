@@ -28,59 +28,32 @@ namespace TeacherDatabase
         public MainWindow()
         {
             InitializeComponent();
-            MySqlConnection mycon = new MySqlConnection(con);                        //创建SQL连接对象
-            mycon.Open();
             GetDataGrid();
         }
 
         //测试插入数据（刷新）
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //dataBinding();
-            //ReadSQL();
-            string sql = "insert into [questions].[dbo].[data] (id,Subject,type,name,answer,difficulty,author,datatime) values('24','java','判断题','是否正确','T','一般','神','2019/4/23');";
-            SqlDataAdapter myda = new SqlDataAdapter(sql, con);
-            //DataTable DataTable = new DataTable();
-            DataTable.Clear();
-            myda.Fill(DataTable);
+            MySqlConnection conn = new MySqlConnection(con);
+            conn.Open();
+            string sql = "INSERT INTO question(`id`, `subject`, `type`, `chapter`, `name`, `answer`, `diffculty`, `anthor`, `datatime`, `account`) VALUES ('6', '数学', '判断题', '第一章', 'dfg', 'dfg', '简单', '果冻', '2019/5/5', 'root')";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            int result = cmd.ExecuteNonQuery();
+            MessageBox.Show(result.ToString());
+            conn.Close();
             questions.ItemsSource = null;
-            //ItemsControl.ItemsSource();
-
             GetDataGrid();
-            MessageBox.Show(DataTable.Rows.Count.ToString());
         }
         //读取数据
         private void ReadSQL()
         {
-            //string sql = "select * from data";                //SQL查询语句
-
-            //                                    //打开
-            //MySqlCommand myda = new MySqlCommand(sql, mycon);
-
-            //myda.Fill(DataTable);                                                      //填充table
-
             MySqlConnection mycon = new MySqlConnection(con);                        //创建SQL连接对象
             mycon.Open();
             MySqlDataAdapter myDataAdapter = new MySqlDataAdapter("select * from question", con);
             DataSet myda = new DataSet();
             myDataAdapter.Fill(myda, "question");
             DataTable = myda.Tables["question"];
-
-            //foreach (DataRow myRow in DataTable.Rows)
-            //{
-            //    foreach(DataColumn myColumn in DataTable.Columns)
-            //    {
-
-            //    }
-            //}
-
-            //dt.Rows[0][1] = "呵呵呵";
-            //MessageBox.Show(dt.Rows.Count.ToString());
-            //MessageBox.Show(DataTable.Rows[1][4].ToString());
-            //questions.ItemsSource = dt.DefaultView;                              //这里在WPF界面中拖拽一个DataGrid，然后用DataTable进行填充。
         }
-
-
 
         //向DataGrid中添加数据
         private void GetDataGrid()
@@ -104,14 +77,12 @@ namespace TeacherDatabase
                 user.Datatime = DataTable.Rows[i][8].ToString();
 
                 user.BtnActionStr = new Button();
-                user.BtnActionStr.Content = "修改" + i;
+                user.BtnActionStr.Content = "修改_" + i;
                 user.BtnActionStr.Height = 20;
                 user.BtnActionStr.FontSize = 10;
-
-
+                //user.BtnActionStr += 
 
                 user.Enabled = true;
-
                 users.Add(user);
             }
             //数据绑定
@@ -151,13 +122,16 @@ namespace TeacherDatabase
             UserAnthor.Width = WidthSize;
             UserDatatime.Width = WidthSize;
 
-            UserAction.Width = 80;
+            //UserAction.Width = 80;
 
         }
 
         //第一个按钮点击事件
         private void BtnAction_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = sender as Button;
+            
+            MessageBox.Show(btn.Content.ToString());
             //MessageBox.Show(users[questions.SelectedIndex].Subject);
         }
 
@@ -205,53 +179,6 @@ namespace TeacherDatabase
             MessageBox.Show(dataTable.Rows[0][0].ToString());
         }
 
-        //private void Choice_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    string rabtnMame = choice.Content.ToString();
-        //    AnswerStyle(rabtnMame);
-        //}
-
-        //private void Judge_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    string rabtnMame = judge.Content.ToString();
-        //    AnswerStyle(rabtnMame);
-        //}
-
-        //private void Design_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    string rabtnMame = design.Content.ToString();
-        //    AnswerStyle(rabtnMame);
-        //}
-        private void AnswerStyle(string rabtnMame)
-        {
-
-            //if (choice.IsChecked == true)
-            //{
-            //    //if (Xanswer.GetType)
-            //    //{
-
-            //    //}
-
-
-            //    //TextBox tbx = spAnswer.FindName("tbxAnswer") as TextBox;//找到刚新添加的按钮   
-            //    //if (tbx != null)//判断是否找到，以免在未添加前就误点了   
-            //    //{
-            //    //    spAnswer.Children.Remove(tbx);//移除对应按钮控件   
-            //    //    spAnswer.UnregisterName("tbxAnswer");//还需要把对用的名字注销掉，否则再次点击Button_Add会报错   
-            //}
-        }
-
-        //判断答案控件是否存在--开发中
-        //private ExistType()
-        //{
-        //    TextBox tbx = spAnswer.FindName("tbxAnswer") as TextBox;
-        //    if (tbx == null)
-        //    {
-        //        //选择题，选项，通过获取···········
-        //        return "tbxAnswer"
-        //    }
-        //}
-
 
         //测试
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -260,16 +187,6 @@ namespace TeacherDatabase
         }
 
 
-
-
-        //Button btn1 = new Button();
-        //btn1.Width = 100;
-        //btn1.Height = 50;
-        ////删除控件
-        ////spAnswer.Children.Remove(tbxAnswer);
-        //spAnswer.Children.Add(btn1);
-        //spAnswer.RegisterName("Name1", btn1);
-        ////spAnswer.FindName("Name1") as Button;
         private void Window_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)

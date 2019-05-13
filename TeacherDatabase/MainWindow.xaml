@@ -177,16 +177,12 @@
                                     </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
-
-
-
-
-
+                            
                             <StackPanel Grid.Column="1">
                                 <Button Click="Button_Click">ok</Button>
                                 <Button Click="Button_Click_1">11</Button>
-                                <Button>11</Button>
-                                <Button>11</Button>
+                                <Button>113</Button>
+                                <Button>114</Button>
                                 <TextBox Name="tbk" TextWrapping="Wrap" Text="TextBlock"/>
                             </StackPanel>
                         </Grid>
