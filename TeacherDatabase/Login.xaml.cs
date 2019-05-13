@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace TeacherDatabase
 {
@@ -21,10 +22,21 @@ namespace TeacherDatabase
     /// </summary>
     public partial class Login : Window
     {
+        //统计密码验证失败次数
+        int pwdCount = 1;
         public Login()
         {
             InitializeComponent();
 
+
+
+            //MessageBox.Show(dataTable.Rows[0][0].ToString()+ dataTable.Rows[0][1].ToString());
+
+        }
+
+       
+        private void Button_Login(object sender, RoutedEventArgs e)
+        {
             string con = "Server=39.108.153.12;port=3306;user=teacher;password=myrootsql;database=teacher;";
             MySqlConnection mycon = new MySqlConnection(con);
             mycon.Open();
@@ -33,18 +45,23 @@ namespace TeacherDatabase
             myDataAdapter.Fill(myda, "user");
             DataTable dataTable = new DataTable();
             dataTable = myda.Tables["user"];
-
-            //MessageBox.Show(dataTable.Rows[0][0].ToString()+ dataTable.Rows[0][1].ToString());
-
-        }
-
-
-        private void Button_Login(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
-
+            //pwd.Password;
+            bool isSuccess = false;
+            foreach (DataRow row in dataTable.Rows)
+            {
+                if (row[0].ToString() == tbxUser.Text && row[1].ToString() == pwd.Password)
+                {
+                    isSuccess = true;
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    this.Close();
+                }
+            }
+            if (!isSuccess)
+            {
+                mess.Content = "登录验证失败，账号或密码错误+" + pwdCount.ToString();
+                pwdCount++;
+            }  
         }
 
         private void Btn_Close(object sender, RoutedEventArgs e)
@@ -63,5 +80,9 @@ namespace TeacherDatabase
                 this.DragMove();
             }
         }
+
+
+
+
     }
 }
