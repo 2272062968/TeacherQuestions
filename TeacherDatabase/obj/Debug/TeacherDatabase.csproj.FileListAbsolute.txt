@@ -18,3 +18,7 @@ C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\Login.g.cs
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\Login.baml
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.csproj.CopyComplete
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\UserQuestionEntry.g.cs
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\UserQuestionEntry.baml
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\UserQuestionAdmin.g.cs
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\UserQuestionAdmin.baml

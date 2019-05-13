@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="TeacherDatabase.UserQuestionAdmin"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TeacherDatabase"
+             mc:Ignorable="d" 
+             d:DesignHeight="624.8" d:DesignWidth="1092">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid FontSize="15" Grid.Column="0" x:Name="questions" AutoGenerateColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                  SizeChanged="datagrid_SizeChanged" RowHeaderWidth="0" IsReadOnly="True" BorderBrush="Transparent"
+                  BorderThickness="1" IsSynchronizedWithCurrentItem="True">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                        <Setter Property="FontSize" Value="18"></Setter>
+                        <Setter Property="FontWeight" Value="ExtraBold"></Setter>
+                        <Setter Property="Height" Value="30"></Setter>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.Columns >
+                    <DataGridTextColumn x:Name="UserId" Binding="{Binding Id}" Header="试题编号" />
+                    <DataGridTextColumn x:Name="UserSubject" Binding="{Binding Subject}" Header="科目" />
+                    <DataGridTextColumn x:Name="UserType" Binding="{Binding Type}" Header="题型"/>
+                    <DataGridTextColumn x:Name="UserChapter" Binding="{Binding Chapter}" Header="章节"/>
+                    <DataGridTextColumn x:Name="UserName" Binding="{Binding Name}" Header="题目" />
+                    <DataGridTextColumn x:Name="UserAnswer" Binding="{Binding Answer}" Header="答案" />
+                    <DataGridTextColumn x:Name="UserDiffculty" Binding="{Binding Diffculty}" Header="难度"/>
+                    <DataGridTextColumn x:Name="UserAnthor" Binding="{Binding Anthor}" Header="出题人"/>
+                    <DataGridTextColumn x:Name="UserDatatime" Binding="{Binding Datatime}" Header="添加日期" />
+                    <DataGridTemplateColumn x:Name="UserAction">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="BtnAction" Content="{Binding BtnActionStr}" Click="BtnAction_Click" IsEnabled="{Binding Enabled}"
+                                      HorizontalAlignment="Center" VerticalAlignment="Top">
+                                    </Button>
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Grid.Column="1">
+                <Button Click="Button_Click">ok</Button>
+                <Button Click="Button_Click_1">11</Button>
+                <Button>113</Button>
+                <Button>114</Button>
+                <TextBox Name="tbk" TextWrapping="Wrap" Text="TextBlock"/>
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.Row="1">
+
+        </StackPanel>
+    </Grid>
+</UserControl>

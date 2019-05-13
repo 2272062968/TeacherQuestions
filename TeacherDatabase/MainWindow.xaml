@@ -127,132 +127,12 @@
 
 
         <TabControl x:Name="tabControl" TabStripPlacement="Left" Grid.Row="2" Background="#FFF3FFF3" SelectionChanged="TabControl_SelectionChanged">
-
-            <TabItem Header="试题管理" Height="40" Background="#FF78F47A">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="30"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="0" Grid.RowSpan="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition Width="100"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-
-                            <DataGrid FontSize="15" Grid.Column="0" x:Name="questions" AutoGenerateColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
-                  SizeChanged="datagrid_SizeChanged" RowHeaderWidth="0" IsReadOnly="True" BorderBrush="Transparent"
-                  BorderThickness="1" IsSynchronizedWithCurrentItem="True">
-                                <DataGrid.ColumnHeaderStyle>
-                                    <Style TargetType="DataGridColumnHeader">
-                                        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-                                        <Setter Property="FontSize" Value="18"></Setter>
-                                        <Setter Property="FontWeight" Value="ExtraBold"></Setter>
-                                        <Setter Property="Height" Value="30"></Setter>
-                                    </Style>
-                                </DataGrid.ColumnHeaderStyle>
-
-                                <DataGrid.Columns >
-                                    <DataGridTextColumn x:Name="UserId" Binding="{Binding Id}" Header="试题编号" />
-                                    <DataGridTextColumn x:Name="UserSubject" Binding="{Binding Subject}" Header="科目" />
-                                    <DataGridTextColumn x:Name="UserType" Binding="{Binding Type}" Header="题型"/>
-                                    <DataGridTextColumn x:Name="UserChapter" Binding="{Binding Chapter}" Header="章节"/>
-                                    <DataGridTextColumn x:Name="UserName" Binding="{Binding Name}" Header="题目" />
-                                    <DataGridTextColumn x:Name="UserAnswer" Binding="{Binding Answer}" Header="答案" />
-                                    <DataGridTextColumn x:Name="UserDiffculty" Binding="{Binding Diffculty}" Header="难度"/>
-                                    <DataGridTextColumn x:Name="UserAnthor" Binding="{Binding Anthor}" Header="出题人"/>
-                                    <DataGridTextColumn x:Name="UserDatatime" Binding="{Binding Datatime}" Header="添加日期" />
-                                    <DataGridTemplateColumn x:Name="UserAction">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Button x:Name="BtnAction" Content="{Binding BtnActionStr}" Click="BtnAction_Click" IsEnabled="{Binding Enabled}"
-                                      HorizontalAlignment="Center" VerticalAlignment="Top">
-                                                    </Button>
-
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                            
-                            <StackPanel Grid.Column="1">
-                                <Button Click="Button_Click">ok</Button>
-                                <Button Click="Button_Click_1">11</Button>
-                                <Button>113</Button>
-                                <Button>114</Button>
-                                <TextBox Name="tbk" TextWrapping="Wrap" Text="TextBlock"/>
-                            </StackPanel>
-                        </Grid>
-                        <StackPanel Grid.Row="1">
-
-                        </StackPanel>
-                    </Grid>
-                </ScrollViewer>
+            <TabItem Header="试题管理" Height="40" Name="questionAdmin" Background="#FF78F47A">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"></ScrollViewer>
             </TabItem>
 
-
-
-
-            <TabItem Header="试题录入" Height="40" Background="#FF78F47A" >
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50"></RowDefinition>
-                            <RowDefinition Height="50"></RowDefinition>
-                            <RowDefinition ></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition Height="100"></RowDefinition>
-                            <RowDefinition Height="80"></RowDefinition>
-                        </Grid.RowDefinitions>
-
-                        <StackPanel Grid.Row="0"  Orientation="Horizontal" HorizontalAlignment="Left" Width="792" Height="50" VerticalAlignment="Top" >
-                            <TextBlock Text="科目" Width="Auto" Margin="40 0 0 0" VerticalAlignment="Center"/>
-                            <ComboBox  Style="{StaticResource CboCommomStyle}" Background="White" Margin="40,0" Width="150" Height="25">
-                                <ComboBoxItem IsSelected="True">java</ComboBoxItem>
-                                <ComboBoxItem>Python</ComboBoxItem>
-                                <ComboBoxItem>c#</ComboBoxItem>
-                            </ComboBox>
-                        </StackPanel>
-                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Width="792" Height="50" VerticalAlignment="Top">
-                            <TextBlock Text="题型" Width="Auto" Margin="40 0 0 0" VerticalAlignment="Center"/>
-                            <RadioButton Name="choice" Margin="40 0 0 0" VerticalAlignment="Center" Content="选择题" GroupName="type"/>
-                            <RadioButton Name="judge" Margin="20 0 0 0" VerticalAlignment="Center" Content="判断题" GroupName="type"/>
-                            <RadioButton Name="design" Margin="20 0 0 0" VerticalAlignment="Center" Content="设计题" GroupName="type"/>
-                        </StackPanel>
-                        <StackPanel Grid.Row="2" Orientation="Horizontal">
-                            <TextBlock Text="题目" Width="Auto"  Margin="40 0 0 0" VerticalAlignment="Top"/>
-                            <TextBox Width="800" TextWrapping="Wrap"  Margin="40,0,0,5"></TextBox>
-                        </StackPanel>
-                        <StackPanel  Grid.Row="3" Orientation="Horizontal">
-                            <TextBlock Text="答案" Width="Auto" Margin="40 0 0 0" VerticalAlignment="Top"/>
-                            <TextBox Margin="40,0,0,0" TextWrapping="Wrap" Name="tbxAnswer"  Width="800"></TextBox>
-                        </StackPanel>
-                        <StackPanel Grid.Row="4" Orientation="Horizontal">
-                            <TextBlock Text="难度" Margin="40 0 0 0" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <RadioButton Margin="40 0 0 0" VerticalAlignment="Center" Content="简单" GroupName="difficulty"/>
-                            <RadioButton Margin="20 0 0 0" VerticalAlignment="Center" Content="一般" GroupName="difficulty"/>
-                            <RadioButton Margin="20 0 0 0" VerticalAlignment="Center" Content="较难" GroupName="difficulty"/>
-                        </StackPanel>
-                        <Grid Grid.Row="5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Margin="0 -40 0 0" Grid.Column="0" Orientation="Horizontal">
-                                <TextBlock Text="出题人" Width="Auto" Margin="40 0 0 0" VerticalAlignment="Center" />
-                                <TextBox Height="23" Width="200" HorizontalContentAlignment="Center" Text="" Margin="30,0,0,0"></TextBox>
-                            </StackPanel>
-                            <Button Click="Button_Click_2" HorizontalAlignment="Right" Margin="0 0 20 0" Width="100" Grid.Column="1" Height="25">开始执行</Button>
-                        </Grid>
-
-
-                    </Grid>
-                </ScrollViewer>
+            <TabItem Header="试题录入" Name="questionEntry" Height="40" Background="#FF78F47A" >
+                <ScrollViewer VerticalScrollBarVisibility="Auto"></ScrollViewer>
             </TabItem>
             <TabItem Header="试卷管理" Height="40" Background="#FF78F47A">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -266,7 +146,23 @@
             </TabItem>
             <TabItem Header="生成试卷" Height="40" Background="#FF78F47A">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-
+                    <Grid>
+                        <ListView Name="lstv" Margin="0,0,0,58.8" >
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="100"  Header="试卷信息"></GridViewColumn>
+                                    <GridViewColumn  Width="100" Header="大小"></GridViewColumn>
+                                    <GridViewColumn Width="100"  Header="修改时间"></GridViewColumn>
+                                    <GridViewColumn  Width="100" Header="位置"></GridViewColumn>
+                                    <GridViewColumn  Width="100" Header="作者"></GridViewColumn>
+                                    <GridViewColumn  Width="100" Header="备注"></GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <Button Content="添加试卷" Margin="817,571,162,9.8"/>
+                        <Button Content="删除试卷" Margin="951,571,28,9.8"/>
+                        <Button Content="修改备注" Margin="660,571,319,9.8"/>
+                    </Grid>
                 </ScrollViewer>
             </TabItem>
 
