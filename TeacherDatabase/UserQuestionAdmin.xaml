@@ -32,8 +32,9 @@
                 <DataGrid.Columns >
                     <DataGridTextColumn x:Name="UserId" Binding="{Binding Id}" Header="试题编号" />
                     <DataGridTextColumn x:Name="UserSubject" Binding="{Binding Subject}" Header="科目" />
-                    <DataGridTextColumn x:Name="UserType" Binding="{Binding Type}" Header="题型"/>
                     <DataGridTextColumn x:Name="UserChapter" Binding="{Binding Chapter}" Header="章节"/>
+                    <DataGridTextColumn x:Name="UserType" Binding="{Binding Type}" Header="题型"/>
+
                     <DataGridTextColumn x:Name="UserName" Binding="{Binding Name}" Header="题目" />
                     <DataGridTextColumn x:Name="UserAnswer" Binding="{Binding Answer}" Header="答案" />
                     <DataGridTextColumn x:Name="UserDiffculty" Binding="{Binding Diffculty}" Header="难度"/>

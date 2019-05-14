@@ -9,7 +9,7 @@
         WindowStyle="None"
         MouseMove="Window_MouseMove"
         
-        Title="LoginWindow" Height="334" Width="300">
+        Title="LoginWindow" Height="334" Width="300" MaxHeight="334" MaxWidth="300" MinHeight="334" MinWidth="300">
     <Window.Resources>
 
     </Window.Resources>
@@ -47,7 +47,7 @@
 
             <PasswordBox VerticalAlignment="Center" Name="pwd" HorizontalAlignment="Center"  
                      VerticalContentAlignment="Center" Height="30"  Width="220"
-                     Margin="0 10 0 0" FontStyle="Italic">
+                     Margin="0 10 0 0" FontStyle="Italic" KeyDown="Pwd_KeyDown">
                 <PasswordBox.Style>
                     <Style TargetType="PasswordBox">
                         <Setter Property="Height" Value="23"></Setter>
@@ -95,7 +95,7 @@
                 </StackPanel>
                 <Label Height="25" Grid.Column="1" VerticalAlignment="Center" Content="忘记密码?" HorizontalAlignment="Right"></Label>
             </Grid>
-            <Button Margin="0 25 0 0" Height="30" Width="220" Click="Button_Login" Content="登录">
+            <Button Name="login" Margin="0 25 0 0" Height="30" Width="220" Click="Button_Login" Content="登录">
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}" >
                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="10 10 10 10" Background="#FF2FFFF4">

@@ -106,11 +106,13 @@
 
             <StackPanel Orientation="Horizontal">
                 <Label HorizontalAlignment="Center" Height="25">试题类型</Label>
-                <ComboBox Background="White" Style="{StaticResource CboCommomStyle}" HorizontalAlignment="Center" Width="200" Height="25">
+                <ComboBox Name="Ntype" Background="White" Style="{StaticResource CboCommomStyle}" 
+                          HorizontalAlignment="Center" Width="200" Height="25"
+                          SelectionChanged="Ntype_SelectionChanged">
                     <ComboBoxItem IsSelected="True">全部类型</ComboBoxItem>
-                    <ComboBoxItem>c#</ComboBoxItem>
+                    <!--<ComboBoxItem>c#</ComboBoxItem>
                     <ComboBoxItem>Python</ComboBoxItem>
-                    <ComboBoxItem>Java</ComboBoxItem>
+                    <ComboBoxItem>Java</ComboBoxItem>-->
                 </ComboBox>
             </StackPanel>
 
@@ -119,6 +121,7 @@
                 <Label VerticalAlignment="Center">XXXX</Label>
                 <Button Margin="0 0 5  0" Height="25" Click="Btn_break">退出登录</Button>
             </StackPanel>
+            <Button Content="添加/修改分类" HorizontalAlignment="Left" Margin="321,13,0,0" VerticalAlignment="Top" Width="91" Click="Button_Click"/>
 
 
 
@@ -141,13 +144,8 @@
             </TabItem>
             <TabItem Header="课件管理" Height="40" Background="#FF78F47A">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-
-                </ScrollViewer>
-            </TabItem>
-            <TabItem Header="生成试卷" Height="40" Background="#FF78F47A">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
-                        <ListView Name="lstv" Margin="0,0,0,58.8" >
+                        <ListView Name="lstv" Margin="0,0,10,58.8" >
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="100"  Header="试卷信息"></GridViewColumn>
@@ -163,6 +161,11 @@
                         <Button Content="删除试卷" Margin="951,571,28,9.8"/>
                         <Button Content="修改备注" Margin="660,571,319,9.8"/>
                     </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="生成试卷" Height="40" Background="#FF78F47A">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
                 </ScrollViewer>
             </TabItem>
 

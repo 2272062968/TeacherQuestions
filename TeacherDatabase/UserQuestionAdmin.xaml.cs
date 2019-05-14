@@ -66,10 +66,10 @@ namespace TeacherDatabase
                 user.Id = DataTable.Rows[i][0].ToString();
                 //MessageBox.Show(DataTable.Rows[i][0].ToString());
                 user.Subject = DataTable.Rows[i][1].ToString();
+                user.Type = DataTable.Rows[i][2].ToString();
+                user.Chapter = DataTable.Rows[i][3].ToString();
 
-                user.Chapter = DataTable.Rows[i][2].ToString();
-
-                user.Type = DataTable.Rows[i][3].ToString();
+                
                 user.Name = DataTable.Rows[i][4].ToString();
                 user.Answer = DataTable.Rows[i][5].ToString();
                 user.Diffculty = DataTable.Rows[i][6].ToString();

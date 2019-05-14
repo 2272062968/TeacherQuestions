@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
+
 namespace TeacherDatabase
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace TeacherDatabase
 
         }
 
-       
-        private void Button_Login(object sender, RoutedEventArgs e)
+        //登录
+        void LoginIn()
         {
             string con = "Server=39.108.153.12;port=3306;user=teacher;password=myrootsql;database=teacher;";
             MySqlConnection mycon = new MySqlConnection(con);
@@ -61,8 +62,20 @@ namespace TeacherDatabase
             {
                 mess.Content = "登录验证失败，账号或密码错误+" + pwdCount.ToString();
                 pwdCount++;
-            }  
+            }
         }
+        private void Button_Login(object sender, RoutedEventArgs e)
+        {
+            LoginIn();
+        }        
+        private void Pwd_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                LoginIn();
+            }
+        }
+
 
         private void Btn_Close(object sender, RoutedEventArgs e)
         {
@@ -80,8 +93,6 @@ namespace TeacherDatabase
                 this.DragMove();
             }
         }
-
-
 
 
     }
