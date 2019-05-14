@@ -38,5 +38,9 @@ namespace TeacherDatabase
             //MessageBox.Show(Xanswer.GetType.ToString());
         }
 
+        private void AddType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Xtype.Text = "";
+        }
     }
 }

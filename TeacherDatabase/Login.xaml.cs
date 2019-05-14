@@ -25,11 +25,19 @@ namespace TeacherDatabase
     {
         //统计密码验证失败次数
         int pwdCount = 1;
+        bool isSuccess = false;
+        DataTable dataTable = new DataTable();
         public Login()
         {
             InitializeComponent();
 
-
+            string con = "Server=39.108.153.12;port=3306;user=teacher;password=myrootsql;database=teacher;";
+            MySqlConnection mycon = new MySqlConnection(con);
+            mycon.Open();
+            MySqlDataAdapter myDataAdapter = new MySqlDataAdapter("select * from user", con);
+            DataSet myda = new DataSet();
+            myDataAdapter.Fill(myda, "user");            
+            dataTable = myda.Tables["user"];
 
             //MessageBox.Show(dataTable.Rows[0][0].ToString()+ dataTable.Rows[0][1].ToString());
 
@@ -37,17 +45,7 @@ namespace TeacherDatabase
 
         //登录
         void LoginIn()
-        {
-            string con = "Server=39.108.153.12;port=3306;user=teacher;password=myrootsql;database=teacher;";
-            MySqlConnection mycon = new MySqlConnection(con);
-            mycon.Open();
-            MySqlDataAdapter myDataAdapter = new MySqlDataAdapter("select * from user", con);
-            DataSet myda = new DataSet();
-            myDataAdapter.Fill(myda, "user");
-            DataTable dataTable = new DataTable();
-            dataTable = myda.Tables["user"];
-            //pwd.Password;
-            bool isSuccess = false;
+        {       
             foreach (DataRow row in dataTable.Rows)
             {
                 if (row[0].ToString() == tbxUser.Text && row[1].ToString() == pwd.Password)
@@ -82,15 +80,16 @@ namespace TeacherDatabase
             this.Close();
         }
 
-
-
-
         //设置窗口可以移动
         private void Window_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            Point pp = e.GetPosition(this);
+            if (pp.Y < 50)
             {
-                this.DragMove();
+                if (e.LeftButton == MouseButtonState.Pressed)
+                {
+                    this.DragMove();
+                }
             }
         }
 

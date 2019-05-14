@@ -23,6 +23,12 @@ namespace TeacherDatabase
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        //
+        public static string sqlStr = "select * from question";
+        //初始化时跳过选择事件
+        int start = 0;
+        //连接服务器ip密码和数据表
         string con = "Server=39.108.153.12;port=3306;user=teacher;password=myrootsql;database=teacher;";
         DataTable datab = new DataTable();
         void StartLoatWindow()
@@ -35,6 +41,7 @@ namespace TeacherDatabase
         public MainWindow()
         {
             InitializeComponent();
+            
             StartLoatWindow();
             MySqlConnection mycon = new MySqlConnection(con);                        //创建SQL连接对象
             mycon.Open();
@@ -60,7 +67,24 @@ namespace TeacherDatabase
 
         private void Ntype_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (start>0)
+            {
+                string selectSubject = Ntype.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", "");
+                if (selectSubject != "全部类型")
+                {
+                    sqlStr = "select * from question where subject='" + selectSubject + "'";
+                    UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
+                    questionAdmin.Content = userQuestionAdmin;
+                    //MessageBox.Show(sqlStr);
+                }
+                else
+                {
+                    sqlStr = "select * from question";
+                    UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
+                    questionAdmin.Content = userQuestionAdmin;
+                }
+            }
+            start++;
         }
 
 

@@ -77,12 +77,12 @@
 
         <StackPanel Grid.Row="0"  Orientation="Horizontal" HorizontalAlignment="Left" Width="792" Height="50" VerticalAlignment="Top" >
             <TextBlock Text="科目*" Width="Auto" Margin="40 0 0 0" VerticalAlignment="Center"/>
-            <ComboBox Name="addType" Style="{StaticResource CboCommomStyle}" Background="White" Margin="40,0" Width="150" Height="25">
+            <ComboBox Name="addType" SelectionChanged="AddType_SelectionChanged" Style="{StaticResource CboCommomStyle}" Background="White" Margin="40,0" Width="150" Height="25">
                 <ComboBoxItem >java</ComboBoxItem>
                 <ComboBoxItem>Python</ComboBoxItem>
                 <ComboBoxItem>c#</ComboBoxItem>
             </ComboBox>
-            <Label Content="自定义其他科目" VerticalAlignment="Center"></Label>
+            <Label Content="新建其他科目" VerticalAlignment="Center"></Label>
             <TextBox Name="Xtype" LostFocus="Xtype_LostFocus" Width="350" Height="25" VerticalAlignment="Center"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Width="792" Height="50" VerticalAlignment="Top">
@@ -92,11 +92,11 @@
             <RadioButton Name="design" Margin="20 0 0 0" VerticalAlignment="Center" Content="设计题" GroupName="type"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <TextBlock Text="题目*" Width="Auto"  Margin="40 0 0 0" VerticalAlignment="Top"/>
+            <TextBlock Text="题目*" Width="30"  Margin="40 0 0 0" VerticalAlignment="Top"/>
             <TextBox Width="800" TextWrapping="Wrap"  Margin="40,0,0,5"></TextBox>
         </StackPanel>
         <StackPanel  Grid.Row="3" Orientation="Horizontal">
-            <TextBlock Text="答案" Width="Auto" Margin="40 0 0 0" VerticalAlignment="Top"/>
+            <TextBlock Width="30" Text="答案"  Margin="40 0 0 0" VerticalAlignment="Top"/>
             <TextBox Margin="40,0,0,0" TextWrapping="Wrap" Name="tbxAnswer"  Width="800"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="4" Orientation="Horizontal">

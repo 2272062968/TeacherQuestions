@@ -29,7 +29,7 @@ namespace TeacherDatabase
         public UserQuestionAdmin()
         {
             InitializeComponent();
-            GetDataGrid();
+            GetDataGrid(MainWindow.sqlStr);
         }
         //测试插入数据（刷新）
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -42,24 +42,23 @@ namespace TeacherDatabase
             MessageBox.Show(result.ToString());
             conn.Close();
             questions.ItemsSource = null;
-            GetDataGrid();
+            GetDataGrid("select * from question");
         }
         //读取数据
-        private void ReadSQL()
+
+
+        //向DataGrid中添加数据
+        private void GetDataGrid(string sqlStr)
         {
             MySqlConnection mycon = new MySqlConnection(con);                        //创建SQL连接对象
             mycon.Open();
-            MySqlDataAdapter myDataAdapter = new MySqlDataAdapter("select * from question", con);
+            MySqlDataAdapter myDataAdapter = new MySqlDataAdapter(sqlStr, con);
             DataSet myda = new DataSet();
             myDataAdapter.Fill(myda, "question");
             DataTable = myda.Tables["question"];
-        }
 
-        //向DataGrid中添加数据
-        private void GetDataGrid()
-        {
             List<User> users = new List<User>();
-            ReadSQL();
+ 
             for (int i = 0; i < DataTable.Rows.Count; i++)
             {
                 User user = new User();
