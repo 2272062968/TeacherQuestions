@@ -51,42 +51,52 @@ namespace TeacherDatabase
         private void GetDataGrid(string sqlStr)
         {
             MySqlConnection mycon = new MySqlConnection(con);                        //创建SQL连接对象
-            mycon.Open();
-            MySqlDataAdapter myDataAdapter = new MySqlDataAdapter(sqlStr, con);
-            DataSet myda = new DataSet();
-            myDataAdapter.Fill(myda, "question");
-            DataTable = myda.Tables["question"];
-
-            List<User> users = new List<User>();
- 
-            for (int i = 0; i < DataTable.Rows.Count; i++)
+            try
             {
-                User user = new User();
-                user.Id = DataTable.Rows[i][0].ToString();
-                //MessageBox.Show(DataTable.Rows[i][0].ToString());
-                user.Subject = DataTable.Rows[i][1].ToString();
-                user.Type = DataTable.Rows[i][2].ToString();
-                user.Chapter = DataTable.Rows[i][3].ToString();
+                mycon.Open();
+                MySqlDataAdapter myDataAdapter = new MySqlDataAdapter(sqlStr, con);
+                DataSet myda = new DataSet();
+                myDataAdapter.Fill(myda, "question");
+                DataTable = myda.Tables["question"];
 
-                
-                user.Name = DataTable.Rows[i][4].ToString();
-                user.Answer = DataTable.Rows[i][5].ToString();
-                user.Diffculty = DataTable.Rows[i][6].ToString();
-                user.Anthor = DataTable.Rows[i][7].ToString();
-                user.Datatime = DataTable.Rows[i][8].ToString();
+                List<User> users = new List<User>();
 
-                user.BtnActionStr = new Button();
-                user.BtnActionStr.Content = "修改_" + i;
-                user.BtnActionStr.Height = 20;
-                user.BtnActionStr.FontSize = 10;
-                //user.BtnActionStr += 
+                for (int i = 0; i < DataTable.Rows.Count; i++)
+                {
+                    User user = new User();
+                    user.Id = DataTable.Rows[i][0].ToString();
+                    //MessageBox.Show(DataTable.Rows[i][0].ToString());
+                    user.Subject = DataTable.Rows[i][1].ToString();
+                    user.Type = DataTable.Rows[i][2].ToString();
+                    user.Chapter = DataTable.Rows[i][3].ToString();
 
-                user.Enabled = true;
-                users.Add(user);
+
+                    user.Name = DataTable.Rows[i][4].ToString();
+                    user.Answer = DataTable.Rows[i][5].ToString();
+                    user.Diffculty = DataTable.Rows[i][6].ToString();
+                    user.Anthor = DataTable.Rows[i][7].ToString();
+                    user.Datatime = DataTable.Rows[i][8].ToString();
+
+                    user.BtnActionStr = new Button();
+                    user.BtnActionStr.Content = "修改_" + i;
+                    user.BtnActionStr.Height = 20;
+                    user.BtnActionStr.FontSize = 10;
+                    //user.BtnActionStr += 
+
+                    user.Enabled = true;
+                    users.Add(user);
+                }
+                //数据绑定
+                questions.ItemsSource = users;
+                questions.RowHeight = 25;
             }
-            //数据绑定
-            questions.ItemsSource = users;
-            questions.RowHeight = 25;
+            catch (MySql.Data.MySqlClient.MySqlException)
+            {
+
+                MessageBox.Show("网络出现问题！");
+            }
+           
+           
         }
 
         //定义要绑定的类
@@ -146,6 +156,11 @@ namespace TeacherDatabase
             MessageBox.Show(dataTable.Rows[0][0].ToString());
         }
 
+        private void RowNum_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string RowCount = RowNum.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", "");
+
+        }
 
     }
 }

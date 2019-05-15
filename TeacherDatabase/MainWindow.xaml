@@ -1,23 +1,27 @@
-﻿ <Window x:Class="TeacherDatabase.MainWindow"
+﻿<Fluent:RibbonWindow x:Class="TeacherDatabase.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Fluent="urn:fluent-ribbon"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeacherDatabase"
         mc:Ignorable="d"
-         WindowStyle="None" 
-        Background="#FFABE0F3"
+         Background="#2b3643"
+           Foreground="White"
+  
         Title="教师题库管理系统" Height="700" Width="1200"
-         WindowStartupLocation="CenterScreen"
-        WindowChrome.WindowChrome="{DynamicResource WindowChromeKey}" 
-        AllowsTransparency="True" ResizeMode="CanResizeWithGrip">
+         WindowStartupLocation="CenterScreen" >
+
+    <!--WindowChrome.WindowChrome="{DynamicResource WindowChromeKey}"-->
+
+    <!--AllowsTransparency="True" ResizeMode="CanResizeWithGrip"-->
     <!--ResizeMode="NoResize"-->
     <Window.Resources>
-        <WindowChrome x:Key="WindowChromeKey">
+        <!--<WindowChrome x:Key="WindowChromeKey">
             <WindowChrome.ResizeBorderThickness>
                 <Thickness>5</Thickness>
             </WindowChrome.ResizeBorderThickness>
-        </WindowChrome>
+        </WindowChrome>-->
         <Geometry x:Key="DownArrowGeometry">M 0 0 L 3.5 4 L 7 0 Z</Geometry>
         <Style x:Key="ComboBoxReadonlyToggleButton" TargetType="{x:Type ToggleButton}">
             <Setter Property="OverridesDefaultStyle" Value="true"/>
@@ -74,38 +78,61 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Grid>
+                            <Border Name="Border" Background="#3d4957" BorderBrush="Black" BorderThickness="0,0.5,0,0  " >
+                                <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" Margin="12,2,12,2"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#1caf9a" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="#364150" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="45"></RowDefinition>
             <RowDefinition Height="10*"></RowDefinition>
         </Grid.RowDefinitions>
 
 
-
-        <Grid Height="26" MouseMove="Window_MouseMove" Grid.Row="0" Background="#FFABE0F3">
+        
+        <!--<Grid Height="26" MouseMove="Window_MouseMove" Grid.Row="0" Background="#FFABE0F3">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Width="200" HorizontalAlignment="Left" Foreground="#FFA27D0D" Margin="5 5 0 0" FontWeight="Bold" FontSize="14">教师题库管理系统</TextBlock>
+                --><!--<TextBlock Grid.Column="0" Width="200" HorizontalAlignment="Left" Foreground="#FFA27D0D" Margin="5 5 0 0" FontWeight="Bold" FontSize="14">教师题库管理系统</TextBlock>--><!--
 
 
             </Grid>
 
-        </Grid>
+        </Grid>-->
 
-        <Grid MouseMove="Window_MouseMove" Grid.Row="1" Background="#FFABE0F3">
+        <Grid MouseMove="Window_MouseMove" Grid.Row="0" Background="#2b3643">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <StackPanel Orientation="Horizontal">
-                <Label HorizontalAlignment="Center" Height="25">试题类型</Label>
+                <Label HorizontalAlignment="Center" Height="25" Foreground="White">试题类型</Label>
                 <ComboBox Name="Ntype" Background="White" Style="{StaticResource CboCommomStyle}" 
                           HorizontalAlignment="Center" Width="200" Height="25"
                           SelectionChanged="Ntype_SelectionChanged">
@@ -117,9 +144,9 @@
             </StackPanel>
 
             <StackPanel VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
-                <Label HorizontalAlignment="Right" VerticalAlignment="Center" >当前登录用户:</Label>
-                <Label VerticalAlignment="Center">XXXX</Label>
-                <Button Margin="0 0 5  0" Height="25" Click="Btn_break">退出登录</Button>
+                <Label Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" >当前登录用户:</Label>
+                <Label Foreground="White" VerticalAlignment="Center">XXXX</Label>
+                <Button Margin="0 0 5  0" Height="25" Click="Btn_break"  Foreground="White" Background="{x:Null}">退出登录</Button>
             </StackPanel>
             <Button Content="添加/修改分类" HorizontalAlignment="Left" Margin="321,13,0,0" VerticalAlignment="Top" Width="91" Click="Button_Click"/>
 
@@ -129,20 +156,21 @@
 
 
 
-        <TabControl x:Name="tabControl" TabStripPlacement="Left" Grid.Row="2" Background="#FFF3FFF3" SelectionChanged="TabControl_SelectionChanged">
-            <TabItem Header="试题管理" Height="40" Name="questionAdmin" Background="#FF78F47A">
+        <Grid Grid.Row="2" Background="#364150"></Grid>
+        <TabControl Background="LightBlue" x:Name="tabControl" TabStripPlacement="Left" Grid.Row="2" SelectionChanged="TabControl_SelectionChanged">
+            <TabItem  Foreground="White" Background="#364150" Header="试题管理" Height="40" Name="questionAdmin" >
                 <ScrollViewer VerticalScrollBarVisibility="Auto"></ScrollViewer>
             </TabItem>
 
-            <TabItem Header="试题录入" Name="questionEntry" Height="40" Background="#FF78F47A" >
+            <TabItem  Foreground="White" Background="#364150" Header="试题录入" Name="questionEntry" Height="40"  >
                 <ScrollViewer VerticalScrollBarVisibility="Auto"></ScrollViewer>
             </TabItem>
-            <TabItem Header="试卷管理" Height="40" Background="#FF78F47A">
+            <TabItem Foreground="White" Background="#364150" Header="试卷管理" Height="40" >
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
 
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="课件管理" Height="40" Background="#FF78F47A">
+            <TabItem Foreground="White" Header="课件管理" Height="40" Background="#364150">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
                         <ListView Name="lstv" Margin="0,0,10,58.8" >
@@ -163,13 +191,13 @@
                     </Grid>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="生成试卷" Height="40" Background="#FF78F47A">
+            <TabItem Foreground="White" Header="生成试卷" Height="40" Background="#364150">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
 
                 </ScrollViewer>
             </TabItem>
 
-            <TabItem Header="控制中心" Height="40" Width="100" Background="#FF78F47A">
+            <TabItem Foreground="White" Header="控制中心" Height="40" Width="100" Background="#364150">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
                         <StackPanel>
@@ -187,4 +215,4 @@
             <Button Click="Btn_Close" Width="20" Height="20">X</Button>
         </StackPanel>-->
     </Grid>
-</Window>
+</Fluent:RibbonWindow>

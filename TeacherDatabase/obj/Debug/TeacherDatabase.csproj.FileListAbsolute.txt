@@ -22,3 +22,10 @@ C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\UserQuestionEntry
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\UserQuestionEntry.baml
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\UserQuestionAdmin.g.cs
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\UserQuestionAdmin.baml
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\bin\Debug\ControlzEx.dll
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\bin\Debug\Fluent.dll
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\bin\Debug\ControlzEx.pdb
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\bin\Debug\Fluent.pdb
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\bin\Debug\Fluent.xml
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\App.baml

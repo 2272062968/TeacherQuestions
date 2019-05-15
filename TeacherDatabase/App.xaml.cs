@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fluent;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,11 @@ namespace TeacherDatabase
     /// </summary>
     public partial class App : Application
     {
+        //protected override void OnStartup(StartupEventArgs e)
+        //{
+        //    // now set the Green color scheme and dark base color
+        //    ThemeManager.ChangeTheme(Current, "Dark.Green");
+        //    base.OnStartup(e);
+        //}
     }
 }

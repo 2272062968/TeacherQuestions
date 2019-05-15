@@ -33,11 +33,20 @@ namespace TeacherDatabase
 
             string con = "Server=39.108.153.12;port=3306;user=teacher;password=myrootsql;database=teacher;";
             MySqlConnection mycon = new MySqlConnection(con);
-            mycon.Open();
-            MySqlDataAdapter myDataAdapter = new MySqlDataAdapter("select * from user", con);
-            DataSet myda = new DataSet();
-            myDataAdapter.Fill(myda, "user");            
-            dataTable = myda.Tables["user"];
+            try
+            {
+                mycon.Open();
+                MySqlDataAdapter myDataAdapter = new MySqlDataAdapter("select * from user", con);
+                DataSet myda = new DataSet();
+                myDataAdapter.Fill(myda, "user");
+                dataTable = myda.Tables["user"];
+            }
+            catch (MySqlException)
+            {
+
+            
+            }
+
 
             //MessageBox.Show(dataTable.Rows[0][0].ToString()+ dataTable.Rows[0][1].ToString());
 
@@ -45,22 +54,30 @@ namespace TeacherDatabase
 
         //登录
         void LoginIn()
-        {       
-            foreach (DataRow row in dataTable.Rows)
+        {
+            if (dataTable.Rows.Count > 0)
             {
-                if (row[0].ToString() == tbxUser.Text && row[1].ToString() == pwd.Password)
+                foreach (DataRow row in dataTable.Rows)
                 {
-                    isSuccess = true;
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
-                    this.Close();
+                    if (row[0].ToString() == tbxUser.Text && row[1].ToString() == pwd.Password)
+                    {
+                        isSuccess = true;
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.Show();
+                        this.Close();
+                    }
+                }
+                if (!isSuccess)
+                {
+                    mess.Content = "登录验证失败，账号或密码错误+" + pwdCount.ToString();
+                    pwdCount++;
                 }
             }
-            if (!isSuccess)
+            else
             {
-                mess.Content = "登录验证失败，账号或密码错误+" + pwdCount.ToString();
-                pwdCount++;
+                MessageBox.Show("网络错误，请尝试连接网络后重新打开软件");
             }
+            
         }
         private void Button_Login(object sender, RoutedEventArgs e)
         {

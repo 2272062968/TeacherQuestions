@@ -21,7 +21,7 @@ namespace TeacherDatabase
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Fluent.RibbonWindow
     {
 
         //
@@ -41,20 +41,30 @@ namespace TeacherDatabase
         public MainWindow()
         {
             InitializeComponent();
-            
+            //Fluent.RibbonWindow.
+
             StartLoatWindow();
             MySqlConnection mycon = new MySqlConnection(con);                        //创建SQL连接对象
-            mycon.Open();
-            MySqlDataAdapter myDataAdapter = new MySqlDataAdapter("select distinct subject from question", con);
-            DataSet myda = new DataSet();
-            myDataAdapter.Fill(myda, "question");
-            datab = myda.Tables["question"];
-            foreach (DataRow row in datab.Rows)
+            try
             {
-                ComboBoxItem cbi = new ComboBoxItem();
-                cbi.Content = row[0].ToString();
-                Ntype.Items.Add(cbi);
+                mycon.Open();
+                MySqlDataAdapter myDataAdapter = new MySqlDataAdapter("select distinct subject from question", con);
+                DataSet myda = new DataSet();
+                myDataAdapter.Fill(myda, "question");
+                datab = myda.Tables["question"];
+                foreach (DataRow row in datab.Rows)
+                {
+                    ComboBoxItem cbi = new ComboBoxItem();
+                    cbi.Content = row[0].ToString();
+                    Ntype.Items.Add(cbi);
+                }
             }
+            catch (MySqlException)
+            {
+
+
+            }
+
            
         }
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -72,10 +82,26 @@ namespace TeacherDatabase
                 string selectSubject = Ntype.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", "");
                 if (selectSubject != "全部类型")
                 {
-                    sqlStr = "select * from question where subject='" + selectSubject + "'";
-                    UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
-                    questionAdmin.Content = userQuestionAdmin;
-                    //MessageBox.Show(sqlStr);
+                    if (selectSubject == "python" || selectSubject == "Python")
+                    {
+                        sqlStr = "select * from question where subject='python' or subject='Python'";
+                        UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
+                        questionAdmin.Content = userQuestionAdmin;
+                    }
+                    else if (selectSubject == "java" || selectSubject == "Java")
+                    {
+                        sqlStr = "select * from question where subject='java' or subject='Java'";
+                        UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
+                        questionAdmin.Content = userQuestionAdmin;
+                    }
+                    else
+                    {
+                        sqlStr = "select * from question where subject='" + selectSubject + "'";
+                        UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
+                        questionAdmin.Content = userQuestionAdmin;
+                        //MessageBox.Show(sqlStr);
+                    }
+
                 }
                 else
                 {
