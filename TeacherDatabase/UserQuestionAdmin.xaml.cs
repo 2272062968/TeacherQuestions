@@ -78,7 +78,15 @@ namespace TeacherDatabase
                     user.Datatime = DataTable.Rows[i][8].ToString();
 
                     user.BtnActionStr = new Button();
-                    user.BtnActionStr.Content = "修改_" + i;
+                    if (i<10)
+                    {
+                        user.BtnActionStr.Content = "修改_0" + i;
+                    }
+                    else
+                    {
+                        user.BtnActionStr.Content = "修改_" + i;
+                    }
+                    
                     user.BtnActionStr.Height = 20;
                     user.BtnActionStr.FontSize = 10;
                     //user.BtnActionStr += 
@@ -120,8 +128,8 @@ namespace TeacherDatabase
         //初始化表格平均分配各列的宽度
         private void datagrid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            int WidthSize = (int)(questions.ActualWidth / 9 - 10);
-            UserId.Width = 100;
+            int WidthSize = (int)((questions.ActualWidth-57.5) / 9);
+            UserId.Width = WidthSize;
             UserSubject.Width = WidthSize;
             UserChapter.Width = WidthSize;
             UserType.Width = WidthSize;

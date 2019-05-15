@@ -28,3 +28,4 @@ C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\TeacherDatabase
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\TeacherDatabase.csproj.CopyComplete
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\TeacherDatabase.exe
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\TeacherDatabase.pdb
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\TeacherDatabase.csprojAssemblyReference.cache
