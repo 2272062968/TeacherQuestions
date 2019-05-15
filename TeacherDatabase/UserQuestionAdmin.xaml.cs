@@ -16,7 +16,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 
-
 namespace TeacherDatabase
 {
     /// <summary>
@@ -24,27 +23,33 @@ namespace TeacherDatabase
     /// </summary>
     public partial class UserQuestionAdmin : UserControl
     {
+        string sqlStr = "select * from question where " + GlobalParams.Condition + " limit " + GlobalParams.StartIndex.ToString() + "," + GlobalParams.IndexNumbers.ToString();
+        //GlobalParams Tj = new GlobalParams();
         string con = "Server=39.108.153.12;port=3306;user=teacher;password=myrootsql;database=teacher;";
         DataTable DataTable = new DataTable();      //创建DtatTable实例
         public UserQuestionAdmin()
         {
             InitializeComponent();
-            GetDataGrid(MainWindow.sqlStr);
+            MessageBox.Show(sqlStr);
+            //MessageBox.Show(GlobalParams.Condition);
+            GetDataGrid(sqlStr);
+            
         }
-        //测试插入数据（刷新）
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MySqlConnection conn = new MySqlConnection(con);
-            conn.Open();
-            string sql = "INSERT INTO question(`id`, `subject`, `type`, `chapter`, `name`, `answer`, `diffculty`, `anthor`, `datatime`, `account`) VALUES ('6', '数学', '判断题', '第一章', 'dfg', 'dfg', '简单', '果冻', '2019/5/5', 'root')";
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
-            int result = cmd.ExecuteNonQuery();
-            MessageBox.Show(result.ToString());
-            conn.Close();
-            questions.ItemsSource = null;
-            GetDataGrid("select * from question");
-        }
+        ////测试插入数据（刷新）
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MySqlConnection conn = new MySqlConnection(con);
+        //    conn.Open();
+        //    string sql = "INSERT INTO question(`id`, `subject`, `type`, `chapter`, `name`, `answer`, `diffculty`, `anthor`, `datatime`, `account`) VALUES ('6', '数学', '判断题', '第一章', 'dfg', 'dfg', '简单', '果冻', '2019/5/5', 'root')";
+        //    MySqlCommand cmd = new MySqlCommand(sql, conn);
+        //    int result = cmd.ExecuteNonQuery();
+        //    MessageBox.Show(result.ToString());
+        //    conn.Close();
+        //    questions.ItemsSource = null;
+        //    GetDataGrid("select * from question");
+        //}
         //读取数据
+
 
 
         //向DataGrid中添加数据

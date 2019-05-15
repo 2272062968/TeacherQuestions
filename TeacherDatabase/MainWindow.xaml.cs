@@ -24,8 +24,19 @@ namespace TeacherDatabase
     public partial class MainWindow : Fluent.RibbonWindow
     {
 
-        //
-        public static string sqlStr = "select * from question";
+        //public string condition { get; set; }
+
+
+        //public static int startIndex = 0;
+        //public static int IndexNumbers = 25;
+
+        //public static GlobalParams Tj = new GlobalParams();
+        //public string condition="true";
+
+
+        //public static string sqlStr = "select * from question where " + Tj.Condition + " limit " + startIndex + "," + IndexNumbers;
+
+        //public static string sqlStr = "select * from question where " limit " + startIndex.ToString() + "," + IndexNumbers.ToString();
         //初始化时跳过选择事件
         int start = 0;
         //连接服务器ip密码和数据表
@@ -40,6 +51,7 @@ namespace TeacherDatabase
         }
         public MainWindow()
         {
+
             InitializeComponent();
             //Fluent.RibbonWindow.
 
@@ -54,6 +66,10 @@ namespace TeacherDatabase
                 datab = myda.Tables["question"];
                 foreach (DataRow row in datab.Rows)
                 {
+                    if (row[0].ToString() == "python" || row[0].ToString() == "java" || row[0].ToString() == "C#")
+                    {
+                        continue;
+                    }
                     ComboBoxItem cbi = new ComboBoxItem();
                     cbi.Content = row[0].ToString();
                     Ntype.Items.Add(cbi);
@@ -84,19 +100,23 @@ namespace TeacherDatabase
                 {
                     if (selectSubject == "python" || selectSubject == "Python")
                     {
-                        sqlStr = "select * from question where subject='python' or subject='Python'";
+                        //Tj.Condition = null;
+                        GlobalParams.Condition = "subject='python' or subject='Python'";
+                        //sqlStr = "select * from question where subject='python' or subject='Python' limit 0,25";
                         UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
                         questionAdmin.Content = userQuestionAdmin;
                     }
                     else if (selectSubject == "java" || selectSubject == "Java")
                     {
-                        sqlStr = "select * from question where subject='java' or subject='Java'";
+                        GlobalParams.Condition = "subject='java' or subject='Java'";
+                        //sqlStr = "select * from question where subject='java' or subject='Java' limit 0,25";
                         UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
                         questionAdmin.Content = userQuestionAdmin;
                     }
                     else
                     {
-                        sqlStr = "select * from question where subject='" + selectSubject + "'";
+                        GlobalParams.Condition = "subject='" + selectSubject + "'";
+                        //sqlStr = "select * from question where subject='" + selectSubject + "' limit 0,25";
                         UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
                         questionAdmin.Content = userQuestionAdmin;
                         //MessageBox.Show(sqlStr);
@@ -105,7 +125,8 @@ namespace TeacherDatabase
                 }
                 else
                 {
-                    sqlStr = "select * from question";
+                    GlobalParams.Condition = "true";
+                    //sqlStr = "select * from question";
                     UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
                     questionAdmin.Content = userQuestionAdmin;
                 }

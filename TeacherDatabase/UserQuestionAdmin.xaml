@@ -106,7 +106,7 @@
                     <DataGridTextColumn x:Name="UserDiffculty" Binding="{Binding Diffculty}" Header="难度"/>
                     <DataGridTextColumn x:Name="UserAnthor" Binding="{Binding Anthor}" Header="出题人"/>
                     <DataGridTextColumn x:Name="UserDatatime" Binding="{Binding Datatime}" Header="添加日期" />
-                    <DataGridTemplateColumn x:Name="UserAction">
+                    <DataGridTemplateColumn x:Name="UserAction" Header="操作">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -134,7 +134,7 @@
             <ComboBox Name="RowNum" Background="White" Style="{StaticResource CboCommomStyle}" 
                           HorizontalAlignment="Center" Width="60" Height="25"
                           SelectionChanged="RowNum_SelectionChanged">
-                <ComboBoxItem IsSelected="True">25</ComboBoxItem>
+                <ComboBoxItem IsSelected="True">30</ComboBoxItem>
                 <ComboBoxItem>50</ComboBoxItem>
                 <ComboBoxItem>100</ComboBoxItem>
             </ComboBox>
