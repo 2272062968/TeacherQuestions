@@ -34,7 +34,34 @@ namespace TeacherDatabase
             InitializeComponent();
             //MessageBox.Show(sqlStr);
             //MessageBox.Show(GlobalParams.Condition);
+            MessageBox.Show(sqlStr);
+            getSumPage();
             GetDataGrid(sqlStr);
+
+            //SELECT COUNT(*) FROM question
+
+
+            //MessageBox.Show(GlobalParams.Page.ToString());
+            pageCount.Text = "共" + GlobalParams.Page.ToString() + "页";
+        }
+        public void getSumPage()
+        {
+            //MySql.Data.MySqlClient.MySqlException
+
+            //(id,*)
+            string sqlText = "SELECT COUNT(*) FROM question where " + GlobalParams.Condition;
+            MySqlConnection mycon = new MySqlConnection(con);                        //创建SQL连接对象
+            mycon.Open();
+            MySqlDataAdapter myDataAdapter = new MySqlDataAdapter(sqlText, con);
+            DataSet myda = new DataSet();
+            myDataAdapter.Fill(myda, "question");
+            DataTable = myda.Tables["question"];
+            //MessageBox.Show(DataTable.Rows[0][0].ToString());
+            //if (int.Parse(DataTable.Rows[0][0].ToString())/)
+            //{
+
+            //}
+            GlobalParams.Page = int.Parse(DataTable.Rows[0][0].ToString()) / GlobalParams.IndexNumbers + 1;
             
         }
         ////测试插入数据（刷新）
@@ -187,5 +214,65 @@ namespace TeacherDatabase
             //MessageBox.Show(RowCount);
         }
 
+        //跳转按钮，可以进行优化如当前页面的时候不用刷新数据，暂时未优化
+
+        //首页
+        private void Btn_BackHome(object sender, RoutedEventArgs e)
+        {
+            GlobalParams.StartIndex = 0;
+            GlobalParams.ThisPage = 1;
+            sqlStr = "select * from question where " + GlobalParams.Condition + " limit " + GlobalParams.StartIndex.ToString() + "," + GlobalParams.IndexNumbers.ToString();
+            GetDataGrid(sqlStr);
+            thisPage.Text = GlobalParams.ThisPage.ToString();
+        }
+        //上一页
+        private void Btn_LastPage(object sender, RoutedEventArgs e)
+        {
+            if (GlobalParams.StartIndex != 0)
+            {
+                GlobalParams.StartIndex -= GlobalParams.IndexNumbers;
+                GlobalParams.ThisPage--;
+                sqlStr = "select * from question where " + GlobalParams.Condition + " limit " + GlobalParams.StartIndex.ToString() + "," + GlobalParams.IndexNumbers.ToString();
+                GetDataGrid(sqlStr);
+                thisPage.Text = GlobalParams.ThisPage.ToString();
+            }
+        }
+        //下一页
+        private void Btn_NextPage(object sender, RoutedEventArgs e)
+        {
+            if (GlobalParams.IndexNumbers * GlobalParams.ThisPage < GlobalParams.IndexNumbers * GlobalParams.Page)
+            {
+                GlobalParams.StartIndex += GlobalParams.IndexNumbers;
+                GlobalParams.ThisPage++;
+                sqlStr = "select * from question where " + GlobalParams.Condition + " limit " + GlobalParams.StartIndex.ToString() + "," + GlobalParams.IndexNumbers.ToString();
+                GetDataGrid(sqlStr);
+                thisPage.Text = GlobalParams.ThisPage.ToString();
+            }
+        }
+        //末页
+        private void Btn_EndPage(object sender, RoutedEventArgs e)
+        {
+            GlobalParams.StartIndex = GlobalParams.IndexNumbers * (GlobalParams.Page - 1);
+            GlobalParams.ThisPage = GlobalParams.Page;
+            sqlStr = "select * from question where " + GlobalParams.Condition + " limit " + GlobalParams.StartIndex.ToString() + "," + GlobalParams.IndexNumbers.ToString();
+            GetDataGrid(sqlStr);
+            thisPage.Text = GlobalParams.ThisPage.ToString();
+        }
+        //跳转
+        private void Btn_JumpPage(object sender, RoutedEventArgs e)
+        {
+            int page = int.Parse(thisPage.Text);
+            if (page >= 0 && page <= GlobalParams.Page)
+            {
+                GlobalParams.startIndex = GlobalParams.IndexNumbers * (page - 1);
+                GlobalParams.ThisPage = page;
+                sqlStr = "select * from question where " + GlobalParams.Condition + " limit " + GlobalParams.StartIndex.ToString() + "," + GlobalParams.IndexNumbers.ToString();
+                GetDataGrid(sqlStr);
+            }
+            else
+            {
+                MessageBox.Show("超出页面范围");
+            }
+        }
     }
 }

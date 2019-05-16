@@ -13,6 +13,7 @@ namespace TeacherDatabase
         public static int startIndex = 0;
         public static int indexNumbers = 30;
         public static int page = 1;
+        public static int thisPage = 1;
         //public static string sqlStr = "select * from question where " + condition + " limit " + startIndex + "," + indexNumbers;
 
         //public  string sqlStr = "select * from question where " + condition + " limit " + startIndex + "," + indexNumbers;
@@ -43,6 +44,13 @@ namespace TeacherDatabase
             get { return page; }
             set { page = value; }
         }
+        public static int ThisPage
+        {
+            get { return thisPage; }
+            set { thisPage = value; }
+        }
+
+
         //public static string SqlStr
         //{
         //    get { return sqlStr; }

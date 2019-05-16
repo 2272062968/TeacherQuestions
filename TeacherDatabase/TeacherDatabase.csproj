@@ -136,12 +136,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bitbug_favicon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="bitbug_favicon %281%29.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="tch.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

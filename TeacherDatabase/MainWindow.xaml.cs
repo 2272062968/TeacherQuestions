@@ -100,6 +100,8 @@ namespace TeacherDatabase
                 {
                     if (selectSubject == "python" || selectSubject == "Python")
                     {
+                        GlobalParams.ThisPage = 1;
+                        GlobalParams.startIndex = 0;
                         //Tj.Condition = null;
                         GlobalParams.Condition = "subject='python' or subject='Python'";
                         //sqlStr = "select * from question where subject='python' or subject='Python' limit 0,25";
@@ -108,6 +110,7 @@ namespace TeacherDatabase
                     }
                     else if (selectSubject == "java" || selectSubject == "Java")
                     {
+
                         GlobalParams.Condition = "subject='java' or subject='Java'";
                         //sqlStr = "select * from question where subject='java' or subject='Java' limit 0,25";
                         UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
@@ -115,6 +118,7 @@ namespace TeacherDatabase
                     }
                     else
                     {
+
                         GlobalParams.Condition = "subject='" + selectSubject + "'";
                         //sqlStr = "select * from question where subject='" + selectSubject + "' limit 0,25";
                         UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
@@ -125,6 +129,8 @@ namespace TeacherDatabase
                 }
                 else
                 {
+
+
                     GlobalParams.Condition = "true";
                     //sqlStr = "select * from question";
                     UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();

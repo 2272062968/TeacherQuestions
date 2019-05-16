@@ -138,15 +138,15 @@
                 <ComboBoxItem>50</ComboBoxItem>
                 <ComboBoxItem>100</ComboBoxItem>
             </ComboBox>
-            <TextBlock Text="共X页" Width="60" VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Right" Margin="0 0 10 0" ></TextBlock>
-            <Button Width="60" Height="25" Margin="2 0">首页</Button>
-            <Button Width="60" Height="25" Margin="2 0">上一页</Button>
-            <Button Width="60" Height="25" Margin="2 0">下一页</Button>
-            <Button Width="60" Height="25" Margin="2 0">末页</Button>
+            <TextBlock Name="pageCount" Text="共X页" Width="60" VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Right" Margin="0 0 10 0" ></TextBlock>
+            <Button Width="60" Height="25" Margin="2 0" Click="Btn_BackHome">首页</Button>
+            <Button Width="60" Height="25" Margin="2 0" Click="Btn_LastPage">上一页</Button>
+            <Button Width="60" Height="25" Margin="2 0" Click="Btn_NextPage">下一页</Button>
+            <Button Width="60" Height="25" Margin="2 0" Click="Btn_EndPage">末页</Button>
             <Label>第</Label>
-            <TextBox Width="60" Height="20">1</TextBox>
+            <TextBox Name="thisPage" Width="60" Height="20">1</TextBox>
             <Label>页</Label>
-            <Button Width="60" Height="25" Margin="2 0">跳转</Button>
+            <Button Width="60" Height="25" Margin="2 0" Click="Btn_JumpPage">跳转</Button>
         </StackPanel>
     </Grid>
 </UserControl>
