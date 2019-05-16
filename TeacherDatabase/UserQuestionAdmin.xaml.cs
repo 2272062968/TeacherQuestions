@@ -30,7 +30,7 @@ namespace TeacherDatabase
         public UserQuestionAdmin()
         {
             InitializeComponent();
-            MessageBox.Show(sqlStr);
+            //MessageBox.Show(sqlStr);
             //MessageBox.Show(GlobalParams.Condition);
             GetDataGrid(sqlStr);
             
