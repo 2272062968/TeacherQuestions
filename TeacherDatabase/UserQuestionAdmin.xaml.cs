@@ -23,6 +23,8 @@ namespace TeacherDatabase
     /// </summary>
     public partial class UserQuestionAdmin : UserControl
     {
+        //判断窗体加载时选择跳过
+        int count = 0;
         string sqlStr = "select * from question where " + GlobalParams.Condition + " limit " + GlobalParams.StartIndex.ToString() + "," + GlobalParams.IndexNumbers.ToString();
         //GlobalParams Tj = new GlobalParams();
         string con = "Server=39.108.153.12;port=3306;user=teacher;password=myrootsql;database=teacher;";
@@ -171,8 +173,18 @@ namespace TeacherDatabase
 
         private void RowNum_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string RowCount = RowNum.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", "");
+            if (count > 0)
+            {
+                string RowCount = RowNum.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", "");
+                GlobalParams.IndexNumbers = int.Parse(RowCount);
+                sqlStr = "select * from question where " + GlobalParams.Condition + " limit " + GlobalParams.StartIndex.ToString() + "," + GlobalParams.IndexNumbers.ToString();
+                GetDataGrid(sqlStr);
 
+                //UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
+                //MainWindow.questionAdmin.Content = userQuestionAdmin;
+            }
+            count++;
+            //MessageBox.Show(RowCount);
         }
 
     }
