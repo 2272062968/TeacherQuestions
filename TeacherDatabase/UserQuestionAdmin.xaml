@@ -105,7 +105,7 @@
                     <DataGridTextColumn x:Name="UserAnswer" Binding="{Binding Answer}" Header="答案" />
                     <DataGridTextColumn x:Name="UserDiffculty" Binding="{Binding Diffculty}" Header="难度"/>
                     <DataGridTextColumn x:Name="UserAnthor" Binding="{Binding Anthor}" Header="出题人"/>
-                    <DataGridTextColumn x:Name="UserDatatime" Binding="{Binding Datatime}" Header="添加日期" />
+                    <DataGridTextColumn x:Name="UserDatatime" Binding="{Binding Datatime}" Header="修改日期" />
                     <DataGridTemplateColumn x:Name="UserAction" Header="操作">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

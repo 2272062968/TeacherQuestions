@@ -191,12 +191,16 @@ namespace TeacherDatabase
             MessageBox.Show(dataTable.Rows[0][0].ToString());
         }
 
+        //选择当前查看行数
         private void RowNum_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (count > 0)
             {
                 string RowCount = RowNum.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", "");
                 GlobalParams.IndexNumbers = int.Parse(RowCount);
+                GlobalParams.startIndex = 0;
+                getSumPage();
+                pageCount.Text = "共" + GlobalParams.Page.ToString() + "页";
                 sqlStr = "select * from question where " + GlobalParams.Condition + " limit " + GlobalParams.StartIndex.ToString() + "," + GlobalParams.IndexNumbers.ToString();
                 GetDataGrid(sqlStr);
 
@@ -218,6 +222,7 @@ namespace TeacherDatabase
             GetDataGrid(sqlStr);
             thisPage.Text = GlobalParams.ThisPage.ToString();
         }
+        
         //上一页
         private void Btn_LastPage(object sender, RoutedEventArgs e)
         {
@@ -230,6 +235,7 @@ namespace TeacherDatabase
                 thisPage.Text = GlobalParams.ThisPage.ToString();
             }
         }
+
         //下一页
         private void Btn_NextPage(object sender, RoutedEventArgs e)
         {
@@ -242,6 +248,7 @@ namespace TeacherDatabase
                 thisPage.Text = GlobalParams.ThisPage.ToString();
             }
         }
+
         //末页
         private void Btn_EndPage(object sender, RoutedEventArgs e)
         {
@@ -251,6 +258,7 @@ namespace TeacherDatabase
             GetDataGrid(sqlStr);
             thisPage.Text = GlobalParams.ThisPage.ToString();
         }
+
         //跳转
         private void Btn_JumpPage(object sender, RoutedEventArgs e)
         {
@@ -267,5 +275,6 @@ namespace TeacherDatabase
                 MessageBox.Show("超出页面范围");
             }
         }
+
     }
 }

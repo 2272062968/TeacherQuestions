@@ -73,6 +73,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="GlobalParams.cs" />
+    <Compile Include="QuestionClass.cs" />
     <Compile Include="UserQuestionAdmin.xaml.cs">
       <DependentUpon>UserQuestionAdmin.xaml</DependentUpon>
     </Compile>
