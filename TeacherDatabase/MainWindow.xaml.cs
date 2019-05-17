@@ -110,7 +110,8 @@ namespace TeacherDatabase
                     }
                     else if (selectSubject == "java" || selectSubject == "Java")
                     {
-
+                        GlobalParams.ThisPage = 1;
+                        GlobalParams.startIndex = 0;
                         GlobalParams.Condition = "subject='java' or subject='Java'";
                         //sqlStr = "select * from question where subject='java' or subject='Java' limit 0,25";
                         UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
@@ -118,7 +119,8 @@ namespace TeacherDatabase
                     }
                     else
                     {
-
+                        GlobalParams.ThisPage = 1;
+                        GlobalParams.startIndex = 0;
                         GlobalParams.Condition = "subject='" + selectSubject + "'";
                         //sqlStr = "select * from question where subject='" + selectSubject + "' limit 0,25";
                         UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
@@ -130,7 +132,8 @@ namespace TeacherDatabase
                 else
                 {
 
-
+                    GlobalParams.ThisPage = 1;
+                    GlobalParams.startIndex = 0;
                     GlobalParams.Condition = "true";
                     //sqlStr = "select * from question";
                     UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();

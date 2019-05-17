@@ -34,7 +34,7 @@ namespace TeacherDatabase
             InitializeComponent();
             //MessageBox.Show(sqlStr);
             //MessageBox.Show(GlobalParams.Condition);
-            MessageBox.Show(sqlStr);
+            //MessageBox.Show(sqlStr);
             getSumPage();
             GetDataGrid(sqlStr);
 
