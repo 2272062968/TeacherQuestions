@@ -10,6 +10,7 @@ namespace TeacherDatabase
     //全局参数
     public class GlobalParams
     {
+        
         public static string subjectName = "";
         public static string condition = "true";
         public static int startIndex = 0;

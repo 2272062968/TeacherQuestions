@@ -41,11 +41,7 @@ namespace TeacherDatabase
                 addType.SelectedIndex = -1;
             }
         }
-        //测试
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            //MessageBox.Show(Xanswer.GetType.ToString());
-        }
+        
 
         private void AddType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -53,6 +49,37 @@ namespace TeacherDatabase
             {
                 Xtype.Text = "";
             }
+        }
+        //清空插入填写的数据
+        private void Btn_Click_Close(object sender, RoutedEventArgs e)
+        {
+            addType.SelectedIndex = -1;
+            Xtype.Text = "";
+            choice.IsChecked = false;
+            judge.IsChecked = false;
+            design.IsChecked = false;
+            selectXtype.Text = "";
+            tbxChapter.Text = "";
+            tbxQuestion.Text = "";
+            tbxAnswer.Text = "";
+            C.IsChecked = false;
+            B.IsChecked = false;
+            A.IsChecked = false;
+            tbxIssueAnthor.Text = "";
+        }
+        private void selectType_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (selectXtype.Text != "")
+            {
+                choice.IsChecked = false;
+                judge.IsChecked = false;
+                design.IsChecked = false;                    
+            }
+        }
+        
+        private void queType_Click(object sender, RoutedEventArgs e)
+        {
+            selectXtype.Text = "";
         }
     }
 }

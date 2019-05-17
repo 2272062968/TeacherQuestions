@@ -55,7 +55,7 @@ namespace TeacherDatabase
 
             InitializeComponent();
             //Fluent.RibbonWindow.
-
+            GlobalParams.SubjectName = "";
             StartLoatWindow();
             MySqlConnection mycon = new MySqlConnection(con);                        //创建SQL连接对象
             try
@@ -163,12 +163,12 @@ namespace TeacherDatabase
                     }
                 case 1:
                     {
-                        if (start == 1)
+                        if (StartClick1 == 0)
                         {
                             UserQuestionEntry userQuestionEntry = new UserQuestionEntry();
                             questionEntry.Content = userQuestionEntry;
                         }
-                        start++;
+                        StartClick1++;
                         break;
                     }
                 case 2:
