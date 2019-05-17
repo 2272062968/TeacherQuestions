@@ -23,6 +23,15 @@ namespace TeacherDatabase
         public UserQuestionEntry()
         {
             InitializeComponent();
+            foreach (var subName in GlobalParams.subjectName.Split(','))
+            {
+                ComboBoxItem item = new ComboBoxItem();
+                item.Content = subName;
+                addType.Items.Add(item);
+            }
+            
+
+            
         }
 
         private void Xtype_LostFocus(object sender, RoutedEventArgs e)
@@ -40,7 +49,10 @@ namespace TeacherDatabase
 
         private void AddType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Xtype.Text = "";
+            if (addType.SelectedIndex != -1)
+            {
+                Xtype.Text = "";
+            }
         }
     }
 }

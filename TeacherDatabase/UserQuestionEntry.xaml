@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TeacherDatabase"
              mc:Ignorable="d" 
+             Foreground="Black"
              d:DesignHeight="624.8" d:DesignWidth="1092">
     <UserControl.Resources>
         <Geometry x:Key="DownArrowGeometry">M 0 0 L 3.5 4 L 7 0 Z</Geometry>
@@ -69,7 +70,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition ></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="80"></RowDefinition>
@@ -78,9 +80,9 @@
         <StackPanel Grid.Row="0"  Orientation="Horizontal" HorizontalAlignment="Left" Width="792" Height="50" VerticalAlignment="Top" >
             <TextBlock Text="科目*" Width="Auto" Margin="40 0 0 0" VerticalAlignment="Center"/>
             <ComboBox Name="addType" SelectionChanged="AddType_SelectionChanged" Style="{StaticResource CboCommomStyle}" Background="White" Margin="40,0" Width="150" Height="25">
-                <ComboBoxItem >java</ComboBoxItem>
+                <!--<ComboBoxItem >java</ComboBoxItem>
                 <ComboBoxItem>Python</ComboBoxItem>
-                <ComboBoxItem>c#</ComboBoxItem>
+                <ComboBoxItem>c#</ComboBoxItem>-->
             </ComboBox>
             <Label Content="新建其他科目" VerticalAlignment="Center"></Label>
             <TextBox Name="Xtype" LostFocus="Xtype_LostFocus" Width="350" Height="25" VerticalAlignment="Center"></TextBox>
@@ -90,22 +92,29 @@
             <RadioButton Name="choice" Margin="40 0 0 0" VerticalAlignment="Center" Content="选择题" GroupName="type"/>
             <RadioButton Name="judge" Margin="20 0 0 0" VerticalAlignment="Center" Content="判断题" GroupName="type"/>
             <RadioButton Name="design" Margin="20 0 0 0" VerticalAlignment="Center" Content="设计题" GroupName="type"/>
+            <TextBlock Text="自定义其他题型" Height="20" Margin="20 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
+            <TextBox Width="300" Height="25" Margin="20 0 0 0"></TextBox>
         </StackPanel>
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Text="章节" Width="30" Margin="40 0 0 0" VerticalAlignment="Center"/>
+            <TextBox Margin="40 0 0 0" Width="350" Height="25" VerticalAlignment="Center"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
             <TextBlock Text="题目*" Width="30"  Margin="40 0 0 0" VerticalAlignment="Top"/>
             <TextBox Width="800" TextWrapping="Wrap"  Margin="40,0,0,5"></TextBox>
         </StackPanel>
-        <StackPanel  Grid.Row="3" Orientation="Horizontal">
+
+        <StackPanel  Grid.Row="4" Orientation="Horizontal">
             <TextBlock Width="30" Text="答案"  Margin="40 0 0 0" VerticalAlignment="Top"/>
             <TextBox Margin="40,0,0,0" TextWrapping="Wrap" Name="tbxAnswer"  Width="800"></TextBox>
         </StackPanel>
-        <StackPanel Grid.Row="4" Orientation="Horizontal">
+        <StackPanel Grid.Row="5" Orientation="Horizontal">
             <TextBlock Text="难度" Margin="40 0 0 0" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <RadioButton Margin="40 0 0 0" VerticalAlignment="Center" Content="简单" GroupName="difficulty"/>
             <RadioButton Margin="20 0 0 0" VerticalAlignment="Center" Content="一般" GroupName="difficulty"/>
             <RadioButton Margin="20 0 0 0" VerticalAlignment="Center" Content="较难" GroupName="difficulty"/>
         </StackPanel>
-        <Grid Grid.Row="5">
+        <Grid Grid.Row="6">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>

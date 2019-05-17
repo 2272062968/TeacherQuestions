@@ -42,6 +42,7 @@ namespace TeacherDatabase
         //连接服务器ip密码和数据表
         string con = "Server=39.108.153.12;port=3306;user=teacher;password=myrootsql;database=teacher;";
         DataTable datab = new DataTable();
+        
         void StartLoatWindow()
         {
             UserQuestionEntry userQuestionEntry = new UserQuestionEntry();
@@ -64,6 +65,7 @@ namespace TeacherDatabase
                 DataSet myda = new DataSet();
                 myDataAdapter.Fill(myda, "question");
                 datab = myda.Tables["question"];
+
                 foreach (DataRow row in datab.Rows)
                 {
                     if (row[0].ToString() == "python" || row[0].ToString() == "java" || row[0].ToString() == "C#")
@@ -73,6 +75,9 @@ namespace TeacherDatabase
                     ComboBoxItem cbi = new ComboBoxItem();
                     cbi.Content = row[0].ToString();
                     Ntype.Items.Add(cbi);
+  
+                    //GlobalParams.SubjectName[x] = (row[0].ToString());
+                    GlobalParams.SubjectName += ","+row[0].ToString();
                 }
             }
             catch (MySqlException)
@@ -146,6 +151,7 @@ namespace TeacherDatabase
 
 
 
+        int StartClick1 = 0;
         //判断选择的TabControl
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -157,7 +163,12 @@ namespace TeacherDatabase
                     }
                 case 1:
                     {
-
+                        if (start == 1)
+                        {
+                            UserQuestionEntry userQuestionEntry = new UserQuestionEntry();
+                            questionEntry.Content = userQuestionEntry;
+                        }
+                        start++;
                         break;
                     }
                 case 2:

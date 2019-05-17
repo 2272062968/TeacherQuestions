@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace TeacherDatabase
 {
+    //全局参数
     public class GlobalParams
     {
-
+        public static string subjectName = "";
         public static string condition = "true";
         public static int startIndex = 0;
         public static int indexNumbers = 30;
@@ -50,7 +52,11 @@ namespace TeacherDatabase
             set { thisPage = value; }
         }
 
-
+        public static string SubjectName
+        {
+            get { return subjectName; }
+            set { subjectName = value; }
+        }
         //public static string SqlStr
         //{
         //    get { return sqlStr; }

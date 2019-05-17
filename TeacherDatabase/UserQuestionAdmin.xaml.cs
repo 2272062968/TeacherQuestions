@@ -46,22 +46,18 @@ namespace TeacherDatabase
         }
         public void getSumPage()
         {
-            //MySql.Data.MySqlClient.MySqlException
-
-            //(id,*)
             string sqlText = "SELECT COUNT(*) FROM question where " + GlobalParams.Condition;
             MySqlConnection mycon = new MySqlConnection(con);                        //创建SQL连接对象
-            mycon.Open();
-            MySqlDataAdapter myDataAdapter = new MySqlDataAdapter(sqlText, con);
-            DataSet myda = new DataSet();
-            myDataAdapter.Fill(myda, "question");
-            DataTable = myda.Tables["question"];
-            //MessageBox.Show(DataTable.Rows[0][0].ToString());
-            //if (int.Parse(DataTable.Rows[0][0].ToString())/)
-            //{
-
-            //}
-            GlobalParams.Page = int.Parse(DataTable.Rows[0][0].ToString()) / GlobalParams.IndexNumbers + 1;
+            try
+            {
+                mycon.Open();
+                MySqlDataAdapter myDataAdapter = new MySqlDataAdapter(sqlText, con);
+                DataSet myda = new DataSet();
+                myDataAdapter.Fill(myda, "question");
+                DataTable = myda.Tables["question"];
+                GlobalParams.Page = int.Parse(DataTable.Rows[0][0].ToString()) / GlobalParams.IndexNumbers + 1;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException) { }
             
         }
         ////测试插入数据（刷新）
@@ -99,7 +95,6 @@ namespace TeacherDatabase
                 {
                     User user = new User();
                     user.Id = DataTable.Rows[i][0].ToString();
-                    //MessageBox.Show(DataTable.Rows[i][0].ToString());
                     user.Subject = DataTable.Rows[i][1].ToString();
                     user.Type = DataTable.Rows[i][2].ToString();
                     user.Chapter = DataTable.Rows[i][3].ToString();
