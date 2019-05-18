@@ -181,16 +181,6 @@ namespace TeacherDatabase
 
         
 
-        //查询最大id
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            string sql = "select max(id) from data;";
-            SqlDataAdapter maxData = new SqlDataAdapter(sql, con);
-            DataTable dataTable = new DataTable();
-            maxData.Fill(dataTable);
-            MessageBox.Show(dataTable.Rows[0][0].ToString());
-        }
-
         //选择当前查看行数
         private void RowNum_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

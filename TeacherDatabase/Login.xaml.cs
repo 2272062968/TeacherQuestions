@@ -62,6 +62,7 @@ namespace TeacherDatabase
                     if (row[0].ToString() == tbxUser.Text && row[1].ToString() == pwd.Password)
                     {
                         isSuccess = true;
+                        GlobalParams.MyAccount = row[0].ToString();
                         MainWindow mainWindow = new MainWindow();
                         mainWindow.Show();
                         this.Close();

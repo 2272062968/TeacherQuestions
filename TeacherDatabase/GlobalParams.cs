@@ -10,7 +10,7 @@ namespace TeacherDatabase
     //全局参数
     public class GlobalParams
     {
-        
+        public static string myAccount = "XXXX";
         public static string subjectName = "";
         public static string condition = "true";
         public static int startIndex = 0;
@@ -58,12 +58,10 @@ namespace TeacherDatabase
             get { return subjectName; }
             set { subjectName = value; }
         }
-        //public static string SqlStr
-        //{
-        //    get { return sqlStr; }
-        //    set { sqlStr = value; }
-        //}
-        //public string IndexNumbers { get; set; }
-        //public string StartIndex { get; set; }
+        public static string MyAccount
+        {
+            get { return myAccount; }
+            set { myAccount = value; }
+        }
     }
 }

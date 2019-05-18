@@ -90,6 +90,7 @@
             <TextBlock Text="题型*" Width="Auto" Margin="40 0 0 0" VerticalAlignment="Center"/>
             <RadioButton Name="choice"  Margin="40 0 0 0" VerticalAlignment="Center" Content="选择题" GroupName="type" Click="queType_Click"/>
             <RadioButton Name="judge" Margin="20 0 0 0" VerticalAlignment="Center" Content="判断题" GroupName="type" Click="queType_Click"/>
+            <RadioButton Name="fillBlank" Margin="20 0 0 0" VerticalAlignment="Center" Content="填空题" GroupName="type" Click="queType_Click"/>
             <RadioButton Name="design" Margin="20 0 0 0" VerticalAlignment="Center" Content="设计题" GroupName="type" Click="queType_Click"/>
             <TextBlock Text="自定义其他题型" Height="20" Margin="20 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
             <TextBox Name="selectXtype" Width="300" Height="25" Margin="20 0 0 0" LostFocus="selectType_LostFocus"></TextBox>
@@ -124,7 +125,7 @@
                 <TextBox Name="tbxIssueAnthor" Height="23" Width="200"  Text="" Margin="30,0,0,0"></TextBox>
             </StackPanel>
             <Button Click="Btn_Click_Close" HorizontalAlignment="Right" Margin="0,20,150,35" Width="100" Grid.Column="1" Height="25" Background="#FFF43333" Foreground="White">重置内容</Button>
-            <Button  HorizontalAlignment="Right" Margin="0,20,18,35" Width="100" Grid.Column="1" Height="25" Background="#FF91F432" Foreground="White">开始执行</Button>
+            <Button Click="Btn_Click_StartInstall" HorizontalAlignment="Right" Margin="0,20,18,35" Width="100" Grid.Column="1" Height="25" Background="#FF91F432" Foreground="White">开始执行</Button>
         </Grid>
 
 

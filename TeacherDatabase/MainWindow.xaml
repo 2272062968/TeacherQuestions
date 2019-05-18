@@ -145,7 +145,7 @@
 
             <StackPanel VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
                 <Label Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" >当前登录用户:</Label>
-                <Label Foreground="White" VerticalAlignment="Center">XXXX</Label>
+                <Label Foreground="White" VerticalAlignment="Center" Name="account">XXXX</Label>
                 <Button Margin="0 0 5  0" Height="25" Click="Btn_break"  Foreground="White" Background="{x:Null}">退出登录</Button>
             </StackPanel>
             <Button Content="添加/修改分类" HorizontalAlignment="Left" Margin="321,13,0,0" VerticalAlignment="Top" Width="91" Click="Button_Click"/>

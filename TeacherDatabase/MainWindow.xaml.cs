@@ -45,6 +45,7 @@ namespace TeacherDatabase
         
         void StartLoatWindow()
         {
+            account.Content = GlobalParams.MyAccount;
             UserQuestionEntry userQuestionEntry = new UserQuestionEntry();
             questionEntry.Content = userQuestionEntry;
             UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
@@ -56,6 +57,7 @@ namespace TeacherDatabase
             InitializeComponent();
             //Fluent.RibbonWindow.
             GlobalParams.SubjectName = "";
+
             StartLoatWindow();
             MySqlConnection mycon = new MySqlConnection(con);                        //创建SQL连接对象
             try

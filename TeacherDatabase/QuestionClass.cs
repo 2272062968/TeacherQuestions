@@ -8,7 +8,7 @@ namespace TeacherDatabase
 {
     public class QuestionClass
     {
-        //主码id
+        //试题编号--主码id
         public string id { get; set; }
         //学科
         public string subject { get; set; }
@@ -18,14 +18,14 @@ namespace TeacherDatabase
         public string chapter { get; set; }
         //题目
         public string name { get; set; }
+        //答案
+        public string answer { get; set; }      
         //难度
         public string diffculty { get; set; }
-        //答案
-        public string answer { get; set; }
         //出题人
         public string anthor { get; set; }
         //修改日期
-        public string datatime { get; set; }
+        public string datetime { get; set; }
         //操作账号
         public string account { get; set; }
     }
