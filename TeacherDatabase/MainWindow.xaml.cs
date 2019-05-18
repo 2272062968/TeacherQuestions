@@ -161,10 +161,14 @@ namespace TeacherDatabase
             {
                 case 0:
                     {
+                        labNtype.Visibility = Visibility.Visible;
+                        Ntype.Visibility = Visibility.Visible;
                         break;
                     }
                 case 1:
                     {
+                        labNtype.Visibility = Visibility.Collapsed;
+                        Ntype.Visibility = Visibility.Collapsed;
                         if (StartClick1 == 0)
                         {
                             UserQuestionEntry userQuestionEntry = new UserQuestionEntry();
@@ -175,21 +179,28 @@ namespace TeacherDatabase
                     }
                 case 2:
                     {
+                        labNtype.Visibility = Visibility.Collapsed;
+                        Ntype.Visibility = Visibility.Collapsed;
                         break;
                     }
                 case 3:
                     {
-                        //Fxz.Visibility = Visibility.Collapsed;
+                        labNtype.Visibility = Visibility.Collapsed;
+                        Ntype.Visibility = Visibility.Collapsed;
                         break;
                     }
-                case 4:
-                    {
-                        break;
-                    }
-                case 5:
-                    {
-                        break;
-                    }
+                //case 4:
+                //    {
+                //        labNtype.Visibility = Visibility.Collapsed;
+                //        Ntype.Visibility = Visibility.Collapsed;
+                //        break;
+                //    }
+                //case 5:
+                //    {
+                //        labNtype.Visibility = Visibility.Collapsed;
+                //        Ntype.Visibility = Visibility.Collapsed;
+                //        break;
+                //    }
                 default:
                     break;
             }

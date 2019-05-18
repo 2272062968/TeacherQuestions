@@ -105,7 +105,7 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="45"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="10*"></RowDefinition>
         </Grid.RowDefinitions>
 
@@ -132,11 +132,11 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Orientation="Horizontal">
-                <Label HorizontalAlignment="Center" Height="25" Foreground="White">试题类型</Label>
-                <ComboBox Name="Ntype" Background="White" Style="{StaticResource CboCommomStyle}" 
+                <Label Name="labNtype" Margin="20 0 0 0" HorizontalAlignment="Center" Height="25" Foreground="White">试题类型</Label>
+                <ComboBox x:Name="Ntype" Background="White" Style="{StaticResource CboCommomStyle}" 
                           HorizontalAlignment="Center" Width="200" Height="25"
                           SelectionChanged="Ntype_SelectionChanged">
-                    <ComboBoxItem IsSelected="True">全部类型</ComboBoxItem>
+                    <ComboBoxItem IsSelected="True" Content="全部类型"/>
                     <!--<ComboBoxItem>c#</ComboBoxItem>
                     <ComboBoxItem>Python</ComboBoxItem>
                     <ComboBoxItem>Java</ComboBoxItem>-->
@@ -148,7 +148,7 @@
                 <Label Foreground="White" VerticalAlignment="Center" Name="account">XXXX</Label>
                 <Button Margin="0 0 5  0" Height="25" Click="Btn_break"  Foreground="White" Background="{x:Null}">退出登录</Button>
             </StackPanel>
-            <Button Content="添加/修改分类" HorizontalAlignment="Left" Margin="321,13,0,0" VerticalAlignment="Top" Width="91" Click="Button_Click"/>
+            <!--<Button Content="添加/修改分类" HorizontalAlignment="Left" Margin="321,13,0,0" VerticalAlignment="Top" Width="91" Click="Button_Click"/>-->
 
 
 
@@ -165,7 +165,14 @@
             <TabItem  Foreground="White" Background="#364150" Header="试题录入" Name="questionEntry" Height="40"  >
                 <ScrollViewer VerticalScrollBarVisibility="Auto"></ScrollViewer>
             </TabItem>
-            <TabItem Foreground="White" Background="#364150" Header="试卷管理" Height="40" >
+            
+            <TabItem Foreground="White" Header="生成试卷" Height="40" Background="#364150">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                </ScrollViewer>
+            </TabItem>
+
+            <!--<TabItem Foreground="White" Background="#364150" Header="试卷管理" Height="40" >
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
 
                 </ScrollViewer>
@@ -190,20 +197,12 @@
                         <Button Content="修改备注" Margin="660,571,319,9.8"/>
                     </Grid>
                 </ScrollViewer>
-            </TabItem>
-            <TabItem Foreground="White" Header="生成试卷" Height="40" Background="#364150">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-
-                </ScrollViewer>
-            </TabItem>
-
+            </TabItem>-->
+            
             <TabItem Foreground="White" Header="控制中心" Height="40" Width="100" Background="#364150">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
-                        <StackPanel>
-                            <Button>dfs</Button>
-                            <Button>sdf</Button>
-                        </StackPanel>
+                        
                     </Grid>
                 </ScrollViewer>
             </TabItem>
