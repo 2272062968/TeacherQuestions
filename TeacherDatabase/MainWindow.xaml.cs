@@ -50,6 +50,8 @@ namespace TeacherDatabase
             questionEntry.Content = userQuestionEntry;
             UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
             questionAdmin.Content = userQuestionAdmin;
+            UserCreateExam userCreateExam = new UserCreateExam();
+            questionExam.Content = userCreateExam;
         }
         public MainWindow()
         {
@@ -154,6 +156,7 @@ namespace TeacherDatabase
 
 
         int StartClick1 = 0;
+        int StartClick2 = 0;
         //判断选择的TabControl
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -181,6 +184,12 @@ namespace TeacherDatabase
                     {
                         labNtype.Visibility = Visibility.Collapsed;
                         Ntype.Visibility = Visibility.Collapsed;
+                        if (StartClick2 == 0)
+                        {
+                            UserCreateExam userCreateExam = new UserCreateExam();
+                            questionExam.Content = userCreateExam;
+                        }
+                        StartClick2++;
                         break;
                     }
                 case 3:

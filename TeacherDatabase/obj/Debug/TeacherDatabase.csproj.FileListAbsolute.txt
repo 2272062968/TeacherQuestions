@@ -29,3 +29,6 @@ C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\bin\Debug\ControlzEx.pdb
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\bin\Debug\Fluent.pdb
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\bin\Debug\Fluent.xml
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\App.baml
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\UserCreateExam.g.cs
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\UserCreateExam.baml
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.csproj.ResolveComReference.cache

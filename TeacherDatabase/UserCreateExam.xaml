@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="TeacherDatabase.UserCreateExam"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TeacherDatabase"
+             mc:Ignorable="d" 
+             Foreground="Black"
+             d:DesignHeight="624.8" d:DesignWidth="1092">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <!--<RowDefinition Height="60"></RowDefinition>-->
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" VerticalAlignment="Bottom" Margin="0 0 0 20" Orientation="Horizontal">
+            <Label Margin="40 0 0 0" VerticalAlignment="Center">标题内容</Label>
+            <TextBox Name="docTitle" Height="25" Width="500" VerticalAlignment="Center"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Label VerticalAlignment="Center" Margin="40 0 0 0">试题类型</Label>
+            <ComboBox Name="quesType" VerticalAlignment="Center" Width="120" Margin="20 0 0 0"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Label Margin="40 0 0 0" VerticalAlignment="Center" >选择题数量</Label>
+            <Label VerticalAlignment="Center" Margin="40 0 0 0">简单:</Label>
+            <ComboBox VerticalAlignment="Center" Name="XuanZeC" Width="50">
+                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+            </ComboBox>
+            <Label VerticalAlignment="Center" Margin="20 0 0 0">一般:</Label>
+            <ComboBox VerticalAlignment="Center" Name="XuanZeB" Width="50">
+                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+            </ComboBox>
+            <Label VerticalAlignment="Center" Margin="20 0 0 0">较难:</Label>
+            <ComboBox VerticalAlignment="Center" Name="XuanZeA" Width="50">
+                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Label Margin="40 0 0 0" VerticalAlignment="Center" >填空题数量</Label>
+            <Label VerticalAlignment="Center" Margin="40 0 0 0">简单:</Label>
+            <ComboBox VerticalAlignment="Center" Name="TianKongC" Width="50">
+                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+            </ComboBox>
+            <Label VerticalAlignment="Center" Margin="20 0 0 0">一般:</Label>
+            <ComboBox VerticalAlignment="Center" Name="TianKongB" Width="50">
+                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+            </ComboBox>
+            <Label VerticalAlignment="Center" Margin="20 0 0 0">较难:</Label>
+            <ComboBox VerticalAlignment="Center" Name="TianKongA" Width="50">
+                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Orientation="Horizontal">
+            <Label Margin="40 0 0 0" VerticalAlignment="Center" >判断题数量</Label>
+            <Label VerticalAlignment="Center" Margin="40 0 0 0">简单:</Label>
+            <ComboBox VerticalAlignment="Center" Name="PanDuanC" Width="50">
+                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+            </ComboBox>
+            <Label VerticalAlignment="Center" Margin="20 0 0 0">一般:</Label>
+            <ComboBox VerticalAlignment="Center" Name="PanDuanB" Width="50">
+                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+            </ComboBox>
+            <Label VerticalAlignment="Center" Margin="20 0 0 0">较难:</Label>
+            <ComboBox VerticalAlignment="Center" Name="PanDuanA" Width="50">
+                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Orientation="Horizontal">
+            <Label Margin="40 0 0 0" VerticalAlignment="Center" >设计题数量</Label>
+            <Label VerticalAlignment="Center" Margin="40 0 0 0">简单:</Label>
+            <ComboBox VerticalAlignment="Center" Name="SheJiC" Width="50">
+                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+            </ComboBox>
+            <Label VerticalAlignment="Center" Margin="20 0 0 0">一般:</Label>
+            <ComboBox VerticalAlignment="Center" Name="SheJiB" Width="50">
+                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+            </ComboBox>
+            <Label VerticalAlignment="Center" Margin="20 0 0 0">较难:</Label>
+            <ComboBox VerticalAlignment="Center" Name="SheJiA" Width="50">
+                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="6" Orientation="Horizontal">
+            <Label VerticalAlignment="Center" Margin="40 0 0 0">添加页眉(可选择不添加)</Label>
+            <TextBox Width="350" VerticalAlignment="Center" Height="25"></TextBox>
+        </StackPanel>
+        <Button Click="StartNewExam_Click" Name="StartNewExam" Grid.Row="7" Width="200" Height="26"  Background="#FF90FF25" Margin="872,140,20,18.8">生成</Button>
+    </Grid>
+</UserControl>

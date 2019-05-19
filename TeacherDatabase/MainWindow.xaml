@@ -165,8 +165,8 @@
             <TabItem  Foreground="White" Background="#364150" Header="试题录入" Name="questionEntry" Height="40"  >
                 <ScrollViewer VerticalScrollBarVisibility="Auto"></ScrollViewer>
             </TabItem>
-            
-            <TabItem Foreground="White" Header="生成试卷" Height="40" Background="#364150">
+
+            <TabItem Foreground="White" Header="生成试卷" Height="40" Name="questionExam" Background="#364150">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
 
                 </ScrollViewer>
