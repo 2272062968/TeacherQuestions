@@ -180,14 +180,12 @@ namespace TeacherDatabase
         //获取下需要写入的数据
         void GetData()
         {
-            writeData.title = docTitle.Text;
-            writeData.questionType = quesType.Text;
-            //writeData.xuanzeAllNum = int.Parse(XuanZeAll.Text);
-            writeData.xuanzeANum = int.Parse(XuanZeA.Text);
-            writeData.xuanzeBNum = int.Parse(XuanZeB.Text);
-            writeData.xuanzeCNum = int.Parse(XuanZeC.Text);
-            
-            
+            //    writeData.title = docTitle.Text;
+            //    writeData.questionType = quesType.Text;
+
+
+
+
             //if (rbXuanZeF.IsChecked == true)
             //{
 
@@ -205,7 +203,9 @@ namespace TeacherDatabase
 
             //MessageBox.Show(writeData.title);
             //MessageBox.Show(writeData.questionType);
-            MessageBox.Show(writeData.xuanzeAllNum.ToString());
+            MessageBox.Show(writeData.title.ToString());
+            MessageBox.Show(writeData.questionType.ToString());
+            MessageBox.Show(writeData.header.ToString());
             //MessageBox.Show(writeData.title);
             //string title = docTitle.Text;
             //string subject = quesType.Text;
@@ -286,7 +286,110 @@ namespace TeacherDatabase
                 writeData.xuanzeAllNum = int.Parse(XuanZeAll.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", ""));
             }           
         }
-
-
+        private void TianKongAll_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TianKongAll.Text != "")
+            {
+                writeData.tiankongAllNum = int.Parse(TianKongAll.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", ""));
+            }
+        }
+        private void PanDuanAll_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (PanDuanAll.Text != "")
+            {
+                writeData.panduanAllNum = int.Parse(PanDuanAll.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", ""));
+            }
+        }
+        private void SheJiAll_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SheJiAll.Text != "")
+            {
+                writeData.shejiAllNum = int.Parse(SheJiAll.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", ""));
+            }
+        }
+        private void XuanZeC_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (XuanZeC.Text != "")
+            {
+                writeData.xuanzeCNum = int.Parse(XuanZeC.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", ""));
+            }
+        }
+        private void XuanZeB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (XuanZeB.Text != "")
+            {
+                writeData.xuanzeBNum = int.Parse(XuanZeB.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", ""));
+            }
+        }
+        private void XuanZeA_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (XuanZeA.Text != "")
+            {
+                writeData.xuanzeANum = int.Parse(XuanZeA.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", ""));
+            }
+        }
+        private void TianKongC_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TianKongC.Text != "")
+            {
+                writeData.tiankongCNum = int.Parse(TianKongC.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", ""));
+            }
+        }
+        private void TianKongB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TianKongB.Text != "")
+            {
+                writeData.tiankongBNum = int.Parse(TianKongB.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", ""));
+            }
+        }
+        private void TianKongA_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TianKongA.Text != "")
+            {
+                writeData.tiankongANum = int.Parse(TianKongA.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", ""));
+            }
+        }
+        private void PanDuanC_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (PanDuanC.Text != "")
+            {
+                writeData.panduanCNum = int.Parse(PanDuanC.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", ""));
+            }
+        }
+        private void PanDuanB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (PanDuanB.Text != "")
+            {
+                writeData.panduanBNum = int.Parse(PanDuanB.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", ""));
+            }
+        }
+        private void PanDuanA_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (PanDuanA.Text != "")
+            {
+                writeData.panduanANum = int.Parse(PanDuanA.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", ""));
+            }
+        }
+        private void SheJiC_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SheJiC.Text != "")
+            {
+                writeData.shejiCNum = int.Parse(SheJiC.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", ""));
+            }
+        }
+        private void SheJiB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SheJiB.Text != "")
+            {
+                writeData.shejiBNum = int.Parse(SheJiB.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", ""));
+            }
+        }
+        private void SheJiA_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SheJiA.Text != "")
+            {
+                writeData.shejiANum = int.Parse(SheJiA.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", ""));
+            }
+        }
     }
 }

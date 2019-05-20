@@ -39,15 +39,15 @@
             <StackPanel Orientation="Horizontal" Visibility="Collapsed" Name="stXuanZe">
                 <!--<Label VerticalAlignment="Center" Margin="40 0 0 0">难度选择</Label>-->
                 <Label VerticalAlignment="Center" Margin="40 0 0 0">简单:</Label>
-                <ComboBox VerticalAlignment="Center" Name="XuanZeC" Width="50">
+                <ComboBox VerticalAlignment="Center" DataContext="{Binding Path=xuanzeCNum}" SelectionChanged="XuanZeC_SelectionChanged" Name="XuanZeC" Width="50">
                     <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
                 </ComboBox>
                 <Label VerticalAlignment="Center" Margin="20 0 0 0">一般:</Label>
-                <ComboBox VerticalAlignment="Center" Name="XuanZeB" Width="50">
+                <ComboBox VerticalAlignment="Center" DataContext="{Binding Path=xuanzeBNum}" SelectionChanged="XuanZeB_SelectionChanged" Name="XuanZeB" Width="50">
                     <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
                 </ComboBox>
                 <Label VerticalAlignment="Center" Margin="20 0 0 0">较难:</Label>
-                <ComboBox VerticalAlignment="Center" Name="XuanZeA" Width="50">
+                <ComboBox VerticalAlignment="Center" DataContext="{Binding Path=xuanzeANum}" SelectionChanged="XuanZeA_SelectionChanged" Name="XuanZeA" Width="50">
                     <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
                 </ComboBox>
             </StackPanel>
@@ -60,21 +60,21 @@
             <RadioButton IsChecked="True" Click="TianKongF_Click" Name="TianKongF"  Margin="40 0 0 0" VerticalAlignment="Center" Content="不进行难度选择" GroupName="TianKong"/>
             <RadioButton Click="TianKongT_Click" Name="TianKongT"  Margin="40 0 0 0" VerticalAlignment="Center" Content="难度选择" GroupName="TianKong"/>
             <Label Margin="40 0 0 0" Name="labTiankongAll" VerticalAlignment="Center">数量:</Label>
-            <ComboBox VerticalAlignment="Center" Name="TianKongAll" Width="50">
+            <ComboBox DataContext="{Binding Path=tiankongAllNum}" SelectionChanged="TianKongAll_SelectionChanged"  VerticalAlignment="Center" Name="TianKongAll" Width="50">
                 <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
             </ComboBox>
             <!--<Label VerticalAlignment="Center" Margin="40 0 0 0">难度选择</Label>-->
             <StackPanel Orientation="Horizontal" Visibility="Collapsed" Name="stTianKong">
                 <Label VerticalAlignment="Center" Margin="40 0 0 0">简单:</Label>
-                <ComboBox VerticalAlignment="Center" Name="TianKongC" Width="50">
+                <ComboBox VerticalAlignment="Center" SelectionChanged="TianKongC_SelectionChanged" DataContext="{Binding Path=tiankongCNum}" Name="TianKongC" Width="50">
                     <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
                 </ComboBox>
                 <Label VerticalAlignment="Center" Margin="20 0 0 0">一般:</Label>
-                <ComboBox VerticalAlignment="Center" Name="TianKongB" Width="50">
+                <ComboBox VerticalAlignment="Center" SelectionChanged="TianKongB_SelectionChanged" DataContext="{Binding Path=tiankongBNum}" Name="TianKongB" Width="50">
                     <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
                 </ComboBox>
                 <Label VerticalAlignment="Center" Margin="20 0 0 0">较难:</Label>
-                <ComboBox VerticalAlignment="Center" Name="TianKongA" Width="50">
+                <ComboBox VerticalAlignment="Center" SelectionChanged="TianKongA_SelectionChanged" DataContext="{Binding Path=tiankongANum}" Name="TianKongA" Width="50">
                     <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
                 </ComboBox>
             </StackPanel>
@@ -84,21 +84,21 @@
             <RadioButton Click="PanDuanF_Click" IsChecked="True" Name="PanDuanF"  Margin="40 0 0 0" VerticalAlignment="Center" Content="不进行难度选择" GroupName="PanDuan"/>
             <RadioButton Click="PanDuanT_Click" Name="PanDuanT"  Margin="40 0 0 0" VerticalAlignment="Center" Content="难度选择" GroupName="PanDuan"/>
             <Label Margin="40 0 0 0"  Name="labPanDuanAll" VerticalAlignment="Center">数量:</Label>
-            <ComboBox VerticalAlignment="Center" Name="PanDuanAll" Width="50">
+            <ComboBox SelectionChanged="PanDuanAll_SelectionChanged" DataContext="{Binding Path=panduanAllNum}"  VerticalAlignment="Center" Name="PanDuanAll" Width="50">
                 <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
             </ComboBox>
             <!--<Label VerticalAlignment="Center" Margin="40 0 0 0">难度选择</Label>-->
             <StackPanel Orientation="Horizontal" Visibility="Collapsed" Name="stPanDuan">
                 <Label VerticalAlignment="Center" Margin="40 0 0 0">简单:</Label>
-                <ComboBox VerticalAlignment="Center" Name="PanDuanC" Width="50">
+                <ComboBox VerticalAlignment="Center" SelectionChanged="PanDuanC_SelectionChanged" DataContext="{Binding Path=panduanCNum}" Name="PanDuanC" Width="50">
                     <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
                 </ComboBox>
                 <Label VerticalAlignment="Center" Margin="20 0 0 0">一般:</Label>
-                <ComboBox VerticalAlignment="Center" Name="PanDuanB" Width="50">
+                <ComboBox VerticalAlignment="Center" SelectionChanged="PanDuanB_SelectionChanged" DataContext="{Binding Path=panduanBNum}" Name="PanDuanB" Width="50">
                     <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
                 </ComboBox>
                 <Label VerticalAlignment="Center" Margin="20 0 0 0">较难:</Label>
-                <ComboBox VerticalAlignment="Center" Name="PanDuanA" Width="50">
+                <ComboBox VerticalAlignment="Center" SelectionChanged="PanDuanA_SelectionChanged" DataContext="{Binding Path=panduanANum}" Name="PanDuanA" Width="50">
                     <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
                 </ComboBox>
             </StackPanel>
@@ -108,28 +108,28 @@
             <RadioButton Click="SheJiF_Click" IsChecked="True" Name="SheJiF"  Margin="40 0 0 0" VerticalAlignment="Center" Content="不进行难度选择" GroupName="SheJi"/>
             <RadioButton Click="SheJiT_Click" Name="SheJiT"  Margin="40 0 0 0" VerticalAlignment="Center" Content="难度选择" GroupName="SheJi"/>
             <Label Margin="40 0 0 0"  Name="labSheJiAll" VerticalAlignment="Center">数量:</Label>
-            <ComboBox VerticalAlignment="Center" Name="SheJiAll" Width="50">
+            <ComboBox SelectionChanged="SheJiAll_SelectionChanged" DataContext="{Binding Path=shejiAllNum}" VerticalAlignment="Center" Name="SheJiAll" Width="50">
                 <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
             </ComboBox>
             <!--<Label VerticalAlignment="Center" Margin="40 0 0 0">难度选择</Label>-->
             <StackPanel Orientation="Horizontal" Visibility="Collapsed" Name="stSheJi">
                 <Label VerticalAlignment="Center" Margin="40 0 0 0">简单:</Label>
-                <ComboBox VerticalAlignment="Center" Name="SheJiC" Width="50">
+                <ComboBox VerticalAlignment="Center" SelectionChanged="SheJiC_SelectionChanged" DataContext="{Binding Path=shejiCNum}" Name="SheJiC" Width="50">
                     <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
                 </ComboBox>
                 <Label VerticalAlignment="Center" Margin="20 0 0 0">一般:</Label>
-                <ComboBox VerticalAlignment="Center" Name="SheJiB" Width="50">
+                <ComboBox VerticalAlignment="Center" SelectionChanged="SheJiB_SelectionChanged" DataContext="{Binding Path=shejiBNum}" Name="SheJiB" Width="50">
                     <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
                 </ComboBox>
                 <Label VerticalAlignment="Center" Margin="20 0 0 0">较难:</Label>
-                <ComboBox VerticalAlignment="Center" Name="SheJiA" Width="50">
+                <ComboBox VerticalAlignment="Center" SelectionChanged="SheJiA_SelectionChanged" DataContext="{Binding Path=shejiANum}" Name="SheJiA" Width="50">
                     <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
                 </ComboBox>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="6" Orientation="Horizontal">
             <Label VerticalAlignment="Center" Margin="40 0 0 0">添加页眉(可选择不添加)</Label>
-            <TextBox Width="350" VerticalAlignment="Center" Height="25"></TextBox>
+            <TextBox Text="{Binding Path=header}" Width="350" VerticalAlignment="Center" Height="25"></TextBox>
         </StackPanel>
         <Button Click="StartNewExam_Click" Name="StartNewExam" Grid.Row="7" Width="200" Height="26"  Background="#FF90FF25" Margin="872,140,20,18.8">生成</Button>
     </Grid>
