@@ -23,9 +23,11 @@ namespace TeacherDatabase
     /// </summary>
     public partial class UserCreateExam : UserControl
     {
+        WriteData writeData = new WriteData();
         public UserCreateExam()
         {
             InitializeComponent();
+            this.DataContext = writeData;
             AddComBoxItem();
             foreach (var subName in GlobalParams.subjectName.Split(','))
             {
@@ -38,6 +40,20 @@ namespace TeacherDatabase
         {
             for (int i = 1; i <= 30; i++)
             {
+                ComboBoxItem XuanZeAllItem = new ComboBoxItem();
+                XuanZeAllItem.Content = i.ToString();
+                XuanZeAll.Items.Add(XuanZeAllItem);
+                ComboBoxItem TianKongAllItem = new ComboBoxItem();
+                TianKongAllItem.Content = i.ToString();
+                TianKongAll.Items.Add(TianKongAllItem);
+                ComboBoxItem PanDuanAllItem = new ComboBoxItem();
+                PanDuanAllItem.Content = i.ToString();
+                PanDuanAll.Items.Add(PanDuanAllItem);
+                ComboBoxItem SheJiAllItem = new ComboBoxItem();
+                SheJiAllItem.Content = i.ToString();
+                SheJiAll.Items.Add(SheJiAllItem);
+
+
                 ComboBoxItem XuanZeAItem = new ComboBoxItem();
                 XuanZeAItem.Content = i.ToString();
                 XuanZeA.Items.Add(XuanZeAItem);
@@ -78,13 +94,12 @@ namespace TeacherDatabase
                 ComboBoxItem SheJiCItem = new ComboBoxItem();
                 SheJiCItem.Content = i.ToString();
                 SheJiC.Items.Add(SheJiCItem);
-
             }
         }
-
+        //写入Word
         void WriteQuestionInWord()
         {
-            string strText = @"本系统就是针对环境星数据，对经过检验的标准处理流程进行系统化开发，" +
+            string strText = "本系统就是针对环境星数据，对经过检验的标准处理流程进行系统化开发，" +
                            "并可以使用处理过后的数据生成一些初级地表参数产品。编写这份测试分析报告的" +
                            "目的是为了让本系统的用户通过本报告更加信任本系统，测试分析报告主要是对" +
                           "软件系统的测试分析工作进行总结与整理。本报告的主要读者是将要使用本系统" +
@@ -124,8 +139,8 @@ namespace TeacherDatabase
             WordApp.Selection.TypeParagraph();//插入段落
             WordApp.Selection.Text = strText;
 
-            WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);//移动焦点
-            WordApp.Selection.TypeParagraph();//插入段落
+            WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);
+            WordApp.Selection.TypeParagraph();
             WordApp.Selection.Text = strText;
 
             //WordApp.Selection.Range.Font.Size = 12;
@@ -161,25 +176,115 @@ namespace TeacherDatabase
                 MessageBox.Show("警告，出现生成错误问题！您的电脑正在运行office，或者是\n您的电脑管理.doc格式文件的软件不是office，如果您安装了其他软件，请在--设置--应用--默认应用--按应用设置默认值找到Microsoft Office Word进行管理，设置.doc为此应用默认格式");
             }
         }
+
+        //获取下需要写入的数据
+        void GetData()
+        {
+            writeData.title = docTitle.Text;
+            writeData.questionType = quesType.Text;
+            //writeData.xuanzeAllNum = int.Parse(XuanZeAll.Text);
+            writeData.xuanzeANum = int.Parse(XuanZeA.Text);
+            writeData.xuanzeBNum = int.Parse(XuanZeB.Text);
+            writeData.xuanzeCNum = int.Parse(XuanZeC.Text);
+            
+            
+            //if (rbXuanZeF.IsChecked == true)
+            //{
+
+            //}
+            //else
+            //{
+
+
+            //}
+
+        }
         private void StartNewExam_Click(object sender, RoutedEventArgs e)
         {
-            string title = docTitle.Text;
-            string subject = quesType.Text;
-            if (title == "" || subject == "")
+
+
+            //MessageBox.Show(writeData.title);
+            //MessageBox.Show(writeData.questionType);
+            MessageBox.Show(writeData.xuanzeAllNum.ToString());
+            //MessageBox.Show(writeData.title);
+            //string title = docTitle.Text;
+            //string subject = quesType.Text;
+            //if (title == "" || subject == "")
+            //{
+            //    MessageBox.Show("请填写标题内容和选择学科！");
+            //}
+            //else
+            //{
+
+
+            //    MessageBox.Show(quesType.Text);
+
+            //    if (XuanZeAll.Visibility == Visibility.Visible)
+            //    {
+            //        MessageBox.Show("j");
+            //    }
+            //    //WriteQuestionInWord();
+            //}
+
+
+        }
+
+
+        private void RbXuanZeF_Click(object sender, RoutedEventArgs e)
+        {
+            labXuanZeAll.Visibility = Visibility.Visible;
+            stXuanZe.Visibility = Visibility.Collapsed;
+            XuanZeAll.Visibility = Visibility.Visible;
+        }
+        private void RbXuanZeT_Click(object sender, RoutedEventArgs e)
+        {
+            labXuanZeAll.Visibility = Visibility.Collapsed;
+            XuanZeAll.Visibility = Visibility.Collapsed;
+            stXuanZe.Visibility = Visibility.Visible;
+        }
+        private void TianKongF_Click(object sender, RoutedEventArgs e)
+        {
+            labTiankongAll.Visibility = Visibility.Visible;
+            stTianKong.Visibility = Visibility.Collapsed;
+            TianKongAll.Visibility = Visibility.Visible;
+        }
+        private void TianKongT_Click(object sender, RoutedEventArgs e)
+        {
+            labTiankongAll.Visibility = Visibility.Collapsed;
+            stTianKong.Visibility = Visibility.Visible;
+            TianKongAll.Visibility = Visibility.Collapsed;
+        }
+        private void PanDuanF_Click(object sender, RoutedEventArgs e)
+        {
+            labPanDuanAll.Visibility = Visibility.Visible;
+            stPanDuan.Visibility = Visibility.Collapsed;
+            PanDuanAll.Visibility = Visibility.Visible;
+        }
+        private void PanDuanT_Click(object sender, RoutedEventArgs e)
+        {
+            labPanDuanAll.Visibility = Visibility.Collapsed;
+            stPanDuan.Visibility = Visibility.Visible;
+            PanDuanAll.Visibility = Visibility.Collapsed;
+        }
+        private void SheJiF_Click(object sender, RoutedEventArgs e)
+        {
+            labSheJiAll.Visibility = Visibility.Visible;
+            stSheJi.Visibility = Visibility.Collapsed;
+            SheJiAll.Visibility = Visibility.Visible;
+        }
+        private void SheJiT_Click(object sender, RoutedEventArgs e)
+        {
+            labSheJiAll.Visibility = Visibility.Collapsed;
+            stSheJi.Visibility = Visibility.Visible;
+            SheJiAll.Visibility = Visibility.Collapsed;
+        }
+
+        private void XuanZeAll_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (XuanZeAll.Text != "")
             {
-                MessageBox.Show("请填写标题内容和选择学科！");
-            }
-            else
-            {
-                WriteQuestionInWord();
-            }
-
-
-           
-            
-
-            
-
+                writeData.xuanzeAllNum = int.Parse(XuanZeAll.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", ""));
+            }           
         }
 
 

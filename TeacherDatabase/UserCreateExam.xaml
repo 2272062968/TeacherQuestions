@@ -21,71 +21,111 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" VerticalAlignment="Bottom" Margin="0 0 0 20" Orientation="Horizontal">
             <Label Margin="40 0 0 0" VerticalAlignment="Center">标题内容</Label>
-            <TextBox Name="docTitle" Height="25" Width="500" VerticalAlignment="Center"></TextBox>
+            <TextBox Text="{Binding Path=title}" Name="docTitle" Height="25" Width="500" VerticalAlignment="Center"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Label VerticalAlignment="Center" Margin="40 0 0 0">试题类型</Label>
-            <ComboBox Name="quesType" VerticalAlignment="Center" Width="120" Margin="20 0 0 0"></ComboBox>
+            <ComboBox Text="{Binding Path=questionType}" Name="quesType" VerticalAlignment="Center" Width="120" Margin="20 0 0 0"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Label Margin="40 0 0 0" VerticalAlignment="Center" >选择题数量</Label>
-            <Label VerticalAlignment="Center" Margin="40 0 0 0">简单:</Label>
-            <ComboBox VerticalAlignment="Center" Name="XuanZeC" Width="50">
+            <RadioButton IsChecked="True" Click="RbXuanZeF_Click" Name="rbXuanZeF"  Margin="40 0 0 0" VerticalAlignment="Center" Content="不进行难度选择" GroupName="XuanZe"/>
+            <RadioButton Click="RbXuanZeT_Click" Name="rbXuanZeT"  Margin="40 0 0 0" VerticalAlignment="Center" Content="难度选择" GroupName="XuanZe"/>
+            <Label Margin="40 0 0 0" Name="labXuanZeAll" VerticalAlignment="Center">数量:</Label>
+            <ComboBox SelectionChanged="XuanZeAll_SelectionChanged" DataContext="{Binding Path=xuznzeAllNum}"  VerticalAlignment="Center" Name="XuanZeAll" Width="50">
                 <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
             </ComboBox>
-            <Label VerticalAlignment="Center" Margin="20 0 0 0">一般:</Label>
-            <ComboBox VerticalAlignment="Center" Name="XuanZeB" Width="50">
-                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
-            </ComboBox>
-            <Label VerticalAlignment="Center" Margin="20 0 0 0">较难:</Label>
-            <ComboBox VerticalAlignment="Center" Name="XuanZeA" Width="50">
-                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
-            </ComboBox>
+
+            <StackPanel Orientation="Horizontal" Visibility="Collapsed" Name="stXuanZe">
+                <!--<Label VerticalAlignment="Center" Margin="40 0 0 0">难度选择</Label>-->
+                <Label VerticalAlignment="Center" Margin="40 0 0 0">简单:</Label>
+                <ComboBox VerticalAlignment="Center" Name="XuanZeC" Width="50">
+                    <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+                </ComboBox>
+                <Label VerticalAlignment="Center" Margin="20 0 0 0">一般:</Label>
+                <ComboBox VerticalAlignment="Center" Name="XuanZeB" Width="50">
+                    <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+                </ComboBox>
+                <Label VerticalAlignment="Center" Margin="20 0 0 0">较难:</Label>
+                <ComboBox VerticalAlignment="Center" Name="XuanZeA" Width="50">
+                    <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+
+            
         </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Horizontal">
             <Label Margin="40 0 0 0" VerticalAlignment="Center" >填空题数量</Label>
-            <Label VerticalAlignment="Center" Margin="40 0 0 0">简单:</Label>
-            <ComboBox VerticalAlignment="Center" Name="TianKongC" Width="50">
+            <RadioButton IsChecked="True" Click="TianKongF_Click" Name="TianKongF"  Margin="40 0 0 0" VerticalAlignment="Center" Content="不进行难度选择" GroupName="TianKong"/>
+            <RadioButton Click="TianKongT_Click" Name="TianKongT"  Margin="40 0 0 0" VerticalAlignment="Center" Content="难度选择" GroupName="TianKong"/>
+            <Label Margin="40 0 0 0" Name="labTiankongAll" VerticalAlignment="Center">数量:</Label>
+            <ComboBox VerticalAlignment="Center" Name="TianKongAll" Width="50">
                 <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
             </ComboBox>
-            <Label VerticalAlignment="Center" Margin="20 0 0 0">一般:</Label>
-            <ComboBox VerticalAlignment="Center" Name="TianKongB" Width="50">
-                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
-            </ComboBox>
-            <Label VerticalAlignment="Center" Margin="20 0 0 0">较难:</Label>
-            <ComboBox VerticalAlignment="Center" Name="TianKongA" Width="50">
-                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
-            </ComboBox>
+            <!--<Label VerticalAlignment="Center" Margin="40 0 0 0">难度选择</Label>-->
+            <StackPanel Orientation="Horizontal" Visibility="Collapsed" Name="stTianKong">
+                <Label VerticalAlignment="Center" Margin="40 0 0 0">简单:</Label>
+                <ComboBox VerticalAlignment="Center" Name="TianKongC" Width="50">
+                    <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+                </ComboBox>
+                <Label VerticalAlignment="Center" Margin="20 0 0 0">一般:</Label>
+                <ComboBox VerticalAlignment="Center" Name="TianKongB" Width="50">
+                    <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+                </ComboBox>
+                <Label VerticalAlignment="Center" Margin="20 0 0 0">较难:</Label>
+                <ComboBox VerticalAlignment="Center" Name="TianKongA" Width="50">
+                    <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="4" Orientation="Horizontal">
             <Label Margin="40 0 0 0" VerticalAlignment="Center" >判断题数量</Label>
-            <Label VerticalAlignment="Center" Margin="40 0 0 0">简单:</Label>
-            <ComboBox VerticalAlignment="Center" Name="PanDuanC" Width="50">
+            <RadioButton Click="PanDuanF_Click" IsChecked="True" Name="PanDuanF"  Margin="40 0 0 0" VerticalAlignment="Center" Content="不进行难度选择" GroupName="PanDuan"/>
+            <RadioButton Click="PanDuanT_Click" Name="PanDuanT"  Margin="40 0 0 0" VerticalAlignment="Center" Content="难度选择" GroupName="PanDuan"/>
+            <Label Margin="40 0 0 0"  Name="labPanDuanAll" VerticalAlignment="Center">数量:</Label>
+            <ComboBox VerticalAlignment="Center" Name="PanDuanAll" Width="50">
                 <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
             </ComboBox>
-            <Label VerticalAlignment="Center" Margin="20 0 0 0">一般:</Label>
-            <ComboBox VerticalAlignment="Center" Name="PanDuanB" Width="50">
-                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
-            </ComboBox>
-            <Label VerticalAlignment="Center" Margin="20 0 0 0">较难:</Label>
-            <ComboBox VerticalAlignment="Center" Name="PanDuanA" Width="50">
-                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
-            </ComboBox>
+            <!--<Label VerticalAlignment="Center" Margin="40 0 0 0">难度选择</Label>-->
+            <StackPanel Orientation="Horizontal" Visibility="Collapsed" Name="stPanDuan">
+                <Label VerticalAlignment="Center" Margin="40 0 0 0">简单:</Label>
+                <ComboBox VerticalAlignment="Center" Name="PanDuanC" Width="50">
+                    <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+                </ComboBox>
+                <Label VerticalAlignment="Center" Margin="20 0 0 0">一般:</Label>
+                <ComboBox VerticalAlignment="Center" Name="PanDuanB" Width="50">
+                    <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+                </ComboBox>
+                <Label VerticalAlignment="Center" Margin="20 0 0 0">较难:</Label>
+                <ComboBox VerticalAlignment="Center" Name="PanDuanA" Width="50">
+                    <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="5" Orientation="Horizontal">
             <Label Margin="40 0 0 0" VerticalAlignment="Center" >设计题数量</Label>
-            <Label VerticalAlignment="Center" Margin="40 0 0 0">简单:</Label>
-            <ComboBox VerticalAlignment="Center" Name="SheJiC" Width="50">
+            <RadioButton Click="SheJiF_Click" IsChecked="True" Name="SheJiF"  Margin="40 0 0 0" VerticalAlignment="Center" Content="不进行难度选择" GroupName="SheJi"/>
+            <RadioButton Click="SheJiT_Click" Name="SheJiT"  Margin="40 0 0 0" VerticalAlignment="Center" Content="难度选择" GroupName="SheJi"/>
+            <Label Margin="40 0 0 0"  Name="labSheJiAll" VerticalAlignment="Center">数量:</Label>
+            <ComboBox VerticalAlignment="Center" Name="SheJiAll" Width="50">
                 <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
             </ComboBox>
-            <Label VerticalAlignment="Center" Margin="20 0 0 0">一般:</Label>
-            <ComboBox VerticalAlignment="Center" Name="SheJiB" Width="50">
-                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
-            </ComboBox>
-            <Label VerticalAlignment="Center" Margin="20 0 0 0">较难:</Label>
-            <ComboBox VerticalAlignment="Center" Name="SheJiA" Width="50">
-                <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
-            </ComboBox>
+            <!--<Label VerticalAlignment="Center" Margin="40 0 0 0">难度选择</Label>-->
+            <StackPanel Orientation="Horizontal" Visibility="Collapsed" Name="stSheJi">
+                <Label VerticalAlignment="Center" Margin="40 0 0 0">简单:</Label>
+                <ComboBox VerticalAlignment="Center" Name="SheJiC" Width="50">
+                    <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+                </ComboBox>
+                <Label VerticalAlignment="Center" Margin="20 0 0 0">一般:</Label>
+                <ComboBox VerticalAlignment="Center" Name="SheJiB" Width="50">
+                    <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+                </ComboBox>
+                <Label VerticalAlignment="Center" Margin="20 0 0 0">较难:</Label>
+                <ComboBox VerticalAlignment="Center" Name="SheJiA" Width="50">
+                    <ComboBoxItem Content="0" IsSelected="True"></ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="6" Orientation="Horizontal">
             <Label VerticalAlignment="Center" Margin="40 0 0 0">添加页眉(可选择不添加)</Label>

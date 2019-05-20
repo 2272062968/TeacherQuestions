@@ -72,7 +72,7 @@ namespace TeacherDatabase
 
                 foreach (DataRow row in datab.Rows)
                 {
-                    if (row[0].ToString() == "python" || row[0].ToString() == "java" || row[0].ToString() == "C#")
+                    if (row[0].ToString() == "python" || row[0].ToString() == "java")
                     {
                         continue;
                     }
@@ -122,6 +122,15 @@ namespace TeacherDatabase
                         GlobalParams.ThisPage = 1;
                         GlobalParams.startIndex = 0;
                         GlobalParams.Condition = "subject='java' or subject='Java'";
+                        //sqlStr = "select * from question where subject='java' or subject='Java' limit 0,25";
+                        UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
+                        questionAdmin.Content = userQuestionAdmin;
+                    }
+                    else if (selectSubject == "C#" || selectSubject == "c#")
+                    {
+                        GlobalParams.ThisPage = 1;
+                        GlobalParams.startIndex = 0;
+                        GlobalParams.Condition = "subject='c#' or subject='C#'";
                         //sqlStr = "select * from question where subject='java' or subject='Java' limit 0,25";
                         UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
                         questionAdmin.Content = userQuestionAdmin;

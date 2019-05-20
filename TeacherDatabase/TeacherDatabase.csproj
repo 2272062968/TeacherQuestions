@@ -83,6 +83,7 @@
     <Compile Include="UserQuestionEntry.xaml.cs">
       <DependentUpon>UserQuestionEntry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WriteData.cs" />
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
