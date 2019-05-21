@@ -42,6 +42,7 @@ namespace TeacherDatabase
         //连接服务器ip密码和数据表
         string con = "Server=39.108.153.12;port=3306;user=teacher;password=myrootsql;database=teacher;";
         DataTable datab = new DataTable();
+
         
         void StartLoatWindow()
         {

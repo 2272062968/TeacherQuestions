@@ -1,6 +1,9 @@
 ﻿using Microsoft.Office.Interop.Word;
+using Microsoft.Win32;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -23,7 +26,15 @@ namespace TeacherDatabase
     /// </summary>
     public partial class UserCreateExam : UserControl
     {
+        string con = "Server=39.108.153.12;port=3306;user=teacher;password=myrootsql;database=teacher;";
         WriteData writeData = new WriteData();
+        bool QuestionIsEnough = true;
+        List<string> questionName = new List<string>();
+
+        int XZNumWord = 0;
+        int TKNumWord = 0;
+        int PDNumWord = 0;
+        int SJNumWord = 0;
         public UserCreateExam()
         {
             InitializeComponent();
@@ -36,6 +47,7 @@ namespace TeacherDatabase
                 quesType.Items.Add(item);
             }
         }
+        //添加ComBoxItem
         void AddComBoxItem()
         {
             for (int i = 1; i <= 30; i++)
@@ -96,21 +108,16 @@ namespace TeacherDatabase
                 SheJiC.Items.Add(SheJiCItem);
             }
         }
+
         //写入Word
-        void WriteQuestionInWord()
+        void WriteQuestionInWord(string path)
         {
-            string strText = "本系统就是针对环境星数据，对经过检验的标准处理流程进行系统化开发，" +
-                           "并可以使用处理过后的数据生成一些初级地表参数产品。编写这份测试分析报告的" +
-                           "目的是为了让本系统的用户通过本报告更加信任本系统，测试分析报告主要是对" +
-                          "软件系统的测试分析工作进行总结与整理。本报告的主要读者是将要使用本系统" +
-                            "或者需要对环境星进行处理并生产植被指数标准产品的用户。";
             string strResult = "";
             Object Nothing = System.Reflection.Missing.Value;
-            Directory.CreateDirectory(@"E:\TEMP\SaveWord");  //创建文件所在目录
+            //Directory.CreateDirectory(@"E:\TEMP\SaveWord");  //创建文件所在目录
+            string wordName = writeData.title + ".doc";//文件名
+            object wordPathName = path + wordName;
 
-            string wordName = "MyNewWord" + DateTime.Now.ToLongDateString() + ".doc";//文件名
-
-            object wordPathName = @"E:\TEMP\SaveWord\" + wordName;  //文件保存路径
 
             //创建Word文档
             Microsoft.Office.Interop.Word.Application WordApp = new Microsoft.Office.Interop.Word.Application();
@@ -119,47 +126,64 @@ namespace TeacherDatabase
             //添加页眉
             WordApp.ActiveWindow.View.Type = WdViewType.wdOutlineView;
             WordApp.ActiveWindow.View.SeekView = WdSeekView.wdSeekPrimaryHeader;
-            WordApp.ActiveWindow.ActivePane.Selection.InsertAfter("");
+            WordApp.ActiveWindow.ActivePane.Selection.InsertAfter(writeData.header);
             WordApp.Selection.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;//设置居中
             WordApp.ActiveWindow.View.SeekView = WdSeekView.wdSeekMainDocument;//跳出页眉设置
             WordApp.Selection.ParagraphFormat.LineSpacing = 15f;//设置文档的行间距
 
             //WordApp.Selection();//插入段落
 
-            WordApp.Selection.Text = "  标题";
+            WordApp.Selection.Text = "  " + writeData.title;
             WordApp.Selection.Range.Bold = 2;
             WordApp.Selection.Range.Font.Size = 24;
             WordApp.Selection.Range.Bold = 1;
-
             //移动焦点并换行
             object count = 14;
             object WdLine = Microsoft.Office.Interop.Word.WdUnits.wdLine;//换一行;
 
-            WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);//移动焦点
-            WordApp.Selection.TypeParagraph();//插入段落
-            WordApp.Selection.Text = strText;
+            int num = 0;
 
-            WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);
-            WordApp.Selection.TypeParagraph();
-            WordApp.Selection.Text = strText;
+            foreach (var item in questionName)
+            {
 
-            //WordApp.Selection.Range.Font.Size = 12;
-            
-            //WordDoc.Paragraphs.Last.Range.Text = "\n\n\n\n";//此处会将落款覆盖
+                if (num == 0 && XZNumWord != 0)
+                {
+                    WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);//移动焦点
+                    WordApp.Selection.TypeParagraph();//插入段落
+                    WordApp.Selection.Text = "选择题";
+                }
+                if (num == XZNumWord && TKNumWord != 0)
+                {
+                    WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);//移动焦点
+                    WordApp.Selection.TypeParagraph();//插入段落
+                    WordApp.Selection.Text = "填空题";
+                }
+                if (num == XZNumWord + TKNumWord && PDNumWord != 0)
+                {
+                    WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);//移动焦点
+                    WordApp.Selection.TypeParagraph();//插入段落
+                    WordApp.Selection.Text = "判断题";
+                }
+                if (num == XZNumWord + TKNumWord + PDNumWord && SJNumWord != 0)
+                {
+                    WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);//移动焦点
+                    WordApp.Selection.TypeParagraph();//插入段落
+                    WordApp.Selection.Text = "设计题";
+                }
+                num++;
+
+                WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);//移动焦点
+                WordApp.Selection.TypeParagraph();//插入段落
+                WordApp.Selection.Text = num.ToString() + ". " + item;
 
 
-            //WordDoc.Paragraphs.Add(ref Nothing);//在最后再增加一段
-            //WordDoc.Paragraphs.Last.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft;
-            //string strText = @"本系统就是针对环境星数据，对经过检验的标准处理流程进行系统化开发，" +
-            //               "并可以使用处理过后的数据生成一些初级地表参数产品。编写这份测试分析报告的" +
-            //               "目的是为了让本系统的用户通过本报告更加信任本系统，测试分析报告主要是对" +
-            //              "软件系统的测试分析工作进行总结与整理。本报告的主要读者是将要使用本系统" +
-            //                "或者需要对环境星进行处理并生产植被指数标准产品的用户。";
-            //WordDoc.Paragraphs.Last.Range.Text = strText;
-            //WordDoc.Paragraphs.Last.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphLeft;
+            }
 
-            //WordDoc.Paragraphs.Add(ref Nothing);
-            //WordDoc.Paragraphs.Last.Range.Text = "\n\n\n";
+
+            //WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);
+            //WordApp.Selection.TypeParagraph();
+            //WordApp.Selection.Text = strText;
+
 
             try
             {
@@ -177,54 +201,380 @@ namespace TeacherDatabase
             }
         }
 
-        //获取下需要写入的数据
-        void GetData()
+        // Number随机数个数
+        // minNum随机数下限
+        // maxNum随机数上限
+        public int[] GetRandomArray(int Number, int minNum, int maxNum)
         {
-            //    writeData.title = docTitle.Text;
-            //    writeData.questionType = quesType.Text;
-
-
-
-
-            //if (rbXuanZeF.IsChecked == true)
-            //{
-
-            //}
-            //else
-            //{
-
-
-            //}
-
+            int j;
+            int[] b = new int[Number];
+            Random r = new Random();
+            for (j = 0; j < Number; j++)
+            {
+                int i = r.Next(minNum, maxNum + 1);
+                int num = 0;
+                for (int k = 0; k < j; k++)
+                {
+                    if (b[k] == i)
+                    {
+                        num = num + 1;
+                    }
+                }
+                if (num == 0)
+                {
+                    b[j] = i;
+                }
+                else
+                {
+                    j = j - 1;
+                }
+            }
+            return b;
         }
+
+
+
+        //获取数据库中试题数量
+        int GetQuestionCount(string select)
+        {
+           
+            System.Data.DataTable table = new System.Data.DataTable();
+            MySqlConnection mycon = new MySqlConnection(con);
+
+            MySqlDataAdapter myDataAdapter = new MySqlDataAdapter(" select count(*) from question where "+select, con);
+            //MySqlDataAdapter myDataAdapter = new MySqlDataAdapter("select count(*) from question where type = '选择题' and(subject = 'python' or subject = 'Python')", con);
+            DataSet XuanZeData = new DataSet(); 
+            myDataAdapter.Fill(XuanZeData, "question");
+            table = XuanZeData.Tables["question"];
+            return int.Parse(table.Rows[0][0].ToString());
+        }
+
+        //int MaxXuanze;
+        //int MaxTiankong;
+        //int MaxPanduan;
+        //int MaxSheji;
+        //int MaxXuanzeA;
+        //int MaxXuanzeB;
+        //int MaxXuanzeC;
+        //int MaxTiankongA;
+        //int MaxTiankongB;
+        //int MaxTiankongC;
+        //int MaxPanduanA;
+        //int MaxPanduanB;
+        //int MaxPanduanC;
+        //int MaxShejiA;
+        //int MaxShejiB;
+        //int MaxShejiC;
+
+        //判断难度选择试题数量是否足够
+        void isEnoughDiff(string type, int typeACount, int typeBCount, int typeCCount)
+        {
+            if (writeData.questionType == "Python")
+            {
+                
+                if (GetQuestionCount("type='"+type+"' and (subject='python' or subject = 'Python') and diffculty='简单'") < typeCCount)
+                {
+                    MessageBox.Show("题库中的" + writeData.questionType + "简单" + type + "数量不足");
+                    QuestionIsEnough = false;
+                }
+                if (GetQuestionCount("type='" + type + "' and (subject='python' or subject = 'Python') and diffculty='一般'") < typeBCount)
+                {
+                    MessageBox.Show("题库中的" + writeData.questionType + "一般" + type + "数量不足");
+                    QuestionIsEnough = false;
+                }
+                if (GetQuestionCount("type='" + type + "' and (subject='python' or subject = 'Python') and diffculty='较难'") < typeACount)
+                {
+                    MessageBox.Show("题库中的" + writeData.questionType + "较难" + type + "数量不足");
+                    QuestionIsEnough = false;
+                }
+            }
+            else if (writeData.questionType == "Java")
+            {
+                if (GetQuestionCount("type='" + type + "' and (subject='java' or subject = 'Java') and diffculty='简单'") < typeCCount)
+                {
+                    MessageBox.Show("题库中的" + writeData.questionType + "简单" + type + "数量不足");
+                    QuestionIsEnough = false;
+                }
+                if (GetQuestionCount("type='" + type + "' and (subject='java' or subject = 'Java') and diffculty='一般'") < typeBCount)
+                {
+                    MessageBox.Show("题库中的" + writeData.questionType + "一般" + type + "数量不足");
+                    QuestionIsEnough = false;
+                }
+                if (GetQuestionCount("type='" + type + "' and (subject='java' or subject = 'Java') and diffculty='较难'") < typeACount)
+                {
+                    MessageBox.Show("题库中的" + writeData.questionType + "较难" + type + "数量不足");
+                    QuestionIsEnough = false;
+                }
+            }
+            else
+            {
+                if (GetQuestionCount("type='" + type + "' and subject='" + writeData.questionType + "' and diffculty='简单'") < typeCCount)
+                {
+                    MessageBox.Show("题库中的" + writeData.questionType + "简单" + type + "数量不足");
+                    QuestionIsEnough = false;
+                }
+                if (GetQuestionCount("type='" + type + "' and subject='" + writeData.questionType + "' and diffculty='一般'") < typeBCount)
+                {
+                    MessageBox.Show("题库中的" + writeData.questionType + "一般" + type + "数量不足");
+                    QuestionIsEnough = false;
+                }
+                if (GetQuestionCount("type='" + type + "' and subject='" + writeData.questionType + "' and diffculty='较难'") < typeACount)
+                {
+                    MessageBox.Show("题库中的" + writeData.questionType + "较难" + type + "数量不足");
+                    QuestionIsEnough = false;
+                }
+            }
+        }
+        //判断试题数量是否足够
+        void isEnoughAll(string type,int typeAllCount)
+        {
+            if (writeData.questionType == "Python")
+            {
+                if (GetQuestionCount("type='"+ type+"' and (subject='python' or subject = 'Python')") < typeAllCount)
+                {
+                    MessageBox.Show("题库中的" + writeData.questionType + type + "数量不足");
+                    QuestionIsEnough = false;
+                }
+            }
+            else if (writeData.questionType == "Java")
+            {
+                if (GetQuestionCount("type='"+ type + "' and (subject='java' or subject = 'Java')") < typeAllCount)
+                {
+                    MessageBox.Show("题库中的" + writeData.questionType + type + "数量不足");
+                    QuestionIsEnough = false;
+                }
+
+            }
+            else
+            {
+                if (GetQuestionCount("type='"+ type + "' and subject='" + writeData.questionType + "'") < typeAllCount)
+                {
+                    MessageBox.Show("题库中的" + writeData.questionType + type + "数量不足");
+                    QuestionIsEnough = false;
+                }
+
+            }
+        }
+
+
+
+        //查询试题
+        string AddQuesitonName(string sql)
+        {
+            System.Data.DataTable table = new System.Data.DataTable();
+            MySqlConnection mycon = new MySqlConnection(con);
+            MySqlDataAdapter myDataAdapter = new MySqlDataAdapter(sql, con);
+            DataSet XuanZeData = new DataSet();
+            myDataAdapter.Fill(XuanZeData, "question");
+            table = XuanZeData.Tables["question"];
+            if (table.Rows.Count != 0)
+            {
+                return table.Rows[0][0].ToString();
+            }
+            else
+            {
+                return "";
+            }
+        }
+        //向列表随机添加难度选择的试题
+        void AddSelectQueston(string type, int NumA, int NumB, int NumC)
+        {
+            if (writeData.questionType == "Python")
+            {
+                foreach (var item in GetRandomArray(NumC, 0, GetQuestionCount("type='" + type + "' and (subject='python' or subject = 'Python') and diffculty='简单'") - 1))
+                {
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='python' or subject='Python') and diffculty='简单' limit " + item.ToString() + ",1");
+                    questionName.Add(name);
+                }
+                foreach (var item in GetRandomArray(NumB, 0, GetQuestionCount("type='" + type + "' and (subject='python' or subject = 'Python') and diffculty='一般'") - 1))
+                {
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='python' or subject='Python') and diffculty='一般' limit " + item.ToString() + ",1");
+                    questionName.Add(name);
+                }
+                foreach (var item in GetRandomArray(NumA, 0, GetQuestionCount("type='" + type + "' and (subject='python' or subject = 'Python') and diffculty='较难'") - 1))
+                {
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='python' or subject='Python') and diffculty='较难' limit " + item.ToString() + ",1");
+                    questionName.Add(name);
+                }
+            }
+            else if (writeData.questionType == "Java")
+            {
+                foreach (var item in GetRandomArray(NumC, 0, GetQuestionCount("type='" + type + "' and (subject='java' or subject = 'Java') and diffculty='简单'") - 1))
+                {
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='java' or subject='Java') and diffculty='简单' limit " + item.ToString() + ",1");
+                    questionName.Add(name);
+                }
+                foreach (var item in GetRandomArray(NumB, 0, GetQuestionCount("type='" + type + "' and (subject='java' or subject = 'Java') and diffculty='一般'") - 1))
+                {
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='java' or subject='Java') and diffculty='一般' limit " + item.ToString() + ",1");
+                    questionName.Add(name);
+                }
+                foreach (var item in GetRandomArray(NumA, 0, GetQuestionCount("type='" + type + "' and (subject='java' or subject = 'Java') and diffculty='较难'") - 1))
+                {
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='java' or subject='Java') and diffculty='较难' limit " + item.ToString() + ",1");
+                    questionName.Add(name);
+                }
+            }
+            else
+            {
+                foreach (var item in GetRandomArray(NumC, 0, GetQuestionCount("type='" + type + "' and (subject='" + writeData.questionType + "') and diffculty='简单'") - 1))
+                {
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and subject='" + writeData.questionType + "' and diffculty='简单' limit " + item.ToString() + ",1");
+                    questionName.Add(name);
+                }
+                foreach (var item in GetRandomArray(NumB, 0, GetQuestionCount("type='" + type + "' and (subject='" + writeData.questionType + "') and diffculty='简单'") - 1))
+                {
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and subject='" + writeData.questionType + "' and diffculty='简单' limit " + item.ToString() + ",1");
+                    questionName.Add(name);
+                }
+                foreach (var item in GetRandomArray(NumA, 0, GetQuestionCount("type='" + type + "' and (subject='" + writeData.questionType + "') and diffculty='简单'") - 1))
+                {
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and subject='" + writeData.questionType + "' and diffculty='简单' limit " + item.ToString() + ",1");
+                    questionName.Add(name);
+                }
+            }
+        }
+        //向列表随机添加试题
+        void AddAllQuestion(string type, int Num)
+        {
+            //int[] index;
+            if (writeData.questionType == "Python")
+            {
+                foreach (var item in GetRandomArray(Num, 0, GetQuestionCount("type='" + type + "' and (subject='python' or subject = 'Python')") - 1))
+                {
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='python' or subject='Python') limit " + item.ToString() + ",1");
+                    questionName.Add(name);
+                }
+
+            }
+            else if (writeData.questionType == "Java")
+            {
+                foreach (var item in GetRandomArray(Num, 0, GetQuestionCount("type='" + type + "' and (subject='java' or subject = 'Java')") - 1))
+                {
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='java' or subject='Java') limit " + item.ToString() + ",1");
+                    questionName.Add(name);
+                }
+
+            }
+            else
+            {
+                foreach (var item in GetRandomArray(Num, 0, GetQuestionCount("type='" + type + "' and (subject='" + writeData.questionType + "')") - 1))
+                {
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and subject='" + writeData.questionType + "' limit " + item.ToString() + ",1");
+                    questionName.Add(name);
+                }
+
+            }
+        }
+
+
         private void StartNewExam_Click(object sender, RoutedEventArgs e)
         {
 
+            string title = docTitle.Text;
+            string subject = quesType.Text;
+            if (title == "" || subject == "")
+            {
+                MessageBox.Show("请填写标题内容和选择学科！");
+            }
+            else
+            {
+                QuestionIsEnough = true;
+                #region 判断选择的题目在数据库中是否足够
+                if (XuanZeAll.Visibility == Visibility.Visible)
+                {
+                    isEnoughAll("选择题", writeData.xuanzeAllNum);
+                }
+                else
+                {
+                    isEnoughDiff("选择题", writeData.xuanzeANum, writeData.xuanzeBNum, writeData.xuanzeCNum);
+                }
+                if (TianKongAll.Visibility == Visibility.Visible)
+                {
+                    isEnoughAll("填空题", writeData.tiankongAllNum);
+                }
+                else
+                {
+                    isEnoughDiff("填空题", writeData.tiankongANum, writeData.tiankongBNum, writeData.tiankongCNum);
+                }
+                if (PanDuanAll.Visibility == Visibility.Visible)
+                {
+                    isEnoughAll("判断题", writeData.panduanAllNum);
+                }
+                else
+                {
+                    isEnoughDiff("判断题", writeData.panduanANum, writeData.panduanBNum, writeData.panduanCNum);
+                }
+                if (SheJiAll.Visibility == Visibility.Visible)
+                {
+                    isEnoughAll("设计题", writeData.shejiAllNum);
+                }
+                else
+                {
+                    isEnoughDiff("设计题", writeData.shejiANum, writeData.shejiBNum, writeData.shejiCNum);
+                }
+                #endregion
+                questionName.Clear();
+                if (QuestionIsEnough)
+                {
+                    if (XuanZeAll.Visibility == Visibility.Visible && writeData.xuanzeAllNum != 0)
+                    {
+                        AddAllQuestion("选择题", writeData.xuanzeAllNum);
+                        XZNumWord = writeData.xuanzeAllNum;
+                    }
+                    else
+                    {
+                        AddSelectQueston("选择题", writeData.xuanzeANum, writeData.xuanzeBNum, writeData.xuanzeCNum);
+                        XZNumWord = writeData.xuanzeANum + writeData.xuanzeBNum + writeData.xuanzeCNum;
+                    }
+                    if (TianKongAll.Visibility == Visibility.Visible && writeData.tiankongAllNum != 0)
+                    {
+                        AddAllQuestion("填空题", writeData.tiankongAllNum);
+                        TKNumWord = writeData.tiankongAllNum;
+                    }
+                    else
+                    {
+                        AddSelectQueston("填空题", writeData.tiankongANum, writeData.tiankongBNum, writeData.tiankongCNum);
+                        TKNumWord = writeData.tiankongANum + writeData.tiankongBNum + writeData.tiankongCNum;
+                    }
+                    if (PanDuanAll.Visibility == Visibility.Visible && writeData.panduanAllNum != 0)
+                    {
+                        AddAllQuestion("判断题", writeData.panduanAllNum);
+                        PDNumWord = writeData.panduanAllNum;
+                    }
+                    else
+                    {
+                        AddSelectQueston("判断题", writeData.panduanANum, writeData.panduanBNum, writeData.panduanCNum);
+                        PDNumWord = writeData.panduanANum + writeData.panduanBNum + writeData.panduanCNum;
+                    }
+                    if (SheJiAll.Visibility == Visibility.Visible && writeData.shejiAllNum != 0)
+                    {
+                        AddAllQuestion("设计题", writeData.shejiAllNum);
+                        SJNumWord = writeData.shejiAllNum;
+                    }
+                    else
+                    {
+                        AddSelectQueston("设计题", writeData.shejiANum, writeData.shejiBNum, writeData.shejiCNum);
+                        SJNumWord = writeData.shejiANum + writeData.shejiBNum + writeData.shejiCNum;
+                    }
 
-            //MessageBox.Show(writeData.title);
-            //MessageBox.Show(writeData.questionType);
-            MessageBox.Show(writeData.title.ToString());
-            MessageBox.Show(writeData.questionType.ToString());
-            MessageBox.Show(writeData.header.ToString());
-            //MessageBox.Show(writeData.title);
-            //string title = docTitle.Text;
-            //string subject = quesType.Text;
-            //if (title == "" || subject == "")
-            //{
-            //    MessageBox.Show("请填写标题内容和选择学科！");
-            //}
-            //else
-            //{
+                    string path = "";
+                    System.Windows.Forms.FolderBrowserDialog dilog = new System.Windows.Forms.FolderBrowserDialog();
+                    dilog.Description = "请选择文件夹";
+                    if (dilog.ShowDialog() == System.Windows.Forms.DialogResult.OK || dilog.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        path = dilog.SelectedPath+"\\";
+                        WriteQuestionInWord(path);
+                    }
+                }
 
 
-            //    MessageBox.Show(quesType.Text);
+                //foreach (var item in questionName)
+                //{
+                //    MessageBox.Show(item);
+                //}
 
-            //    if (XuanZeAll.Visibility == Visibility.Visible)
-            //    {
-            //        MessageBox.Show("j");
-            //    }
-            //    //WriteQuestionInWord();
-            //}
+            }
 
 
         }

@@ -130,7 +130,7 @@
         <StackPanel Grid.Row="6" Orientation="Horizontal">
             <Label VerticalAlignment="Center" Margin="40 0 0 0">添加页眉(可选择不添加)</Label>
             <TextBox Text="{Binding Path=header}" Width="350" VerticalAlignment="Center" Height="25"></TextBox>
-        </StackPanel>
-        <Button Click="StartNewExam_Click" Name="StartNewExam" Grid.Row="7" Width="200" Height="26"  Background="#FF90FF25" Margin="872,140,20,18.8">生成</Button>
+        </StackPanel> 
+        <Button Click="StartNewExam_Click" Name="StartNewExam" Grid.Row="7" Width="200" Height="26"  Background="#FF90FF25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 20 20">生成</Button>
     </Grid>
 </UserControl>
