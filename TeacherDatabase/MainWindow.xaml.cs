@@ -53,6 +53,8 @@ namespace TeacherDatabase
             questionAdmin.Content = userQuestionAdmin;
             UserCreateExam userCreateExam = new UserCreateExam();
             questionExam.Content = userCreateExam;
+            UserAlterPassword userAlterPassword = new UserAlterPassword();
+            questionAlter.Content = userAlterPassword;
         }
         public MainWindow()
         {

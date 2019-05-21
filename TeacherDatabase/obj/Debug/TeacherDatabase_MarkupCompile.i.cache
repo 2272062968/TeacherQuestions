@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\App.xaml
-6599711805
+8864189219
 
-18-1677279468
+20-1334516655
 22-2072727892
-Alter.xaml;Login.xaml;MainWindow.xaml;UserCreateExam.xaml;UserQuestionAdmin.xaml;UserQuestionEntry.xaml;
+Alter.xaml;Login.xaml;MainWindow.xaml;Register.xaml;UserAlterPassword.xaml;UserCreateExam.xaml;UserQuestionAdmin.xaml;UserQuestionEntry.xaml;
 
-True
+False
 

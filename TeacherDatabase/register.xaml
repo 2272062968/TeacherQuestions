@@ -1,0 +1,63 @@
+﻿<Window x:Class="TeacherDatabase.Register"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TeacherDatabase"
+        mc:Ignorable="d"
+         Height="700" Width="1200" WindowStyle="None" MouseMove="Window_MouseMove"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="back.jpg"></ImageBrush>
+    </Window.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="120"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button  Width="30" Height="30" HorizontalAlignment="Left"  Click="Btn_Close_Click" BorderBrush="Transparent" Background="Transparent" Foreground="White">
+            <Image Source="ht.ico"></Image>
+        </Button>
+        <TextBlock Grid.Row="1" Height="80" Width="500" Margin="78,10,614,30" Text="UPCOMING  注册" FontSize="50" Foreground="White"></TextBlock>
+        <Rectangle Grid.Row="1" Width="1100" Height="2" Stroke="White" Fill="White"  Margin="45,108,47,10"></Rectangle>
+
+        <StackPanel Grid.Row="2" Width="350" HorizontalAlignment="Right" Margin="0 80 160 0">
+            <Grid>
+                <Label Name="lab1" Margin="5,16,-5,-16" >请输入账号</Label>
+                <TextBox  Width="350" Height="40" Opacity="0.5"  Name="tbxUser" 
+                 VerticalContentAlignment="Center"
+                  Margin="0 10 0 0"  HorizontalAlignment="Center" LostFocus="TbxUser_LostFocus" GotFocus="TbxUser_GotFocus">
+                </TextBox>
+            </Grid>
+
+            <Grid>
+                <Label Name="lab2" Margin="5,16,-5,-16">请输入密码</Label>
+                <PasswordBox  Opacity="0.5" VerticalAlignment="Center" Name="pwd1" HorizontalAlignment="Center"  
+                     VerticalContentAlignment="Center" Width="350" Height="40"
+                     Margin="0 10 0 0" FontStyle="Italic" LostFocus="Pwd1_LostFocus" GotFocus="Pwd1_GotFocus">
+                </PasswordBox>
+            </Grid>
+
+            <Grid>
+                <Label Name="lab3" Margin="5,16,-5,-16">请输入密码</Label>
+                <PasswordBox  Opacity="0.5" VerticalAlignment="Center" Name="pwd2" HorizontalAlignment="Center"  
+                     VerticalContentAlignment="Center" Width="350" Height="40"
+                     Margin="0 10 0 0" FontStyle="Italic" LostFocus="Pwd2_LostFocus" GotFocus="Pwd2_GotFocus">
+                </PasswordBox>
+            </Grid>
+
+            <Grid>
+                <Label Name="lab4" Margin="5,16,-5,-16" >请输入邮箱</Label>
+                <TextBox  Width="350" Height="40" Opacity="0.5"  Name="tbxEmail" 
+                 VerticalContentAlignment="Center"
+                  Margin="0 10 0 0"  HorizontalAlignment="Center" LostFocus="TbxEmail_LostFocus" GotFocus="TbxEmail_GotFocus">
+                </TextBox>
+            </Grid>
+
+            <Button Opacity="0.8" Width="350" Height="40" Margin="0 50 0 0" Background="Orange" Content="注册" FontSize="20" Click="Btn_logon_Click"/>
+
+        </StackPanel>
+    </Grid>
+</Window>

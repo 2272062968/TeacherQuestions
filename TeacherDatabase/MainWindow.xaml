@@ -199,8 +199,8 @@
                     </Grid>
                 </ScrollViewer>
             </TabItem>-->
-            
-            <TabItem Foreground="White" Header="控制中心" Height="40" Width="100" Background="#364150">
+
+            <TabItem Foreground="White" Header="控制中心" Height="40" Width="100" Name="questionAlter" Background="#364150">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
                         

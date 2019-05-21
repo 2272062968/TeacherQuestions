@@ -111,6 +111,43 @@ namespace TeacherDatabase
             }
         }
 
+        private void Register_Click(object sender, RoutedEventArgs e)
+        {
+            Register register = new Register();
+            register.Show();
+            this.Close();
+        }
 
+        private void TbxUser_GotFocus(object sender, RoutedEventArgs e)
+        {
+            lab1.Content = "";
+        }
+
+        private void Lab1_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (tbxUser.Text == "")
+            {
+                lab1.Content = "请输入账号";
+            }
+        }
+
+        private void Pwd_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (pwd.Password == "")
+            {
+                lab2.Content = "请输入密码";
+            }
+        }
+
+        private void Pwd_GotFocus(object sender, RoutedEventArgs e)
+        {
+            lab2.Content = "";
+        }
+
+        private void Btn_Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+
+        }
     }
 }

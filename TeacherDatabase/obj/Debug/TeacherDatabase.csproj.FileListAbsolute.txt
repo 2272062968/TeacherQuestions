@@ -15,7 +15,6 @@ C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.e
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.pdb
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\bin\Debug\MySql.Data.dll
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\Login.g.cs
-C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\Login.baml
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.csproj.CopyComplete
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\UserQuestionEntry.g.cs
@@ -34,3 +33,7 @@ C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\UserCreateExam.ba
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.csproj.ResolveComReference.cache
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\Alter.g.cs
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\Alter.baml
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\register.g.cs
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\register.baml
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\UserAlterPassword.g.cs
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\UserAlterPassword.baml
