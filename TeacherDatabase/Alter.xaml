@@ -1,0 +1,125 @@
+﻿<Window x:Class="TeacherDatabase.Alter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TeacherDatabase"
+        mc:Ignorable="d"
+        Background="#FFE4FFD7"
+        Title="Alter" Height="625" Width="1010">
+    <Window.Resources>
+        <Geometry x:Key="DownArrowGeometry">M 0 0 L 3.5 4 L 7 0 Z</Geometry>
+        <Style x:Key="ComboBoxReadonlyToggleButton" TargetType="{x:Type ToggleButton}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="ClickMode" Value="Press"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}" x:Name="Chrome"  BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}"  SnapsToDevicePixels="true">
+                            <Grid HorizontalAlignment="Right" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                                <Path x:Name="Arrow" Data="{StaticResource DownArrowGeometry}" Fill="#808080" HorizontalAlignment="Center" Margin="1,1,0,0" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Fill" TargetName="Arrow" Value="#AFAFAF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CboCommomStyle" TargetType="{x:Type ComboBox}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBox}">
+                        <Grid x:Name="MainGrid" SnapsToDevicePixels="true" Margin="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
+                            </Grid.ColumnDefinitions>
+                            <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
+                                <Border x:Name="Shdw" MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=MainGrid}">
+                                    <Border x:Name="DropDownBorder" BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" BorderThickness="1" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+                                        <ScrollViewer x:Name="DropDownScrollViewer">
+                                            <Grid RenderOptions.ClearTypeHint="Enabled">
+                                                <Canvas HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
+                                                    <Rectangle x:Name="OpaqueRect" Fill="{Binding Background, ElementName=DropDownBorder}" Height="{Binding ActualHeight, ElementName=DropDownBorder}" Width="{Binding ActualWidth, ElementName=DropDownBorder}"/>
+                                                </Canvas>
+                                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                            </Grid>
+                                        </ScrollViewer>
+                                    </Border>
+                                </Border>
+                            </Popup>
+                            <ToggleButton BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" Grid.ColumnSpan="2"
+                                      Grid.Column="0"
+                                      IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxReadonlyToggleButton}" BorderThickness="{TemplateBinding BorderThickness}"/>
+                            <ContentPresenter Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"  Orientation="Horizontal" HorizontalAlignment="Left" Width="792" Height="50" VerticalAlignment="Top" >
+            <TextBlock Text="科目*" Width="Auto" Margin="40 0 0 0" VerticalAlignment="Center"/>
+            <TextBox Text="{Binding Path=subject}" Margin="40 0 0 0" Name="Xtype" Width="350" Height="25" VerticalAlignment="Center"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Width="792" Height="50" VerticalAlignment="Top">
+            <TextBlock Text="题型*" Width="Auto" Margin="40 0 0 0" VerticalAlignment="Center"/>
+            <TextBox Name="selectXtype" Text="{Binding Path=type}" Width="300" Height="25" Margin="40 0 0 0"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Text="章节" Width="30" Margin="40 0 0 0" VerticalAlignment="Center"/>
+            <TextBox Name="tbxChapter" Text="{Binding Path=chapter}" Margin="40 0 0 0" Width="350" Height="25" VerticalAlignment="Center"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <TextBlock Text="题目*" Width="30"  Margin="40 0 0 0" VerticalAlignment="Top"/>
+            <TextBox Width="800" Name="tbxQuestion" Text="{Binding Path=name}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="40,0,0,5"></TextBox>
+        </StackPanel>
+
+        <StackPanel  Grid.Row="4" Orientation="Horizontal">
+            <TextBlock Width="30" Text="答案"  Margin="40 0 0 0" VerticalAlignment="Top"/>
+            <Grid></Grid>
+            <TextBox Margin="40,0,0,0" Text="{Binding Path=answer}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Name="tbxAnswer" Width="800"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Orientation="Horizontal">
+            <TextBlock Text="难度" Margin="40 0 0 0" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Width="200" Text="{Binding Path=diffculty}" VerticalAlignment="Center" Margin="40 0 0 0" Height="26"></TextBox>
+            <!--<RadioButton Name="C" Margin="40 0 0 0" VerticalAlignment="Center" Content="简单" GroupName="difficulty"/>
+            <RadioButton Name="B" Margin="20 0 0 0" VerticalAlignment="Center" Content="一般" GroupName="difficulty"/>
+            <RadioButton Name="A" Margin="20 0 0 0" VerticalAlignment="Center" Content="较难" GroupName="difficulty"/>-->
+        </StackPanel>
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Margin="0 -40 0 0" Grid.Column="0" Orientation="Horizontal">
+                <TextBlock Text="出题人" Width="Auto" Margin="40 0 0 0" VerticalAlignment="Center" />
+                <TextBox Text="{Binding Path=anthor}" Name="tbxIssueAnthor" Height="23" Width="200"  Margin="30,0,0,0"></TextBox>
+            </StackPanel>
+            <Button Click="Btn_Delete" HorizontalAlignment="Right" Margin="0,20,150,35" Width="100" Grid.Column="1" Height="25" Background="#FFF43333" Foreground="White">删除</Button>
+            <Button Click="Btn_Save" HorizontalAlignment="Right" Margin="0,20,18,35" Width="100" Grid.Column="1" Height="25" Background="#FF91F432" Foreground="White">保存</Button>
+        </Grid>
+
+
+    </Grid>
+</Window>

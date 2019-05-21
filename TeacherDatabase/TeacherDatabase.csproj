@@ -73,6 +73,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Alter.xaml.cs">
+      <DependentUpon>Alter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GlobalParams.cs" />
     <Compile Include="QuestionClass.cs" />
     <Compile Include="UserCreateExam.xaml.cs">
@@ -85,6 +88,10 @@
       <DependentUpon>UserQuestionEntry.xaml</DependentUpon>
     </Compile>
     <Compile Include="WriteData.cs" />
+    <Page Include="Alter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

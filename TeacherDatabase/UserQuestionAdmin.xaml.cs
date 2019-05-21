@@ -174,9 +174,20 @@ namespace TeacherDatabase
         private void BtnAction_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
+            int idx = int.Parse(System.Text.RegularExpressions.Regex.Split(btn.Content.ToString(), "_", System.Text.RegularExpressions.RegexOptions.IgnoreCase)[1]);
+            QuestionClass question = new QuestionClass();
+            question.id = DataTable.Rows[idx][0].ToString();
+            question.subject = DataTable.Rows[idx][1].ToString();
+            question.type = DataTable.Rows[idx][2].ToString();
+            question.chapter = DataTable.Rows[idx][3].ToString();
+            question.name = DataTable.Rows[idx][4].ToString();
+            question.answer = DataTable.Rows[idx][5].ToString();
+            question.diffculty = DataTable.Rows[idx][6].ToString();
+            question.anthor = DataTable.Rows[idx][7].ToString();
 
-            MessageBox.Show(btn.Content.ToString());
-            //MessageBox.Show(users[questions.SelectedIndex].Subject);
+            Alter alter = new Alter(question);
+            alter.Show();
+
         }
 
         
@@ -266,5 +277,9 @@ namespace TeacherDatabase
             }
         }
 
+        //private void Refresh_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //}
     }
 }

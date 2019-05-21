@@ -141,6 +141,7 @@
                     <ComboBoxItem>Python</ComboBoxItem>
                     <ComboBoxItem>Java</ComboBoxItem>-->
                 </ComboBox>
+                <Button Width="60" Height="25" Margin="20 0 0 0" Name="Refresh" Click="Refresh_Click">刷新</Button>
             </StackPanel>
 
             <StackPanel VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">

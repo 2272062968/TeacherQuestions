@@ -174,12 +174,14 @@ namespace TeacherDatabase
             {
                 case 0:
                     {
+                        Refresh.Visibility = Visibility.Visible;
                         labNtype.Visibility = Visibility.Visible;
                         Ntype.Visibility = Visibility.Visible;
                         break;
                     }
                 case 1:
                     {
+                        Refresh.Visibility = Visibility.Collapsed;
                         labNtype.Visibility = Visibility.Collapsed;
                         Ntype.Visibility = Visibility.Collapsed;
                         if (StartClick1 == 0)
@@ -192,6 +194,7 @@ namespace TeacherDatabase
                     }
                 case 2:
                     {
+                        Refresh.Visibility = Visibility.Collapsed;
                         labNtype.Visibility = Visibility.Collapsed;
                         Ntype.Visibility = Visibility.Collapsed;
                         if (StartClick2 == 0)
@@ -204,6 +207,7 @@ namespace TeacherDatabase
                     }
                 case 3:
                     {
+                        Refresh.Visibility = Visibility.Collapsed;
                         labNtype.Visibility = Visibility.Collapsed;
                         Ntype.Visibility = Visibility.Collapsed;
                         break;
@@ -261,6 +265,10 @@ namespace TeacherDatabase
             }
         }
 
-
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
+            questionAdmin.Content = userQuestionAdmin;
+        }
     }
 }

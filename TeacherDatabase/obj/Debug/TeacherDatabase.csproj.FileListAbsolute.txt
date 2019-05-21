@@ -32,3 +32,5 @@ C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\App.baml
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\UserCreateExam.g.cs
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\UserCreateExam.baml
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.csproj.ResolveComReference.cache
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\Alter.g.cs
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\Alter.baml
