@@ -134,9 +134,8 @@ namespace TeacherDatabase
             //WordApp.Selection();//插入段落
 
             WordApp.Selection.Text = "  " + writeData.title;
-            WordApp.Selection.Range.Bold = 2;
             WordApp.Selection.Range.Font.Size = 24;
-            WordApp.Selection.Range.Bold = 1;
+
             //移动焦点并换行
             object count = 14;
             object WdLine = Microsoft.Office.Interop.Word.WdUnits.wdLine;//换一行;

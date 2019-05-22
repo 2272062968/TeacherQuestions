@@ -13,7 +13,6 @@ C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\MainWindow.g.cs
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\UserQuestionAdmin.g.cs
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\UserQuestionEntry.g.cs
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\App.g.cs
-C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\GeneratedInternalTypeHelper.g.cs
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\TeacherDatabase_MarkupCompile.cache
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\TeacherDatabase_MarkupCompile.lref
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\App.baml
@@ -29,3 +28,16 @@ C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\TeacherDatabase
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\TeacherDatabase.exe
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\TeacherDatabase.pdb
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\TeacherDatabase.csprojAssemblyReference.cache
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\bin\Release\TeacherDatabase.exe.manifest
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\bin\Release\TeacherDatabase.application
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\TeacherDatabase.csproj.ResolveComReference.cache
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\Alter.g.cs
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\Register.g.cs
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\UserAlterPassword.g.cs
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\UserCreateExam.g.cs
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\Alter.baml
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\Register.baml
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\UserAlterPassword.baml
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\UserCreateExam.baml
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\TeacherDatabase.exe.manifest
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Release\TeacherDatabase.application

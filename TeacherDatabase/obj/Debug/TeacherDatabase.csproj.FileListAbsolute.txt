@@ -37,3 +37,7 @@ C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\register.g.cs
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\register.baml
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\UserAlterPassword.g.cs
 C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\UserAlterPassword.baml
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\bin\Debug\TeacherDatabase.exe.manifest
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\bin\Debug\TeacherDatabase.application
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.exe.manifest
+C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\TeacherDatabase.application
