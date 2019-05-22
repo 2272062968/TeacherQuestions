@@ -110,7 +110,7 @@
         </Grid.RowDefinitions>
 
 
-        
+
         <!--<Grid Height="26" MouseMove="Window_MouseMove" Grid.Row="0" Background="#FFABE0F3">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -118,7 +118,9 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                --><!--<TextBlock Grid.Column="0" Width="200" HorizontalAlignment="Left" Foreground="#FFA27D0D" Margin="5 5 0 0" FontWeight="Bold" FontSize="14">教师题库管理系统</TextBlock>--><!--
+                -->
+        <!--<TextBlock Grid.Column="0" Width="200" HorizontalAlignment="Left" Foreground="#FFA27D0D" Margin="5 5 0 0" FontWeight="Bold" FontSize="14">教师题库管理系统</TextBlock>-->
+        <!--
 
 
             </Grid>
@@ -159,18 +161,38 @@
 
         <Grid Grid.Row="2" Background="#364150"></Grid>
         <TabControl Background="LightBlue" x:Name="tabControl" TabStripPlacement="Left" Grid.Row="2" SelectionChanged="TabControl_SelectionChanged">
-            <TabItem  Foreground="White" Background="#364150" Header="试题管理" Height="40" Name="questionAdmin" >
-                <ScrollViewer VerticalScrollBarVisibility="Auto"></ScrollViewer>
+            <TabItem  Foreground="White" Background="#364150"  Height="40" Name="questionAdmin" >
+                <!--<ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                </ScrollViewer>-->
+                <TabItem.Header>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="ico\n1.ico" Width="26" Height="26" IsEnabled="False"/>
+                            <Label Foreground="White" Grid.Column="1" VerticalAlignment="Center" IsEnabled="False">试题管理</Label>
+                        </StackPanel>
+
+                </TabItem.Header>
+
             </TabItem>
 
-            <TabItem  Foreground="White" Background="#364150" Header="试题录入" Name="questionEntry" Height="40"  >
-                <ScrollViewer VerticalScrollBarVisibility="Auto"></ScrollViewer>
+            <TabItem  Foreground="White" Background="#364150" Name="questionEntry" Height="40"  >
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="ico\n2.ico" Width="26" Height="26" />
+                        <Label Foreground="White" Grid.Column="1"  VerticalAlignment="Center">试题录入</Label>
+                    </StackPanel>
+
+                </TabItem.Header>
             </TabItem>
 
-            <TabItem Foreground="White" Header="生成试卷" Height="40" Name="questionExam" Background="#364150">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-
-                </ScrollViewer>
+            <TabItem Foreground="White" Height="40" Name="questionExam" Background="#364150">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" >
+                        <Image  Source="ico\n3.ico" Width="26" Height="26"/>
+                        <Label Foreground="White" Grid.Column="1" VerticalAlignment="Center">生成试卷</Label>
+                    </StackPanel>
+                </TabItem.Header>
             </TabItem>
 
             <!--<TabItem Foreground="White" Background="#364150" Header="试卷管理" Height="40" >
@@ -200,13 +222,17 @@
                 </ScrollViewer>
             </TabItem>-->
 
-            <TabItem Foreground="White" Header="控制中心" Height="40" Width="100" Name="questionAlter" Background="#364150">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <Grid>
-                        
-                    </Grid>
-                </ScrollViewer>
+            <TabItem Foreground="White" Height="40" Name="questionAlter" Background="#364150">
+                <TabItem.Header>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="ico\n4.ico" Width="26" Height="26"/>
+                        <Label Foreground="White" Grid.Column="1" VerticalAlignment="Center">控制中心</Label>
+                    </StackPanel>
+
+                </TabItem.Header>
             </TabItem>
+
         </TabControl>
 
 

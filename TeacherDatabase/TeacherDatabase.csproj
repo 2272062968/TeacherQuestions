@@ -204,5 +204,17 @@
   <ItemGroup>
     <Resource Include="ht.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ico\n1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ico\n2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ico\n4.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ico\n3.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
