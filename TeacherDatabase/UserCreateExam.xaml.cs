@@ -112,92 +112,101 @@ namespace TeacherDatabase
         //写入Word
         void WriteQuestionInWord(string path)
         {
-            string strResult = "";
-            Object Nothing = System.Reflection.Missing.Value;
-            //Directory.CreateDirectory(@"E:\TEMP\SaveWord");  //创建文件所在目录
-            string wordName = writeData.title + ".doc";//文件名
-            object wordPathName = path + wordName;
-
-
-            //创建Word文档
-            Microsoft.Office.Interop.Word.Application WordApp = new Microsoft.Office.Interop.Word.Application();
-            Microsoft.Office.Interop.Word.Document WordDoc = WordApp.Documents.Add(ref Nothing, ref Nothing, ref Nothing, ref Nothing);
-
-            //添加页眉
-            WordApp.ActiveWindow.View.Type = WdViewType.wdOutlineView;
-            WordApp.ActiveWindow.View.SeekView = WdSeekView.wdSeekPrimaryHeader;
-            WordApp.ActiveWindow.ActivePane.Selection.InsertAfter(writeData.header);
-            WordApp.Selection.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;//设置居中
-            WordApp.ActiveWindow.View.SeekView = WdSeekView.wdSeekMainDocument;//跳出页眉设置
-            WordApp.Selection.ParagraphFormat.LineSpacing = 15f;//设置文档的行间距
-
-            //WordApp.Selection();//插入段落
-
-            WordApp.Selection.Text = "  " + writeData.title;
-            WordApp.Selection.Range.Font.Size = 24;
-
-            //移动焦点并换行
-            object count = 14;
-            object WdLine = Microsoft.Office.Interop.Word.WdUnits.wdLine;//换一行;
-
-            int num = 0;
-
-            foreach (var item in questionName)
-            {
-
-                if (num == 0 && XZNumWord != 0)
-                {
-                    WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);//移动焦点
-                    WordApp.Selection.TypeParagraph();//插入段落
-                    WordApp.Selection.Text = "选择题";
-                }
-                if (num == XZNumWord && TKNumWord != 0)
-                {
-                    WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);//移动焦点
-                    WordApp.Selection.TypeParagraph();//插入段落
-                    WordApp.Selection.Text = "填空题";
-                }
-                if (num == XZNumWord + TKNumWord && PDNumWord != 0)
-                {
-                    WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);//移动焦点
-                    WordApp.Selection.TypeParagraph();//插入段落
-                    WordApp.Selection.Text = "判断题";
-                }
-                if (num == XZNumWord + TKNumWord + PDNumWord && SJNumWord != 0)
-                {
-                    WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);//移动焦点
-                    WordApp.Selection.TypeParagraph();//插入段落
-                    WordApp.Selection.Text = "设计题";
-                }
-                num++;
-
-                WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);//移动焦点
-                WordApp.Selection.TypeParagraph();//插入段落
-                WordApp.Selection.Text = num.ToString() + ". " + item;
-
-
-            }
-
-
-            //WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);
-            //WordApp.Selection.TypeParagraph();
-            //WordApp.Selection.Text = strText;
-
-
             try
             {
-                //文件保存
-                object objWordName = wordPathName;
-                WordDoc.SaveAs(ref objWordName, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing);
-                WordDoc.Close(ref Nothing, ref Nothing, ref Nothing);
-                WordApp.Quit(ref Nothing, ref Nothing, ref Nothing);
-                strResult = wordName + "\n" + @"文档生成并写入成功" + "\n" + "信息：" + wordPathName;
-                MessageBox.Show(strResult);
+                string strResult = "";
+                Object Nothing = System.Reflection.Missing.Value;
+                //Directory.CreateDirectory(@"E:\TEMP\SaveWord");  //创建文件所在目录
+                string wordName = writeData.title + ".doc";//文件名
+                object wordPathName = path + wordName;
+
+
+                //创建Word文档
+                Microsoft.Office.Interop.Word.Application WordApp = new Microsoft.Office.Interop.Word.Application();
+                Microsoft.Office.Interop.Word.Document WordDoc = WordApp.Documents.Add(ref Nothing, ref Nothing, ref Nothing, ref Nothing);
+
+                //添加页眉
+                WordApp.ActiveWindow.View.Type = WdViewType.wdOutlineView;
+                WordApp.ActiveWindow.View.SeekView = WdSeekView.wdSeekPrimaryHeader;
+                WordApp.ActiveWindow.ActivePane.Selection.InsertAfter(writeData.header);
+                WordApp.Selection.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;//设置居中
+                WordApp.ActiveWindow.View.SeekView = WdSeekView.wdSeekMainDocument;//跳出页眉设置
+                WordApp.Selection.ParagraphFormat.LineSpacing = 15f;//设置文档的行间距
+
+                //WordApp.Selection();//插入段落
+
+                WordApp.Selection.Text = "  " + writeData.title;
+                WordApp.Selection.Range.Font.Size = 24;
+
+                //移动焦点并换行
+                object count = 14;
+                object WdLine = Microsoft.Office.Interop.Word.WdUnits.wdLine;//换一行;
+
+                int num = 0;
+
+                foreach (var item in questionName)
+                {
+
+                    if (num == 0 && XZNumWord != 0)
+                    {
+                        WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);//移动焦点
+                        WordApp.Selection.TypeParagraph();//插入段落
+                        WordApp.Selection.Text = "选择题";
+                    }
+                    if (num == XZNumWord && TKNumWord != 0)
+                    {
+                        WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);//移动焦点
+                        WordApp.Selection.TypeParagraph();//插入段落
+                        WordApp.Selection.Text = "填空题";
+                    }
+                    if (num == XZNumWord + TKNumWord && PDNumWord != 0)
+                    {
+                        WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);//移动焦点
+                        WordApp.Selection.TypeParagraph();//插入段落
+                        WordApp.Selection.Text = "判断题";
+                    }
+                    if (num == XZNumWord + TKNumWord + PDNumWord && SJNumWord != 0)
+                    {
+                        WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);//移动焦点
+                        WordApp.Selection.TypeParagraph();//插入段落
+                        WordApp.Selection.Text = "设计题";
+                    }
+                    num++;
+
+                    WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);//移动焦点
+                    WordApp.Selection.TypeParagraph();//插入段落
+                    WordApp.Selection.Text = num.ToString() + ". " + item;
+
+
+                }
+
+
+                //WordApp.Selection.MoveDown(ref WdLine, ref count, ref Nothing);
+                //WordApp.Selection.TypeParagraph();
+                //WordApp.Selection.Text = strText;
+
+
+                try
+                {
+                    //文件保存
+                    object objWordName = wordPathName;
+                    WordDoc.SaveAs(ref objWordName, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing);
+                    WordDoc.Close(ref Nothing, ref Nothing, ref Nothing);
+                    WordApp.Quit(ref Nothing, ref Nothing, ref Nothing);
+                    strResult = wordName + "\n" + @"文档生成并写入成功" + "\n" + "信息：" + wordPathName;
+                    MessageBox.Show(strResult);
+                }
+                catch (System.Runtime.InteropServices.COMException)
+                {
+                    MessageBox.Show("警告，出现生成错误问题！您的电脑正在运行office，或者是\n您的电脑管理.doc格式文件的软件不是office，如果您安装了其他软件，请在--设置--应用--默认应用--按应用设置默认值找到Microsoft Office Word进行管理，设置.doc为此应用默认格式");
+                }
             }
-            catch (System.Runtime.InteropServices.COMException)
+            catch (System.InvalidCastException)
             {
-                MessageBox.Show("警告，出现生成错误问题！您的电脑正在运行office，或者是\n您的电脑管理.doc格式文件的软件不是office，如果您安装了其他软件，请在--设置--应用--默认应用--按应用设置默认值找到Microsoft Office Word进行管理，设置.doc为此应用默认格式");
+
+                MessageBox.Show("生成失败，原因可能是您以前安装过wps后来卸载后，wps 会修改注册表相关office的未知相关项，导致vsto加载项报错；\n解决方案：找到office安装包选择修复\n详情可以参考：https://www.cnblogs.com/wuhailong/p/5583232.html");
             }
+           
         }
 
         // Number随机数个数
