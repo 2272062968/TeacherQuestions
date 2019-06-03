@@ -26,6 +26,14 @@ namespace TeacherDatabase
         {
             InitializeComponent();
             this.DataContext = question;
+            if (question.share == "0")
+            {
+                isShare.IsChecked = true;
+            }
+            else
+            {
+                isShare.IsChecked = false;
+            }
             QC = question;
         }
 
@@ -45,12 +53,22 @@ namespace TeacherDatabase
 
         private void Btn_Save(object sender, RoutedEventArgs e)
         {
+            string share;
+            if (isShare.IsChecked == true)
+            {
+                share = "0";
+            }
+            else
+            {
+                share = "1";
+            }
+
             MySqlConnection mycon = new MySqlConnection(con);
             mycon.Open();
             string revise = "UPDATE question SET subject='" + QC.subject + "',type='" + QC.type +
                 "',chapter='" + QC.chapter + "',name='" + QC.name + "',answer='" + QC.answer +
                 "',diffculty='" + QC.diffculty + "',anthor='" + QC.anthor + "',account='"
-                + GlobalParams.MyAccount + "' WHERE id = '" + QC.id + "'";
+                + GlobalParams.MyAccount + "' "+",share="+share+" WHERE id = '" + QC.id + "'";
             MySqlCommand cmd = new MySqlCommand(revise, mycon);
             int result = cmd.ExecuteNonQuery();
             //MessageBox.Show(result.ToString());

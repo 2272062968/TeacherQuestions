@@ -28,5 +28,8 @@ namespace TeacherDatabase
         public string datetime { get; set; }
         //操作账号
         public string account { get; set; }
+
+        //是否共享题目
+        public string share { get; set; }
     }
 }

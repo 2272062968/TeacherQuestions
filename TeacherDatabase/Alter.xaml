@@ -73,7 +73,8 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
             <RowDefinition Height="80"></RowDefinition>
         </Grid.RowDefinitions>
 
@@ -106,16 +107,17 @@
             <RadioButton Name="B" Margin="20 0 0 0" VerticalAlignment="Center" Content="一般" GroupName="difficulty"/>
             <RadioButton Name="A" Margin="20 0 0 0" VerticalAlignment="Center" Content="较难" GroupName="difficulty"/>-->
         </StackPanel>
-        <Grid Grid.Row="6">
+        <StackPanel Margin="0 -40 0 0" Grid.Row="6" Orientation="Horizontal">
+            <TextBlock Text="出题人" Width="Auto" Margin="40 0 0 0" VerticalAlignment="Center" />
+            <TextBox Text="{Binding Path=anthor}" Name="tbxIssueAnthor" Height="23" Width="200"  Margin="30,0,0,0"></TextBox>
+        </StackPanel>
+        <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Margin="0 -40 0 0" Grid.Column="0" Orientation="Horizontal">
-                <TextBlock Text="出题人" Width="Auto" Margin="40 0 0 0" VerticalAlignment="Center" />
-                <TextBox Text="{Binding Path=anthor}" Name="tbxIssueAnthor" Height="23" Width="200"  Margin="30,0,0,0"></TextBox>
-            </StackPanel>
+            <CheckBox IsChecked="False" Name="isShare" Width="200" Height="30" Margin="40 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Top">共享题目</CheckBox>
             <Button Click="Btn_Delete" HorizontalAlignment="Right" Margin="0,20,150,35" Width="100" Grid.Column="1" Height="25" Background="#FFF43333" Foreground="White">删除</Button>
             <Button Click="Btn_Save" HorizontalAlignment="Right" Margin="0,20,18,35" Width="100" Grid.Column="1" Height="25" Background="#FF91F432" Foreground="White">保存</Button>
         </Grid>
