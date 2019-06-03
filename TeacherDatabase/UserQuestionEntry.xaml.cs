@@ -180,12 +180,22 @@ namespace TeacherDatabase
                 question.anthor = tbxIssueAnthor.Text;
                 //question.datetime = DateTime.Now.ToString();
                 question.account = GlobalParams.MyAccount;
+                if (isShare.IsChecked == true)
+                {
+                    question.share = "0";
+                }
+                else
+                {
+                    question.share = "1";
+                }
+                
+
 
                 MySqlConnection mycon = new MySqlConnection(con);
                 mycon.Open();
-                string sqlStr = "INSERT INTO `question`(`id`, `subject`, `type`, `chapter`, `name`, `answer`, `diffculty`, `anthor`, `datatime`, `account`) VALUES('"
+                string sqlStr = "INSERT INTO `question`(`id`, `subject`, `type`, `chapter`, `name`, `answer`, `diffculty`, `anthor`, `datatime`, `account`, `share`) VALUES('"
                     + question.id + "', '" + question.subject + "', '" + question.type + "', '" + question.chapter + "', '" + question.name +
-                    "', '" + question.answer + "', '" + question.diffculty + "', '" + question.anthor + "', NOW(), '" + question.account + "')";
+                    "', '" + question.answer + "', '" + question.diffculty + "', '" + question.anthor + "', NOW(), '" + question.account + "', share=" + question.share + ")";
                 MySqlCommand myDataAdapter = new MySqlCommand(sqlStr, mycon);
                 if (myDataAdapter.ExecuteNonQuery() == 1)
                 {
