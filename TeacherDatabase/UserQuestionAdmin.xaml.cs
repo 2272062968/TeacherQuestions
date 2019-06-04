@@ -40,10 +40,14 @@ namespace TeacherDatabase
 
             //SELECT COUNT(*) FROM question
 
-
+            //this.Content
             //MessageBox.Show(GlobalParams.Page.ToString());
             pageCount.Text = "共" + GlobalParams.Page.ToString() + "页";
         }
+
+        
+
+        
         public void getSumPage()
         {
             string sqlText = "SELECT COUNT(*) FROM question where " + GlobalParams.Condition;
@@ -170,7 +174,7 @@ namespace TeacherDatabase
 
         }
 
-        //第一个按钮点击事件
+        //修改按钮点击事件
         private void BtnAction_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
@@ -185,6 +189,9 @@ namespace TeacherDatabase
             question.diffculty = DataTable.Rows[idx][6].ToString();
             question.anthor = DataTable.Rows[idx][7].ToString();
             question.share = DataTable.Rows[idx][10].ToString();
+
+
+
 
             Alter alter = new Alter(question);
             alter.Show();

@@ -10,13 +10,15 @@ namespace TeacherDatabase
     //全局参数
     public class GlobalParams
     {
-        public static string myAccount = "XXXX";
+        public static string myAccount = "";
         public static string subjectName = "";
         public static string condition = "true";
         public static int startIndex = 0;
         public static int indexNumbers = 30;
         public static int page = 1;
         public static int thisPage = 1;
+
+        
         //public static string sqlStr = "select * from question where " + condition + " limit " + startIndex + "," + indexNumbers;
 
         //public  string sqlStr = "select * from question where " + condition + " limit " + startIndex + "," + indexNumbers;
@@ -63,5 +65,9 @@ namespace TeacherDatabase
             get { return myAccount; }
             set { myAccount = value; }
         }
+
+        
+
+
     }
 }

@@ -162,24 +162,6 @@
         <Grid Grid.Row="2" Background="#364150"></Grid>
         <TabControl Background="LightBlue" x:Name="tabControl" TabStripPlacement="Left" Grid.Row="2" SelectionChanged="TabControl_SelectionChanged">
 
-            <!--<TabItem Foreground="White" Height="40" Name="questionComputerAdmin" Background="#364150">
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Width="26" Height="26"/>
-                        <Label Foreground="White" Grid.Column="1" VerticalAlignment="Center">本地试题</Label>
-                    </StackPanel>
-                </TabItem.Header>
-            </TabItem>
-            <TabItem Foreground="White" Height="40" Name="questionComputerInsert" Background="#364150">
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="ico\n4.ico" Width="26" Height="26"/>
-                        <Label Foreground="White" Grid.Column="1" VerticalAlignment="Center">本地录入</Label>
-                    </StackPanel>
-                </TabItem.Header>
-            </TabItem>-->
-            
-
             <TabItem Visibility="Visible"  Foreground="White" Background="#364150"  Height="40" Name="questionAdmin" >
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
 

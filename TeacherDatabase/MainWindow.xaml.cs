@@ -43,7 +43,7 @@ namespace TeacherDatabase
         string con = "Server=39.108.153.12;port=3306;user=teacher;password=myrootsql;database=teacher;";
         DataTable datab = new DataTable();
 
-        
+
         void StartLoatWindow()
         {
             account.Content = GlobalParams.MyAccount;
@@ -51,16 +51,26 @@ namespace TeacherDatabase
             questionEntry.Content = userQuestionEntry;
             UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
             questionAdmin.Content = userQuestionAdmin;
+
             UserCreateExam userCreateExam = new UserCreateExam();
             questionExam.Content = userCreateExam;
             UserAlterPassword userAlterPassword = new UserAlterPassword();
             questionAlter.Content = userAlterPassword;
         }
+
+
+
+        
         public MainWindow()
         {
 
             InitializeComponent();
             //Fluent.RibbonWindow.
+            dataRefresh = false;
+            OnDataRefreshChanged += new DataRefreshChanged(Refresh_Click);
+ 
+
+
             GlobalParams.SubjectName = "";
 
             StartLoatWindow();
@@ -95,13 +105,7 @@ namespace TeacherDatabase
 
            
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //string str = Ntype.SelectedValue.ToString();
-            //str = str.Replace("System.Windows.Controls.ComboBoxItem: ", "");
-            //MessageBox.Show(str);
-            //MessageBox.Show(str.Length.ToString());
-        }
+        
 
         private void Ntype_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -247,30 +251,69 @@ namespace TeacherDatabase
             this.Close();
         }
 
-        private void Btn_Close(object sender, RoutedEventArgs e)
+        //private void Btn_Close(object sender, RoutedEventArgs e)
+        //{
+        //    Close();
+        //}
+
+        //bool isMaxWindow = false;
+        //private void Btn_Max(object sender, RoutedEventArgs e)
+        //{
+        //    if (isMaxWindow)
+        //    {
+        //        WindowState = WindowState.Normal;
+        //        isMaxWindow = false;
+        //    }
+        //    else
+        //    {
+        //        WindowState = WindowState.Maximized;
+        //        isMaxWindow = true;
+        //    }
+        //}
+
+        public static bool dataRefresh;
+
+        public bool DataRefresh
         {
-            Close();
+            get { return dataRefresh; }
+            set
+            {
+                //如果变量改变则调用事件触发函数
+                if (value != dataRefresh)
+                {
+                    WhenDataRefreshChange();
+                }
+                dataRefresh = value;
+            }
+        }
+        
+        
+
+        //定义委托
+        public delegate void DataRefreshChanged(object sender, RoutedEventArgs e);
+        //与委托相关联的事件
+        public event DataRefreshChanged OnDataRefreshChanged;
+
+        private void WhenDataRefreshChange()
+        {
+            if (OnDataRefreshChanged != null)
+            {
+                OnDataRefreshChanged(this, null);
+            }
         }
 
-        bool isMaxWindow = false;
-        private void Btn_Max(object sender, RoutedEventArgs e)
-        {
-            if (isMaxWindow)
-            {
-                WindowState = WindowState.Normal;
-                isMaxWindow = false;
-            }
-            else
-            {
-                WindowState = WindowState.Maximized;
-                isMaxWindow = true;
-            }
-        }
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
+        {            
+            MyRefresh();
+        }
+        public void MyRefresh()
         {
             UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
             questionAdmin.Content = userQuestionAdmin;
+            //questionAdmin.DataContext = userQuestionAdmin;
         }
+
+
     }
 }

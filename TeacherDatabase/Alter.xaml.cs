@@ -20,8 +20,11 @@ namespace TeacherDatabase
     /// </summary>
     public partial class Alter : Window
     {
+
+
         string con = "Server=39.108.153.12;port=3306;user=teacher;password=myrootsql;database=teacher;";
         QuestionClass QC;
+
         public Alter(QuestionClass question)
         {
             InitializeComponent();
@@ -35,6 +38,7 @@ namespace TeacherDatabase
                 isShare.IsChecked = false;
             }
             QC = question;
+            
         }
 
         private void Btn_Delete(object sender, RoutedEventArgs e)
@@ -50,6 +54,7 @@ namespace TeacherDatabase
 
         }
 
+        
 
         private void Btn_Save(object sender, RoutedEventArgs e)
         {
@@ -72,6 +77,9 @@ namespace TeacherDatabase
             MySqlCommand cmd = new MySqlCommand(revise, mycon);
             int result = cmd.ExecuteNonQuery();
             //MessageBox.Show(result.ToString());
+
+
+            
             this.Close();
         }
 
