@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -96,6 +97,14 @@ namespace TeacherDatabase
         {
             if (tbxUser.Text != "" && pwd1.Password != "" && pwd2.Password != "" && tbxEmail.Text != "")
             {
+                Regex r = new Regex("^\\s*([A-Za-z0-9_-]+(\\.\\w+)*@(\\w+\\.)+\\w{2,5})\\s*$");
+                if (!r.IsMatch(tbxEmail.Text))
+                {
+                    MessageBox.Show("电子邮箱格式不对哦");
+                    return;
+                }
+
+
                 if (pwd1.Password == pwd2.Password)
                 {
                     DataTable table = new DataTable();
@@ -131,6 +140,7 @@ namespace TeacherDatabase
                 }
                 
             }
+
             else
             {
                 MessageBox.Show("请将信息填写完整！");
