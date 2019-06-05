@@ -65,9 +65,9 @@ namespace TeacherDatabase
         {
 
             InitializeComponent();
-            //Fluent.RibbonWindow.
-            dataRefresh = false;
-            OnDataRefreshChanged += new DataRefreshChanged(Refresh_Click);
+
+            //dataRefresh = false;
+            //OnDataRefreshChanged += new DataRefreshChanged(Refresh_Click);
  
 
 
@@ -180,14 +180,21 @@ namespace TeacherDatabase
             {
                 case 0:
                     {
-                        Refresh.Visibility = Visibility.Visible;
+                        if (GlobalParams.DataRefresh)
+                        {
+                            UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
+                            questionAdmin.Content = userQuestionAdmin;
+                            GlobalParams.DataRefresh = false;
+                        }
+
+                        //Refresh.Visibility = Visibility.Visible;
                         labNtype.Visibility = Visibility.Visible;
                         Ntype.Visibility = Visibility.Visible;
                         break;
                     }
                 case 1:
                     {
-                        Refresh.Visibility = Visibility.Collapsed;
+                        //Refresh.Visibility = Visibility.Collapsed;
                         labNtype.Visibility = Visibility.Collapsed;
                         Ntype.Visibility = Visibility.Collapsed;
                         if (StartClick1 == 0)
@@ -200,7 +207,7 @@ namespace TeacherDatabase
                     }
                 case 2:
                     {
-                        Refresh.Visibility = Visibility.Collapsed;
+                        //Refresh.Visibility = Visibility.Collapsed;
                         labNtype.Visibility = Visibility.Collapsed;
                         Ntype.Visibility = Visibility.Collapsed;
                         if (StartClick2 == 0)
@@ -213,7 +220,7 @@ namespace TeacherDatabase
                     }
                 case 3:
                     {
-                        Refresh.Visibility = Visibility.Collapsed;
+                        //Refresh.Visibility = Visibility.Collapsed;
                         labNtype.Visibility = Visibility.Collapsed;
                         Ntype.Visibility = Visibility.Collapsed;
                         break;
@@ -234,7 +241,6 @@ namespace TeacherDatabase
                     break;
             }
         }
-
 
         private void Window_MouseMove(object sender, MouseEventArgs e)
         {
@@ -271,49 +277,59 @@ namespace TeacherDatabase
         //    }
         //}
 
-        public static bool dataRefresh;
 
-        public bool DataRefresh
-        {
-            get { return dataRefresh; }
-            set
-            {
-                //如果变量改变则调用事件触发函数
-                if (value != dataRefresh)
-                {
-                    WhenDataRefreshChange();
-                }
-                dataRefresh = value;
-            }
-        }
+
+        //public static bool dataRefresh;
+
+        //public bool DataRefresh
+        //{
+        //    get { return dataRefresh; }
+        //    set
+        //    {
+        //        //如果变量改变则调用事件触发函数
+        //        if (value != dataRefresh)
+        //        {
+        //            WhenDataRefreshChange();
+        //        }
+        //        dataRefresh = value;
+        //    }
+        //}
         
         
 
-        //定义委托
-        public delegate void DataRefreshChanged(object sender, RoutedEventArgs e);
-        //与委托相关联的事件
-        public event DataRefreshChanged OnDataRefreshChanged;
+        ////定义委托
+        //public delegate void DataRefreshChanged(object sender, RoutedEventArgs e);
+        ////与委托相关联的事件
+        //public event DataRefreshChanged OnDataRefreshChanged;
 
-        private void WhenDataRefreshChange()
+        //private void WhenDataRefreshChange()
+        //{
+        //    if (OnDataRefreshChanged != null)
+        //    {
+        //        OnDataRefreshChanged(this, null);
+        //    }
+        //}
+
+
+        //private void Refresh_Click(object sender, RoutedEventArgs e)
+        //{            
+        //    MyRefresh();
+        //}
+        //public void MyRefresh()
+        //{
+        //    UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
+        //    questionAdmin.Content = userQuestionAdmin;
+        //    //questionAdmin.DataContext = userQuestionAdmin;
+        //}
+
+        private void RibbonWindow_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (OnDataRefreshChanged != null)
+            if (GlobalParams.DataRefresh)
             {
-                OnDataRefreshChanged(this, null);
+                UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
+                questionAdmin.Content = userQuestionAdmin;
+                GlobalParams.DataRefresh = false;
             }
         }
-
-
-        private void Refresh_Click(object sender, RoutedEventArgs e)
-        {            
-            MyRefresh();
-        }
-        public void MyRefresh()
-        {
-            UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
-            questionAdmin.Content = userQuestionAdmin;
-            //questionAdmin.DataContext = userQuestionAdmin;
-        }
-
-
     }
 }

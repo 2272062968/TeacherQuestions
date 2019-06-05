@@ -78,7 +78,7 @@ namespace TeacherDatabase
             int result = cmd.ExecuteNonQuery();
             //MessageBox.Show(result.ToString());
 
-
+            GlobalParams.DataRefresh = true;
             
             this.Close();
         }

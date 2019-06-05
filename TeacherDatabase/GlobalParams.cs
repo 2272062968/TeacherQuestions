@@ -18,7 +18,8 @@ namespace TeacherDatabase
         public static int page = 1;
         public static int thisPage = 1;
 
-        
+        public static bool dataRefresh = false;
+
         //public static string sqlStr = "select * from question where " + condition + " limit " + startIndex + "," + indexNumbers;
 
         //public  string sqlStr = "select * from question where " + condition + " limit " + startIndex + "," + indexNumbers;
@@ -67,7 +68,11 @@ namespace TeacherDatabase
         }
 
         
-
+        public static bool DataRefresh
+        {
+            get { return dataRefresh; }
+            set { dataRefresh = value; }
+        }
 
     }
 }

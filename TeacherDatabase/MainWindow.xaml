@@ -8,7 +8,7 @@
         mc:Ignorable="d"
          Background="#2b3643"
            Foreground="White"
-  
+  MouseDown="RibbonWindow_MouseDown"
         Title="教师题库管理系统" Height="700" Width="1200"
          WindowStartupLocation="CenterScreen" >
 
@@ -127,7 +127,7 @@
 
         </Grid>-->
 
-        <Grid MouseMove="Window_MouseMove" Grid.Row="0" Background="#2b3643">
+        <Grid Grid.Row="0" Background="#2b3643">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -143,7 +143,7 @@
                     <ComboBoxItem>Python</ComboBoxItem>
                     <ComboBoxItem>Java</ComboBoxItem>-->
                 </ComboBox>
-                <Button Width="60" Height="25" Margin="20 0 0 0" Name="Refresh" Click="Refresh_Click">刷新</Button>
+                <!--<Button Width="60" Height="25" Margin="20 0 0 0" Name="Refresh" Click="Refresh_Click">刷新</Button>-->
             </StackPanel>
 
             <StackPanel VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">

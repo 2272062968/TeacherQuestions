@@ -124,7 +124,7 @@
             <StackPanel Margin="0 -40 0 0" Grid.Column="0" Orientation="Horizontal">
                 <TextBlock Text="出题人" Width="Auto" Margin="40 0 0 0" VerticalAlignment="Center" />
                 <TextBox Name="tbxIssueAnthor" Height="23" Width="200"  Text="" Margin="30,0,0,0"></TextBox>
-                <CheckBox IsChecked="True" Name="isShare" Margin="40 0 0 0" VerticalAlignment="Center">共享题目</CheckBox>
+                <CheckBox IsChecked="False" Name="isShare" Margin="40 0 0 0" VerticalAlignment="Center">共享题目</CheckBox>
             </StackPanel>
             <Button Click="Btn_Click_Close" HorizontalAlignment="Right" Margin="0,20,150,35" Width="100" Grid.Column="1" Height="25" Background="#FFF43333" Foreground="White">重置内容</Button>
             <Button Click="Btn_Click_StartInstall" HorizontalAlignment="Right" Margin="0,20,18,35" Width="100" Grid.Column="1" Height="25" Background="#FF91F432" Foreground="White">开始执行</Button>
