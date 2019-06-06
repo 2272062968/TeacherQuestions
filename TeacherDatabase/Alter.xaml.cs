@@ -44,6 +44,7 @@ namespace TeacherDatabase
         private void Btn_Delete(object sender, RoutedEventArgs e)
         {
 
+            GlobalParams.DataRefresh = true;
             MySqlConnection mycon = new MySqlConnection(con);
             mycon.Open();
             string delete = "delete from question where id='" + QC.id + "'";

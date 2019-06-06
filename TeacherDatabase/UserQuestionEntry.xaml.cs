@@ -167,6 +167,7 @@ namespace TeacherDatabase
         //开始执行插入
         private void Btn_Click_StartInstall(object sender, RoutedEventArgs e)
         {
+
             if (getSubject() != "" && getQuestionType() != "" && tbxQuestion.Text != "")
             {
                 QuestionClass question = new QuestionClass();
@@ -197,6 +198,11 @@ namespace TeacherDatabase
                     + question.id + "', '" + question.subject + "', '" + question.type + "', '" + question.chapter + "', '" + question.name +
                     "', '" + question.answer + "', '" + question.diffculty + "', '" + question.anthor + "', NOW(), '" + question.account + "', share=" + question.share + ")";
                 MySqlCommand myDataAdapter = new MySqlCommand(sqlStr, mycon);
+                GlobalParams.DataRefresh = true;
+                if (Xtype.Text != "")
+                {
+                    GlobalParams.TypeRefresh = true;
+                }
                 if (myDataAdapter.ExecuteNonQuery() == 1)
                 {
                     MessageBox.Show("插入成功！");

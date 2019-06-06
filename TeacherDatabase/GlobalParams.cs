@@ -17,9 +17,16 @@ namespace TeacherDatabase
         public static int indexNumbers = 30;
         public static int page = 1;
         public static int thisPage = 1;
-
+        //是否刷新
         public static bool dataRefresh = false;
+        //试题类型刷新
+        public static bool typeRefresh = false;
 
+        public static bool TypeRefresh
+        {
+            get { return typeRefresh; }
+            set { typeRefresh = value; }
+        }
         //public static string sqlStr = "select * from question where " + condition + " limit " + startIndex + "," + indexNumbers;
 
         //public  string sqlStr = "select * from question where " + condition + " limit " + startIndex + "," + indexNumbers;

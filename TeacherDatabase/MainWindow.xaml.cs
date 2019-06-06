@@ -66,23 +66,27 @@ namespace TeacherDatabase
 
             InitializeComponent();
 
-            //dataRefresh = false;
-            //OnDataRefreshChanged += new DataRefreshChanged(Refresh_Click);
- 
-
-
-            GlobalParams.SubjectName = "";
-
             StartLoatWindow();
-            MySqlConnection mycon = new MySqlConnection(con);                        //创建SQL连接对象
+            SelectSubject();
+    
+        }
+        
+        void SelectSubject()
+        {
             try
             {
+                GlobalParams.SubjectName = "";
+                MySqlConnection mycon = new MySqlConnection(con);                        //创建SQL连接对象
                 mycon.Open();
                 MySqlDataAdapter myDataAdapter = new MySqlDataAdapter("select distinct subject from question", con);
                 DataSet myda = new DataSet();
                 myDataAdapter.Fill(myda, "question");
                 datab = myda.Tables["question"];
-
+                Ntype.Items.Clear();
+                ComboBoxItem cbiAll = new ComboBoxItem();
+                cbiAll.Content = "全部类型";
+                Ntype.Items.Add(cbiAll);
+                Ntype.SelectedIndex = 0;
                 foreach (DataRow row in datab.Rows)
                 {
                     if (row[0].ToString() == "python" || row[0].ToString() == "java")
@@ -92,26 +96,31 @@ namespace TeacherDatabase
                     ComboBoxItem cbi = new ComboBoxItem();
                     cbi.Content = row[0].ToString();
                     Ntype.Items.Add(cbi);
-  
+
                     //GlobalParams.SubjectName[x] = (row[0].ToString());
-                    GlobalParams.SubjectName += ","+row[0].ToString();
+                    GlobalParams.SubjectName += "," + row[0].ToString();
                 }
             }
             catch (MySqlException)
             {
 
-
             }
-
-           
         }
-        
 
         private void Ntype_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (start>0)
             {
-                string selectSubject = Ntype.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", "");
+                string selectSubject = "";
+                try
+                {
+                    selectSubject = Ntype.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", "");
+                }
+                catch (System.NullReferenceException)
+                {
+
+                }
+               
                 if (selectSubject != "全部类型")
                 {
                     if (selectSubject == "python" || selectSubject == "Python")
@@ -180,6 +189,11 @@ namespace TeacherDatabase
             {
                 case 0:
                     {
+                        if (GlobalParams.TypeRefresh)
+                        {
+                            SelectSubject();
+                            GlobalParams.TypeRefresh = false;
+                        }
                         if (GlobalParams.DataRefresh)
                         {
                             UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
