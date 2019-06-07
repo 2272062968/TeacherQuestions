@@ -91,14 +91,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TeacherDatabase.exe" size="430072">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TeacherDatabase.exe" size="429048">
       <assemblyIdentity name="TeacherDatabase" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>+96cCnJJ6p4fDsQT2ZGJVYVmwSHB0DjInkFMMvx2API=</dsig:DigestValue>
+        <dsig:DigestValue>DI3cBUL7iPcFAmdHsz1vsoNeM56UFNLgI+1S7bIi+G4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
