@@ -21,6 +21,14 @@ namespace TeacherDatabase
         public static bool dataRefresh = false;
         //试题类型刷新
         public static bool typeRefresh = false;
+        //查看共享试题sql语句
+        public static string sqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
+
+        public static string SqlShowShare
+        {
+            get { return sqlShowShare; }
+            set { sqlShowShare = value; }
+        }
 
         public static bool TypeRefresh
         {

@@ -23,9 +23,10 @@ namespace TeacherDatabase
     /// </summary>
     public partial class UserQuestionAdmin : UserControl
     {
+        //string isSelect = "' UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
         //判断窗体加载时选择跳过
         int count = 0;
-        string sqlStr = "select * from question where " + GlobalParams.Condition +" and account = '"+ GlobalParams.MyAccount + "' UNION SELECT * FROM question WHERE share=0 and "+ GlobalParams.Condition + " limit " + GlobalParams.StartIndex.ToString() + "," + GlobalParams.IndexNumbers.ToString();
+        string sqlStr = "select * from question where " + GlobalParams.Condition +" and account = '"+ GlobalParams.MyAccount+ "' " + GlobalParams.SqlShowShare + " limit " + GlobalParams.StartIndex.ToString() + "," + GlobalParams.IndexNumbers.ToString();
         //GlobalParams Tj = new GlobalParams();
         string con = "Server=39.108.153.12;port=3306;user=teacher;password=myrootsql;database=teacher;";
         DataTable DataTable = new DataTable();      //创建DtatTable实例
@@ -43,6 +44,20 @@ namespace TeacherDatabase
             //this.Content
             //MessageBox.Show(GlobalParams.Page.ToString());
             pageCount.Text = "共" + GlobalParams.Page.ToString() + "页";
+            if (GlobalParams.IndexNumbers == 30)
+            {
+                RowNum.SelectedIndex = 0;
+            }
+            else if (GlobalParams.IndexNumbers == 50)
+            {
+                RowNum.SelectedIndex = 1;
+            }
+            else
+            {
+                RowNum.SelectedIndex = 2;
+            }
+
+
         }
 
         

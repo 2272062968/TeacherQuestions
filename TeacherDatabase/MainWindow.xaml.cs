@@ -345,5 +345,22 @@ namespace TeacherDatabase
                 GlobalParams.DataRefresh = false;
             }
         }
+
+
+        private void ShowShare_Click(object sender, RoutedEventArgs e)
+        {
+            if (showShare.IsChecked == true)
+            {
+                GlobalParams.SqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
+                UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
+                questionAdmin.Content = userQuestionAdmin;
+            }
+            else
+            {
+                GlobalParams.SqlShowShare = "";
+                UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
+                questionAdmin.Content = userQuestionAdmin;
+            }
+        }
     }
 }

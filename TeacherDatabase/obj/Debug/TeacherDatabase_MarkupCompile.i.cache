@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\obj\Debug\
+C:\Users\Maibenben\Desktop\vs__code\TeacherQuestions\TeacherDatabase\obj\Debug\
 TeacherDatabase
 none
 false
 DEBUG;TRACE
-C:\Users\Maibenben\Desktop\code_team\TeacherDatabase\App.xaml
+C:\Users\Maibenben\Desktop\vs__code\TeacherQuestions\TeacherDatabase\App.xaml
 8864189219
 
-192089974003
-22-2072727892
+16-2053675615
+221048995841
 Alter.xaml;Login.xaml;MainWindow.xaml;Register.xaml;UserAlterPassword.xaml;UserCreateExam.xaml;UserQuestionAdmin.xaml;UserQuestionEntry.xaml;
 
 True
