@@ -26,7 +26,7 @@ namespace TeacherDatabase
         //string isSelect = "' UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
         //判断窗体加载时选择跳过
         int count = 0;
-        string sqlStr = "select * from question where " + GlobalParams.Condition +" and account = '"+ GlobalParams.MyAccount+ "' " + GlobalParams.SqlShowShare + " limit " + GlobalParams.StartIndex.ToString() + "," + GlobalParams.IndexNumbers.ToString();
+        string sqlStr = "select * from question where "+ " account = '"+ GlobalParams.MyAccount+ "' and "+ GlobalParams.Condition + GlobalParams.SqlShowShare + " limit " + GlobalParams.StartIndex.ToString() + "," + GlobalParams.IndexNumbers.ToString();
         //GlobalParams Tj = new GlobalParams();
         string con = "Server=39.108.153.12;port=3306;user=teacher;password=myrootsql;database=teacher;";
         DataTable DataTable = new DataTable();      //创建DtatTable实例

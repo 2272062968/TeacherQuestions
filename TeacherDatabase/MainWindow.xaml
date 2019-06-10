@@ -144,7 +144,7 @@
                     <ComboBoxItem>Java</ComboBoxItem>-->
                 </ComboBox>
                 <!--<Button Width="60" Height="25" Margin="20 0 0 0" Name="Refresh" Click="Refresh_Click">刷新</Button>-->
-                <CheckBox Name="showShare" IsChecked="True" Margin="20 0 0 0" Content="查看共享试题" Foreground="White" VerticalContentAlignment="Center" Click="ShowShare_Click"/>
+                <CheckBox Name="showShare" IsChecked="False" Margin="20 0 0 0" Content="查看共享试题" Foreground="White" VerticalContentAlignment="Center" Click="ShowShare_Click"/>
             </StackPanel>
 
             <StackPanel VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">

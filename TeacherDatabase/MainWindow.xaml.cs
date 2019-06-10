@@ -109,6 +109,7 @@ namespace TeacherDatabase
 
         private void Ntype_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             if (start>0)
             {
                 string selectSubject = "";
@@ -118,7 +119,7 @@ namespace TeacherDatabase
                 }
                 catch (System.NullReferenceException)
                 {
-
+                   
                 }
                
                 if (selectSubject != "全部类型")
@@ -129,6 +130,7 @@ namespace TeacherDatabase
                         GlobalParams.startIndex = 0;
                         //Tj.Condition = null;
                         GlobalParams.Condition = "subject='python' or subject='Python'";
+                        GlobalParams.SqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
                         //sqlStr = "select * from question where subject='python' or subject='Python' limit 0,25";
                         UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
                         questionAdmin.Content = userQuestionAdmin;
@@ -138,6 +140,7 @@ namespace TeacherDatabase
                         GlobalParams.ThisPage = 1;
                         GlobalParams.startIndex = 0;
                         GlobalParams.Condition = "subject='java' or subject='Java'";
+                        GlobalParams.SqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
                         //sqlStr = "select * from question where subject='java' or subject='Java' limit 0,25";
                         UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
                         questionAdmin.Content = userQuestionAdmin;
@@ -147,6 +150,7 @@ namespace TeacherDatabase
                         GlobalParams.ThisPage = 1;
                         GlobalParams.startIndex = 0;
                         GlobalParams.Condition = "subject='c#' or subject='C#'";
+                        GlobalParams.SqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
                         //sqlStr = "select * from question where subject='java' or subject='Java' limit 0,25";
                         UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
                         questionAdmin.Content = userQuestionAdmin;
@@ -156,6 +160,7 @@ namespace TeacherDatabase
                         GlobalParams.ThisPage = 1;
                         GlobalParams.startIndex = 0;
                         GlobalParams.Condition = "subject='" + selectSubject + "'";
+                        GlobalParams.SqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
                         //sqlStr = "select * from question where subject='" + selectSubject + "' limit 0,25";
                         UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
                         questionAdmin.Content = userQuestionAdmin;
@@ -169,12 +174,14 @@ namespace TeacherDatabase
                     GlobalParams.ThisPage = 1;
                     GlobalParams.startIndex = 0;
                     GlobalParams.Condition = "true";
+                    GlobalParams.SqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
                     //sqlStr = "select * from question";
                     UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
                     questionAdmin.Content = userQuestionAdmin;
                 }
             }
             start++;
+            
         }
 
 
@@ -200,7 +207,7 @@ namespace TeacherDatabase
                             questionAdmin.Content = userQuestionAdmin;
                             GlobalParams.DataRefresh = false;
                         }
-
+                        showShare.Visibility = Visibility.Visible;
                         //Refresh.Visibility = Visibility.Visible;
                         labNtype.Visibility = Visibility.Visible;
                         Ntype.Visibility = Visibility.Visible;
@@ -208,6 +215,7 @@ namespace TeacherDatabase
                     }
                 case 1:
                     {
+                        showShare.Visibility = Visibility.Collapsed;
                         //Refresh.Visibility = Visibility.Collapsed;
                         labNtype.Visibility = Visibility.Collapsed;
                         Ntype.Visibility = Visibility.Collapsed;
@@ -221,6 +229,7 @@ namespace TeacherDatabase
                     }
                 case 2:
                     {
+                        showShare.Visibility = Visibility.Collapsed;
                         //Refresh.Visibility = Visibility.Collapsed;
                         labNtype.Visibility = Visibility.Collapsed;
                         Ntype.Visibility = Visibility.Collapsed;
@@ -234,6 +243,7 @@ namespace TeacherDatabase
                     }
                 case 3:
                     {
+                        showShare.Visibility = Visibility.Collapsed;
                         //Refresh.Visibility = Visibility.Collapsed;
                         labNtype.Visibility = Visibility.Collapsed;
                         Ntype.Visibility = Visibility.Collapsed;
