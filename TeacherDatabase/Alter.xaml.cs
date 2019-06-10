@@ -38,7 +38,16 @@ namespace TeacherDatabase
                 isShare.IsChecked = false;
             }
             QC = question;
-            
+            if (QC.account == GlobalParams.MyAccount)
+            {
+                isShare.IsEnabled = true;
+                isShare.Opacity = 1;
+            }
+            else
+            {
+                isShare.IsEnabled = false;
+                isShare.Opacity = 0.5;
+            }
         }
 
         private void Btn_Delete(object sender, RoutedEventArgs e)

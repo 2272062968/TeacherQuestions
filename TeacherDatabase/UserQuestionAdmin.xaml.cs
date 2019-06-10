@@ -121,7 +121,7 @@ namespace TeacherDatabase
                     user.Answer = DataTable.Rows[i][5].ToString();
                     user.Diffculty = DataTable.Rows[i][6].ToString();
                     user.Anthor = DataTable.Rows[i][7].ToString();
-                    user.Datatime = DataTable.Rows[i][8].ToString();
+                    user.Datatime = DataTable.Rows[i][8].ToString().Replace(" 0:00:00", "");
 
                     user.BtnActionStr = new Button();
                     if (i<10)
