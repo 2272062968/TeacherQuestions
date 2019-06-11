@@ -249,7 +249,7 @@ namespace TeacherDatabase
             System.Data.DataTable table = new System.Data.DataTable();
             MySqlConnection mycon = new MySqlConnection(con);
 
-            MySqlDataAdapter myDataAdapter = new MySqlDataAdapter(" select count(*) from question where "+select, con);
+            MySqlDataAdapter myDataAdapter = new MySqlDataAdapter(" select count(*) from question where "+select +" and account='"+GlobalParams.MyAccount+"'", con);
             //MySqlDataAdapter myDataAdapter = new MySqlDataAdapter("select count(*) from question where type = '选择题' and(subject = 'python' or subject = 'Python')", con);
             DataSet XuanZeData = new DataSet(); 
             myDataAdapter.Fill(XuanZeData, "question");
@@ -387,21 +387,22 @@ namespace TeacherDatabase
         //向列表随机添加难度选择的试题
         void AddSelectQueston(string type, int NumA, int NumB, int NumC)
         {
+            string thisAccount = " and account = '" + GlobalParams.MyAccount + "'";
             if (writeData.questionType == "Python")
             {
                 foreach (var item in GetRandomArray(NumC, 0, GetQuestionCount("type='" + type + "' and (subject='python' or subject = 'Python') and diffculty='简单'") - 1))
                 {
-                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='python' or subject='Python') and diffculty='简单' limit " + item.ToString() + ",1");
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='python' or subject='Python') and diffculty='简单'" + thisAccount + " limit " + item.ToString() + ",1");
                     questionName.Add(name);
                 }
                 foreach (var item in GetRandomArray(NumB, 0, GetQuestionCount("type='" + type + "' and (subject='python' or subject = 'Python') and diffculty='一般'") - 1))
                 {
-                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='python' or subject='Python') and diffculty='一般' limit " + item.ToString() + ",1");
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='python' or subject='Python') and diffculty='一般'" + thisAccount + "  limit " + item.ToString() + ",1");
                     questionName.Add(name);
                 }
                 foreach (var item in GetRandomArray(NumA, 0, GetQuestionCount("type='" + type + "' and (subject='python' or subject = 'Python') and diffculty='较难'") - 1))
                 {
-                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='python' or subject='Python') and diffculty='较难' limit " + item.ToString() + ",1");
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='python' or subject='Python') and diffculty='较难'" + thisAccount + "  limit " + item.ToString() + ",1");
                     questionName.Add(name);
                 }
             }
@@ -409,17 +410,17 @@ namespace TeacherDatabase
             {
                 foreach (var item in GetRandomArray(NumC, 0, GetQuestionCount("type='" + type + "' and (subject='java' or subject = 'Java') and diffculty='简单'") - 1))
                 {
-                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='java' or subject='Java') and diffculty='简单' limit " + item.ToString() + ",1");
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='java' or subject='Java') and diffculty='简单' " + thisAccount + " limit " + item.ToString() + ",1");
                     questionName.Add(name);
                 }
                 foreach (var item in GetRandomArray(NumB, 0, GetQuestionCount("type='" + type + "' and (subject='java' or subject = 'Java') and diffculty='一般'") - 1))
                 {
-                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='java' or subject='Java') and diffculty='一般' limit " + item.ToString() + ",1");
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='java' or subject='Java') and diffculty='一般'" + thisAccount + "  limit " + item.ToString() + ",1");
                     questionName.Add(name);
                 }
                 foreach (var item in GetRandomArray(NumA, 0, GetQuestionCount("type='" + type + "' and (subject='java' or subject = 'Java') and diffculty='较难'") - 1))
                 {
-                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='java' or subject='Java') and diffculty='较难' limit " + item.ToString() + ",1");
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and (subject='java' or subject='Java') and diffculty='较难'" + thisAccount + "  limit " + item.ToString() + ",1");
                     questionName.Add(name);
                 }
             }
@@ -427,17 +428,17 @@ namespace TeacherDatabase
             {
                 foreach (var item in GetRandomArray(NumC, 0, GetQuestionCount("type='" + type + "' and (subject='" + writeData.questionType + "') and diffculty='简单'") - 1))
                 {
-                    string name = AddQuesitonName("select name from question where type = '" + type + "' and subject='" + writeData.questionType + "' and diffculty='简单' limit " + item.ToString() + ",1");
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and subject='" + writeData.questionType + "' and diffculty='简单'" + thisAccount + "  limit " + item.ToString() + ",1");
                     questionName.Add(name);
                 }
-                foreach (var item in GetRandomArray(NumB, 0, GetQuestionCount("type='" + type + "' and (subject='" + writeData.questionType + "') and diffculty='简单'") - 1))
+                foreach (var item in GetRandomArray(NumB, 0, GetQuestionCount("type='" + type + "' and (subject='" + writeData.questionType + "') and diffculty='一般'") - 1))
                 {
-                    string name = AddQuesitonName("select name from question where type = '" + type + "' and subject='" + writeData.questionType + "' and diffculty='简单' limit " + item.ToString() + ",1");
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and subject='" + writeData.questionType + "' and diffculty='一般' " + thisAccount + " limit " + item.ToString() + ",1");
                     questionName.Add(name);
                 }
-                foreach (var item in GetRandomArray(NumA, 0, GetQuestionCount("type='" + type + "' and (subject='" + writeData.questionType + "') and diffculty='简单'") - 1))
+                foreach (var item in GetRandomArray(NumA, 0, GetQuestionCount("type='" + type + "' and (subject='" + writeData.questionType + "') and diffculty='较难'") - 1))
                 {
-                    string name = AddQuesitonName("select name from question where type = '" + type + "' and subject='" + writeData.questionType + "' and diffculty='简单' limit " + item.ToString() + ",1");
+                    string name = AddQuesitonName("select name from question where type = '" + type + "' and subject='" + writeData.questionType + "' and diffculty='较难'" + thisAccount + "  limit " + item.ToString() + ",1");
                     questionName.Add(name);
                 }
             }
