@@ -23,6 +23,22 @@ namespace TeacherDatabase
         public static bool typeRefresh = false;
         //查看共享试题sql语句
         public static string sqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
+        //是否查看共享
+        public static bool isShare = true;
+        //当前选择的学科类型
+        public static string thisSelectSubject = "全部类型";
+        public static string ThisSelectSubject
+        {
+            get { return thisSelectSubject; }
+            set { thisSelectSubject = value; }
+        }
+
+        public static bool IsShare
+        {
+            get { return isShare; }
+            set { isShare = value; }
+        }
+
 
         public static string SqlShowShare
         {

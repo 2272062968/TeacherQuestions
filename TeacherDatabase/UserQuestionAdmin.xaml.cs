@@ -26,16 +26,26 @@ namespace TeacherDatabase
         //string isSelect = "' UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
         //判断窗体加载时选择跳过
         int count = 0;
-        string sqlStr = "select * from question where "+ " account = '"+ GlobalParams.MyAccount+ "' and "+ GlobalParams.Condition + GlobalParams.SqlShowShare + " limit " + GlobalParams.StartIndex.ToString() + "," + GlobalParams.IndexNumbers.ToString();
+
+        string sqlStr;
         //GlobalParams Tj = new GlobalParams();
         string con = "Server=39.108.153.12;port=3306;user=teacher;password=myrootsql;database=teacher;";
         DataTable DataTable = new DataTable();      //创建DtatTable实例
         public UserQuestionAdmin()
         {
             InitializeComponent();
-            //MessageBox.Show(sqlStr);
-            //MessageBox.Show(GlobalParams.Condition);
-            //MessageBox.Show(sqlStr);
+            if (GlobalParams.Condition=="true" && GlobalParams.ThisSelectSubject!="全部类型")
+            {
+                sqlStr = "select * from question where " + " account = '" + GlobalParams.MyAccount  + GlobalParams.SqlShowShare + " limit " + GlobalParams.StartIndex.ToString() + "," + GlobalParams.IndexNumbers.ToString();
+
+            }
+            else
+            {
+                sqlStr = "select * from question where " + " account = '" + GlobalParams.MyAccount + "' and (" + GlobalParams.Condition + ")" + GlobalParams.SqlShowShare + " limit " + GlobalParams.StartIndex.ToString() + "," + GlobalParams.IndexNumbers.ToString();
+
+            }
+
+
             getSumPage();
             GetDataGrid(sqlStr);
 
@@ -65,7 +75,22 @@ namespace TeacherDatabase
         
         public void getSumPage()
         {
-            string sqlText = "SELECT COUNT(*) FROM question where " + GlobalParams.Condition;
+
+            //string sqlText = "SELECT COUNT(*) FROM question where " + GlobalParams.Condition +" and account='"+GlobalParams.MyAccount+"'";
+            string sqlText;
+            if (GlobalParams.isShare)
+            {
+                sqlText = String.Format("SELECT count(*) FROM `question` where {0} and account='{1}' or share='0' and {0}", GlobalParams.Condition, GlobalParams.MyAccount);
+
+            }
+            else
+            {
+                sqlText = String.Format("SELECT count(*) FROM `question` where {0} and account='{1}'", GlobalParams.Condition, GlobalParams.MyAccount);
+
+            }
+
+
+
             MySqlConnection mycon = new MySqlConnection(con);                        //创建SQL连接对象
             try
             {
@@ -204,7 +229,7 @@ namespace TeacherDatabase
             question.diffculty = DataTable.Rows[idx][6].ToString();
             question.anthor = DataTable.Rows[idx][7].ToString();
             question.share = DataTable.Rows[idx][10].ToString();
-
+            question.account= DataTable.Rows[idx][9].ToString();
 
 
             Alter alter = new Alter(question);

@@ -109,19 +109,21 @@ namespace TeacherDatabase
 
         private void Ntype_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            
             if (start>0)
             {
                 string selectSubject = "";
                 try
                 {
                     selectSubject = Ntype.SelectedValue.ToString().Replace("System.Windows.Controls.ComboBoxItem: ", "");
+                    GlobalParams.ThisSelectSubject = selectSubject;
                 }
                 catch (System.NullReferenceException)
                 {
                    
                 }
-               
+
+
                 if (selectSubject != "全部类型")
                 {
                     if (selectSubject == "python" || selectSubject == "Python")
@@ -130,7 +132,16 @@ namespace TeacherDatabase
                         GlobalParams.startIndex = 0;
                         //Tj.Condition = null;
                         GlobalParams.Condition = "subject='python' or subject='Python'";
-                        GlobalParams.SqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
+                        if (showShare.IsChecked==true)
+                        {
+                            GlobalParams.SqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
+                        }
+                        else
+                        {
+                            GlobalParams.SqlShowShare = "";
+                        }
+
+
                         //sqlStr = "select * from question where subject='python' or subject='Python' limit 0,25";
                         UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
                         questionAdmin.Content = userQuestionAdmin;
@@ -140,7 +151,14 @@ namespace TeacherDatabase
                         GlobalParams.ThisPage = 1;
                         GlobalParams.startIndex = 0;
                         GlobalParams.Condition = "subject='java' or subject='Java'";
-                        GlobalParams.SqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
+                        if (showShare.IsChecked == true)
+                        {
+                            GlobalParams.SqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
+                        }
+                        else
+                        {
+                            GlobalParams.SqlShowShare = "";
+                        }
                         //sqlStr = "select * from question where subject='java' or subject='Java' limit 0,25";
                         UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
                         questionAdmin.Content = userQuestionAdmin;
@@ -150,7 +168,14 @@ namespace TeacherDatabase
                         GlobalParams.ThisPage = 1;
                         GlobalParams.startIndex = 0;
                         GlobalParams.Condition = "subject='c#' or subject='C#'";
-                        GlobalParams.SqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
+                        if (showShare.IsChecked == true)
+                        {
+                            GlobalParams.SqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
+                        }
+                        else
+                        {
+                            GlobalParams.SqlShowShare = "";
+                        }
                         //sqlStr = "select * from question where subject='java' or subject='Java' limit 0,25";
                         UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
                         questionAdmin.Content = userQuestionAdmin;
@@ -160,7 +185,14 @@ namespace TeacherDatabase
                         GlobalParams.ThisPage = 1;
                         GlobalParams.startIndex = 0;
                         GlobalParams.Condition = "subject='" + selectSubject + "'";
-                        GlobalParams.SqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
+                        if (showShare.IsChecked == true)
+                        {
+                            GlobalParams.SqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
+                        }
+                        else
+                        {
+                            GlobalParams.SqlShowShare = "";
+                        }
                         //sqlStr = "select * from question where subject='" + selectSubject + "' limit 0,25";
                         UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
                         questionAdmin.Content = userQuestionAdmin;
@@ -174,7 +206,14 @@ namespace TeacherDatabase
                     GlobalParams.ThisPage = 1;
                     GlobalParams.startIndex = 0;
                     GlobalParams.Condition = "true";
-                    GlobalParams.SqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
+                    if (showShare.IsChecked == true)
+                    {
+                        GlobalParams.SqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
+                    }
+                    else
+                    {
+                        GlobalParams.SqlShowShare = "";
+                    }
                     //sqlStr = "select * from question";
                     UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();
                     questionAdmin.Content = userQuestionAdmin;
@@ -359,7 +398,8 @@ namespace TeacherDatabase
 
         private void ShowShare_Click(object sender, RoutedEventArgs e)
         {
-            if (showShare.IsChecked == true)
+            GlobalParams.isShare = (bool)showShare.IsChecked;
+            if (GlobalParams.isShare)
             {
                 GlobalParams.SqlShowShare = " UNION SELECT * FROM question WHERE share=0 and " + GlobalParams.Condition;
                 UserQuestionAdmin userQuestionAdmin = new UserQuestionAdmin();

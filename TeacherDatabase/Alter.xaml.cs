@@ -42,11 +42,15 @@ namespace TeacherDatabase
             {
                 isShare.IsEnabled = true;
                 isShare.Opacity = 1;
+                del.IsEnabled = true;
+                save.IsEnabled = true;
             }
             else
             {
                 isShare.IsEnabled = false;
                 isShare.Opacity = 0.5;
+                del.IsEnabled = false;
+                save.IsEnabled = false;
             }
         }
 
