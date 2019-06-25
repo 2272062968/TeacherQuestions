@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,15 +29,35 @@ namespace TeacherDatabase
         public Alter(QuestionClass question)
         {
             InitializeComponent();
+
+            //if (question.share == "0")
+            //{
+            //    isShare.IsChecked = true;
+            //}
+            //else
+            //{
+            //    isShare.IsChecked = false;
+            //}
+            MySqlConnection mycon = new MySqlConnection(con);
+            mycon.Open();
+            MySqlDataAdapter myDataAdapter = new MySqlDataAdapter(String.Format("select share from question where id={0}",question.id), con);
+            DataSet myda = new DataSet();
+            myDataAdapter.Fill(myda, "question");
+            DataTable datab = myda.Tables["question"];
+            if (datab.Rows.Count != 0)
+            {
+                if (datab.Rows[0][0].ToString() == "0")
+                {
+                    isShare.IsChecked = true;
+                }
+                else
+                {
+                    isShare.IsChecked = false;
+                }
+                
+            }
+
             this.DataContext = question;
-            if (question.share == "0")
-            {
-                isShare.IsChecked = true;
-            }
-            else
-            {
-                isShare.IsChecked = false;
-            }
             QC = question;
             if (QC.account == GlobalParams.MyAccount)
             {

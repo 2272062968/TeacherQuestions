@@ -228,7 +228,6 @@ namespace TeacherDatabase
             question.answer = DataTable.Rows[idx][5].ToString();
             question.diffculty = DataTable.Rows[idx][6].ToString();
             question.anthor = DataTable.Rows[idx][7].ToString();
-            question.share = DataTable.Rows[idx][10].ToString();
             question.account= DataTable.Rows[idx][9].ToString();
 
 

@@ -22,22 +22,28 @@ namespace TeacherDatabase
     /// </summary>
     public partial class Register : Window
     {
-        public Register()
+        public Register(double width, double height)
         {
             InitializeComponent();
+            this.Width = width;
+            this.Height = height;
         }        //关闭
         private void Btn_Close_Click(object sender, RoutedEventArgs e)
         {
-            Login login = new Login();
+            Login login = new Login(this.Width, this.Height);
             login.Show();
             this.Close();
         }
 
         private void Window_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            Point pp = e.GetPosition(this);
+            if (pp.Y < 50)
             {
-                this.DragMove();
+                if (e.LeftButton == MouseButtonState.Pressed)
+                {
+                    this.DragMove();
+                }
             }
         }
 
@@ -123,6 +129,9 @@ namespace TeacherDatabase
                         if (result == 1)
                         {
                             MessageBox.Show("注册成功，快去登录吧！");
+                            Login login = new Login(this.Width, this.Height);
+                            login.Show();
+                            this.Close();
                         }
                         else
                         {

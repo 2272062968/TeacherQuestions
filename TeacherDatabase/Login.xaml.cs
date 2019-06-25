@@ -27,14 +27,13 @@ namespace TeacherDatabase
         int pwdCount = 1;
         bool isSuccess = false;
         DataTable dataTable = new DataTable();
-        public Login()
-        {
-            InitializeComponent();
+        string con = "Server=39.108.153.12;port=3306;user=teacher;password=myrootsql;database=teacher;";
 
-            string con = "Server=39.108.153.12;port=3306;user=teacher;password=myrootsql;database=teacher;";
-            MySqlConnection mycon = new MySqlConnection(con);
+        void start()
+        {
             try
             {
+                MySqlConnection mycon = new MySqlConnection(con);
                 mycon.Open();
                 MySqlDataAdapter myDataAdapter = new MySqlDataAdapter("select * from user", con);
                 DataSet myda = new DataSet();
@@ -43,15 +42,20 @@ namespace TeacherDatabase
             }
             catch (MySqlException)
             {
-
-            
             }
-
-
-            //MessageBox.Show(dataTable.Rows[0][0].ToString()+ dataTable.Rows[0][1].ToString());
-
         }
-
+        public Login()
+        {
+            InitializeComponent();
+            start();
+        }
+        public Login(double width, double heigth)
+        {
+            InitializeComponent();
+            start();
+            this.Width = width;
+            this.Height = heigth;
+        }
         //登录
         void LoginIn()
         {
@@ -113,7 +117,7 @@ namespace TeacherDatabase
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
-            Register register = new Register();
+            Register register = new Register(this.Width, this.Height);
             register.Show();
             this.Close();
         }

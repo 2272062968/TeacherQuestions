@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeacherDatabase"
         mc:Ignorable="d"
+        AllowsTransparency="True"
          Height="700" Width="1200" WindowStyle="None" MouseMove="Window_MouseMove"
-        ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <ImageBrush ImageSource="back.jpg"></ImageBrush>
     </Window.Background>

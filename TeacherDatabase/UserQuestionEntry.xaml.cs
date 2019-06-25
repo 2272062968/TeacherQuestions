@@ -196,7 +196,7 @@ namespace TeacherDatabase
                 mycon.Open();
                 string sqlStr = "INSERT INTO `question`(`id`, `subject`, `type`, `chapter`, `name`, `answer`, `diffculty`, `anthor`, `datatime`, `account`, `share`) VALUES('"
                     + question.id + "', '" + question.subject + "', '" + question.type + "', '" + question.chapter + "', '" + question.name +
-                    "', '" + question.answer + "', '" + question.diffculty + "', '" + question.anthor + "', NOW(), '" + question.account + "', share=" + question.share + ")";
+                    "', '" + question.answer + "', '" + question.diffculty + "', '" + question.anthor + "', NOW(), '" + question.account+"',"+ question.share + ")";
                 MySqlCommand myDataAdapter = new MySqlCommand(sqlStr, mycon);
                 GlobalParams.DataRefresh = true;
                 if (Xtype.Text != "")
